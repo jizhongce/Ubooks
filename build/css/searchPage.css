@@ -1,0 +1,36 @@
+body {
+ padding-top: 0px;
+ background-color: #e9eaed;
+}
+
+
+#nav ul li {
+ float: left;
+ margin-left: 30px;
+ line-height: 40px;
+}
+
+#bigphoto img, .smallphoto img {
+ max-width: 100%;
+}
+
+
+#bigphoto img{
+  height:450px;
+  width:950px;
+}
+
+.removemargin{
+  margin: 0px;
+}
+
+.navcolor{
+  background-color: #97CBFF;
+}
+
+.navmargin{
+  margin-top: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 15px;
+}
