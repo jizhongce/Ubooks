@@ -1,5 +1,5 @@
 body {
- padding-top: 40px;
+ padding-top: 15px;
 }
 
 
@@ -17,4 +17,15 @@ body {
 #bigphoto img{
   height:450px;
   width:950px;
+}
+
+.removemargin{
+  margin: 0px;
+}
+
+.navmargin{
+  margin-top: 20px
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 15px;
 }
