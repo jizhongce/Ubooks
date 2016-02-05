@@ -38,3 +38,7 @@ body {
 .categories_button_smaller{
   font-size: 10px;
 }
+
+.categories_star_color span{
+  color: #D9B300;
+}
