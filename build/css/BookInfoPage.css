@@ -1,0 +1,27 @@
+.body .left-line{
+  padding-left: 50px;
+
+}
+.body .right-line{
+
+  padding-right: 40px;
+
+}
+
+.body .title{
+  margin-bottom: 10px;
+  padding-left: 25px;
+}
+
+.body .bookimage{
+  margin-top :15px;
+}
+.body .back{
+  margin-top :20px;
+  margin-left: 20px;
+}
+.body .buy-button button{
+  width: 200%;
+  background-color: #f2c962;
+  border-radius: 10px;
+}

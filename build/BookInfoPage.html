@@ -11,6 +11,21 @@
 	<title>UBooks</title>
 	<meta name="description" content="">
 	<meta name="author" content="">
+	<script type="text/javascript">
+	function change(s) // no ';' here
+{
+    var button = document.getElementById(s);
+    if (button.value=="More") elem.value = "Less";
+    else button.value = "More";
+}
+   function showmore(s) {
+       var f = document.getElementById(s);
+       if(f.style.display == 'block')
+          f.style.display = 'none';
+       else
+          f.style.display = 'block';
+   }
+</script>
 	<!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
@@ -26,7 +41,7 @@
 	<link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/frontPage.css">
 	<link rel="stylesheet" href="css/firstPage.css">
-
+	<link rel="stylesheet" href="css/BookInfoPage.css">
 	<!-- Favicons
 	================================================== -->
 	<link rel="shortcut icon" href="images/favicon.ico">
@@ -97,18 +112,110 @@ body{background-color: #f8f8f8}
 <hr style="margin-top:0px;margin-bottom:10px; height:1px;border:none;border-top:1px solid #555555;" />
 
 <!--The Book Info Page start from here -->
-<div class="row">
-  <div class="col-md-10 col-md-offset-1">
+<div class="row body">
+	<div class="col-md-2" style="padding-right:2px;">
+		<div class="panel panel-default">
+      <div class="panel-body">
+		<!--This is the left navbar-->
+		<b><font size="3px">Categories</font></b>
+		<hr style="margin-top:0px;margin-bottom:10px; height:1px;border:none;border-top:1px solid #555555;" />
+		<ul class="nav nav-pills nav-stacked ">
+			<center><li role="presentation"><a href="javascript:showmore('English')"><span class="glyphicon categories_button_smaller glyphicon-chevron-right"></span><font color="blue">English</font></a></li></center>
+			<div id="English" style="display:none;"><center>None</center></div>
+			<center><li role="presentation"><a href="javascript:showmore('Chemistry')"><span class="glyphicon categories_button_smaller glyphicon-chevron-right"></span><font color="blue">Chemistry</font></a></li></center>
+			<div id="Chemistry" style="display:none;"><center>None</center></div>
+			<center><li role="presentation"><a href="javascript:showmore('History')"><span class="glyphicon categories_button_smaller glyphicon-chevron-right"></span><font color="blue">History</font></a></li></center>
+			<div id="History" style="display:none;"><center>None</center></div>
+			<center><li role="presentation"><a href="javascript:showmore('Music')"><span class="glyphicon categories_button_smaller glyphicon-chevron-right"></span><font color="blue">Music</font></a></li></center>
+			<div id="Music" style="display:none;"><center>None</center></div>
+			<center><li role="presentation"><a href="javascript:showmore('Computer')"><span class="glyphicon categories_button_smaller glyphicon-chevron-right"></span><font color="blue">Computer Science</font></a></li></center>
+			<div id="Computer" style="display:none;"><a href="#"><center>Introduction to Algorithms</center></a></div>
+			<center><li role="presentation"><a href="javascript:showmore('Math')"><span class="glyphicon categories_button_smaller glyphicon-chevron-right"></span><font color="blue">Math</font></a></li></center>
+			<div id="Math" style="display:none;"><center>None</center></div>
+			<center><li role="presentation"><a href="javascript:showmore('show')"><span class="glyphicon categories_button_smaller glyphicon-chevron-right"></span><font color="blue">More</font></a></li></center>
+			<div id="show" style="display:none;">
+      <center><li role="presentation"><a href="javascript:showmore('chinese')"><span class="glyphicon categories_button_smaller glyphicon-chevron-right"></span><font color="blue">Chinese</font></a></li></center>
+			<div id="chinese" style="display:none;"><center>None</center></div>
+			<center><li role="presentation"><a href="javascript:showmore('japanese')"><span class="glyphicon categories_button_smaller glyphicon-chevron-right"></span><font color="blue">Japanese</font></a></li></center>
+			<div id="japanese" style="display:none;"><center>None</center></div>
+			<center><li role="presentation"><a href="javascript:showmore('french')"><span class="glyphicon categories_button_smaller glyphicon-chevron-right"></span><font color="blue">French</font></a></li></center>
+			<div id="french" style="display:none;"><center>None</center></div>
+			<center><li role="presentation"><a href="javascript:showmore('finance')"><span class="glyphicon categories_button_smaller glyphicon-chevron-right"></span><font color="blue">Finance</font></a></li></center>
+			<div id="finance" style="display:none;"><center>None</center></div>
+		</div>
+		</ul>
+	</div>
+</div>
+</div>
+  <div class="col-md-10">
     <div class="panel panel-default">
       <div class="panel-body">
+				<!--This is the Title -->
 				<div class="row">
 					<div class="col-md-2">
-					<img class="logo" src="img/Logo.png" style="vertical-align: baseline;"/>
+					<img class="b1" src="img/BookInfoPage1.jpg" width="100" style="vertical-align: baseline;"/>
 					</div>
 					<div class="col-md-10 pull-left">
-        	<h2 style="color:black"><font size = "5">Book Informations</font></h2>
+        	<h2 style="color:black"><font size = "6">Book Informations</font></h2>
 					</div>
 				</div>
+				<hr style="margin-top:0px;margin-bottom:10px; height:1px;border:none;border-top:1px solid #555555;" />
+				<div class"row back">
+					<br><a href="searchPage.html">Go Back to Search</a>
+				</div>
+				<div class="row bookimage">
+					<div class="col-md-3 pull-left">
+						<center><img class="book" src="img/book1.jpeg" width="150" style="vertical-align: baseline;"/></center>
+						<div class="view ">
+							<center><a href="#">View</a></center>
+							<center><a href="#"><span class="glyphicon categories_button_smaller glyphicon-user"></span>Contact Seller</a></center>
+						</div>
+					</div>
+					<div class="col-md-9 pull-left">
+						<div class="row title">
+							<div class="col-md-12">
+							<font size = "5" color="black">Introduction to Algorithms, 3rd Edition</font>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6 left-line">
+								<br><font size = "4" color="black">Edition:</font>
+								<br><font size = "4" color="black">Author:</font>
+								<br><font size = "4" color="black">ISBN-10:</font>
+								<br><font size = "4" color="black">ISBN-13:</font>
+								<br><font size = "4" color="black">Publisher:</font>
+								<br><font size = "4" color="black">Publish-Date:</font>
+								<br><font size = "4" color="black">Page:</font>
+								<br><font size = "4" color="black">List-Price:</font>
+								<br><font size = "4" color="black">Condition:</font>
+								<br><font size = "4" color="black">Description:</font>
+
+							</div>
+							<div class="col-md-6 right-line">
+								<br><font size = "4" color="black">3rd</font>
+								<br><font size = "4" color="black">Thomas H. Cormen</font>
+								<br><font size = "4" color="black">0262033844</font>
+								<br><font size = "4" color="black">9780262033848</font>
+								<br><font size = "4" color="black">The MIT Press</font>
+								<br><font size = "4" color="black">July 31, 2009</font>
+								<br><font size = "4" color="black">1312</font>
+								<br><font size = "4" color="black">$66.32</font>
+								<br><font size = "4" color="black">Great</font>
+								<br><font size = "4" color="black">Some books on algorithms are rigorous but incomplete; others cover masses of material but lack rigor. Introduction to Algorithms uniquely combines rigor and c.</font>
+
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<div class="row buy-button">
+					<div class="col-md-6">
+						<center><button type="button" class="btn btn-default">
+		    			I Want to Buy or Exchange this Book!
+		  			</button></center>
+					</div>
+				</div>
+
       </div>
     </div>
   </div>
