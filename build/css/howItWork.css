@@ -21,3 +21,11 @@ body {
 .button_smaller{
   font-size: 10px;
 }
+
+.navsearch .bk-search .book-search {
+  width: 400px;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  outline: none;
+  box-shadow: none;
+}

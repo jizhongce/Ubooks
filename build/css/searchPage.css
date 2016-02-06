@@ -42,3 +42,16 @@ body {
 .categories_star_color span{
   color: #D9B300;
 }
+
+.account-box{
+  border-width: 3px;
+  border-style: solid;
+  border-color: gray;
+}
+
+.navsearch .bk-search .book-search {
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  outline: none;
+  box-shadow: none;
+}
