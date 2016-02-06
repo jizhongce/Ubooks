@@ -3,6 +3,36 @@ body {
  background-color: #e9eaed;
 }
 
+.navsearch .bk-search .book-search {
+  width: 400px;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  outline: none;
+  box-shadow: none;
+}
+
+.navsearch form button,
+.navsearch form button:hover,
+.navsearch form button:focus,
+.navsearch form button:active,
+.navsearch form button:active:focus {
+  background-color: white;
+  border-left: none;
+  color: black;
+  /* Make it a bit wider. */
+  width: 50px;
+  /* Make the border's curve more gentle */
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  /* Apply a light-grey border color. You can specify colors as names, rgb
+     triplets, or hex numbers. */
+  border-top: 1px solid rgb(204, 204, 204);
+  border-bottom: 1px solid rgb(204, 204, 204);
+  border-right: 1px solid rgb(204, 204, 204);
+  /* Removes halo and shadow on button when clicked. */
+  outline: none;
+  box-shadow: none;
+}
 
 #nav ul li {
  float: left;

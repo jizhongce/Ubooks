@@ -86,63 +86,84 @@ body{background-color: #f8f8f8}
 			</div>
 </div>
 
-
-			<div class="row">
+<!--here is what I make the change for the search bar-->
+			<div class="row navsearch">
 				<div class="col-md-12">
-
-			<div class="btn-group">
+					<form class="navbar-form bk-search pull-right" role="search">
+		  <!-- Left-aligned items. -->
 		  <div class="input-group">
-		    <input type="text" class="form-control" placeholder="Search UBooks">
+		    <input type="text" class="form-control book-search" style="width:300px"placeholder="Search Book">
 		    <span class="input-group-btn">
 		      <button type="submit" class="btn btn-default">
 		        <span class="glyphicon glyphicon-search"></span>
 		      </button>
 		    </span>
 		  </div>
-		</div>
+		</form>
+
 </div>
 </div>
 		</ul>
 	</div>
+
 </div><!--first row end-->
 <hr style="margin-top:0px;margin-bottom:10px; height:1px;border:none;border-top:1px solid #555555;" />
 
 <!--The Book Info Page start from here -->
 <div class="row body">
-	<div class="col-md-2" style="padding-right:2px;">
-		<div class="panel panel-default">
+	<div class="col-md-2" style="padding-right:2px;"><!--panel body for categories-->
+    <div class="panel panel-default">
       <div class="panel-body">
-		<!--This is the left navbar-->
-		<b><font size="3px">Categories</font></b>
-		<hr style="margin-top:0px;margin-bottom:10px; height:1px;border:none;border-top:1px solid #555555;" />
-		<ul class="nav nav-pills nav-stacked ">
-			<center><li role="presentation"><a href="javascript:showmore('English')"><span class="glyphicon categories_button_smaller glyphicon-chevron-right"></span><font color="blue">English</font></a></li></center>
-			<div id="English" style="display:none;"><center>None</center></div>
-			<center><li role="presentation"><a href="javascript:showmore('Chemistry')"><span class="glyphicon categories_button_smaller glyphicon-chevron-right"></span><font color="blue">Chemistry</font></a></li></center>
-			<div id="Chemistry" style="display:none;"><center>None</center></div>
-			<center><li role="presentation"><a href="javascript:showmore('History')"><span class="glyphicon categories_button_smaller glyphicon-chevron-right"></span><font color="blue">History</font></a></li></center>
-			<div id="History" style="display:none;"><center>None</center></div>
-			<center><li role="presentation"><a href="javascript:showmore('Music')"><span class="glyphicon categories_button_smaller glyphicon-chevron-right"></span><font color="blue">Music</font></a></li></center>
-			<div id="Music" style="display:none;"><center>None</center></div>
-			<center><li role="presentation"><a href="javascript:showmore('Computer')"><span class="glyphicon categories_button_smaller glyphicon-chevron-right"></span><font color="blue">Computer Science</font></a></li></center>
-			<div id="Computer" style="display:none;"><a href="#"><center>Introduction to Algorithms</center></a></div>
-			<center><li role="presentation"><a href="javascript:showmore('Math')"><span class="glyphicon categories_button_smaller glyphicon-chevron-right"></span><font color="blue">Math</font></a></li></center>
-			<div id="Math" style="display:none;"><center>None</center></div>
-			<center><li role="presentation"><a href="javascript:showmore('show')"><span class="glyphicon categories_button_smaller glyphicon-chevron-right"></span><font color="blue">More</font></a></li></center>
-			<div id="show" style="display:none;">
-      <center><li role="presentation"><a href="javascript:showmore('chinese')"><span class="glyphicon categories_button_smaller glyphicon-chevron-right"></span><font color="blue">Chinese</font></a></li></center>
-			<div id="chinese" style="display:none;"><center>None</center></div>
-			<center><li role="presentation"><a href="javascript:showmore('japanese')"><span class="glyphicon categories_button_smaller glyphicon-chevron-right"></span><font color="blue">Japanese</font></a></li></center>
-			<div id="japanese" style="display:none;"><center>None</center></div>
-			<center><li role="presentation"><a href="javascript:showmore('french')"><span class="glyphicon categories_button_smaller glyphicon-chevron-right"></span><font color="blue">French</font></a></li></center>
-			<div id="french" style="display:none;"><center>None</center></div>
-			<center><li role="presentation"><a href="javascript:showmore('finance')"><span class="glyphicon categories_button_smaller glyphicon-chevron-right"></span><font color="blue">Finance</font></a></li></center>
-			<div id="finance" style="display:none;"><center>None</center></div>
-		</div>
-		</ul>
-	</div>
-</div>
-</div>
+        <b><font size="3px">Categories</font></b>
+
+        <hr style="margin-top:0px;margin-bottom:10px; height:1px;border:none;border-top:1px solid #555555;" />
+
+				<div><!--categories hidden button-->
+					<div><a href="javascript:showmore('English')"><span class="glyphicon categories_button_smaller glyphicon-chevron-right"></span><font color="blue">English</font></a></div>
+					<div id="English" style="display:none;"><center>None</center></div>
+					<div><a href="javascript:showmore('Chemistry')"><span class="glyphicon categories_button_smaller glyphicon-chevron-right"></span><font color="blue">Chemistry</font></a></div>
+					<div id="Chemistry" style="display:none;"><center>None</center></div>
+					<div><a href="javascript:showmore('History')"><span class="glyphicon categories_button_smaller glyphicon-chevron-right"></span><font color="blue">History</font></a></div>
+					<div id="History" style="display:none;"><center>None</center></div>
+					<div><a href="javascript:showmore('Music')"><span class="glyphicon categories_button_smaller glyphicon-chevron-right"></span><font color="blue">Music</font></a></div>
+					<div id="Music" style="display:none;"><center>None</center></div>
+					<div><a href="javascript:showmore('Computer')"><span class="glyphicon categories_button_smaller glyphicon-chevron-right"></span><font color="blue">Computer Science</font></a></div>
+					<div id="Computer" style="display:none;"><a href="#"><center>Introduction to Algorithms</center></a></div>
+					<div><a href="javascript:showmore('Math')"><span class="glyphicon categories_button_smaller glyphicon-chevron-right"></span><font color="blue">Math</font></a></div>
+					<div id="Math" style="display:none;"><center>None</center></div>
+					<div><a href="javascript:showmore('show')"><span class="glyphicon categories_button_smaller glyphicon-chevron-right"></span><font color="blue">More</font></a></div>
+					<div id="show" style="display:none;">
+		      <div><a href="javascript:showmore('chinese')"><span class="glyphicon categories_button_smaller glyphicon-chevron-right"></span><font color="blue">Chinese</font></a></div>
+					<div id="chinese" style="display:none;"><center>None</center></div>
+					<div><a href="javascript:showmore('japanese')"><span class="glyphicon categories_button_smaller glyphicon-chevron-right"></span><font color="blue">Japanese</font></a></div>
+					<div id="japanese" style="display:none;"><center>None</center></div>
+					<div><a href="javascript:showmore('french')"><span class="glyphicon categories_button_smaller glyphicon-chevron-right"></span><font color="blue">French</font></a></div>
+					<div id="french" style="display:none;"><center>None</center></div>
+					<div><a href="javascript:showmore('finance')"><span class="glyphicon categories_button_smaller glyphicon-chevron-right"></span><font color="blue">Finance</font></a></div>
+					<div id="finance" style="display:none;"><center>None</center></div>
+					</div>
+				</div><!--categories hidden button end-->
+
+				<hr style="margin-top:5px;">
+
+				<b><font size="3px">Condition</font></b>
+				<hr style="margin-top:0px;margin-bottom:10px; height:1px;border:none;border-top:1px solid #555555;" />
+				<a href="#"><span class="glyphicon categories_button_smaller glyphicon-chevron-right"></span><font color="blue">New</font></a>
+        <br><a href="#"><span class="glyphicon categories_button_smaller glyphicon-chevron-right"></span><font color="blue">Used</font></a>
+
+				<hr style="margin-top:5px;">
+				<b><font size="3px">Review</font></b>
+				<hr style="margin-top:0px;margin-bottom:10px; height:1px;border:none;border-top:1px solid #555555;" />
+				<div class="categories_star_color">
+				<a href="#"><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span></a>
+				<br><a href="#"><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span></a>
+				<br><a href="#"><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span></a>
+				<br><a href="#"><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span></a>
+				<br><a href="#"><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span><span class="glyphicon glyphicon-star-empty"></span></a>
+				</div>
+		  </div>
+    </div><!--panel body for categories end-->
+  </div>
   <div class="col-md-10">
     <div class="panel panel-default">
       <div class="panel-body">
