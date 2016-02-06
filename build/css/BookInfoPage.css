@@ -25,3 +25,6 @@
   background-color: #f2c962;
   border-radius: 10px;
 }
+.body .buy-button button:hover{
+  background-color: #f2c962;
+}
