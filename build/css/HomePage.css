@@ -1,3 +1,16 @@
 .welcome{
-   background-image: url(img/bookimage.png);
+  background-color: transparent;
+  border-color: transparent;
+  padding:0px;
+}
+
+.hot{
+  color:rgb(198, 76, 54);
+}
+
+.book-image{
+  width:100px;
+}
+.glyphicon-fire{
+  color:rgb(244, 88, 0);
 }
