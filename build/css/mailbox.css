@@ -1,0 +1,37 @@
+.content {
+  margin-top: 50px;
+  margin-bottom: 70px;
+}
+
+.message-box {
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+}
+
+.message-box a {
+  color: #877 !important;
+}
+
+.mail {
+  padding-left: 50px !important;
+}
+
+.msg-container {
+  padding: 10px;
+  margin-top: 20px;
+  background-color: #FFE;
+  border-radius: 20px;
+}
+
+.msg-sender {
+  color: #888;
+}
+
+.msg {
+  margin-top: 10px;
+  color: #666;
+}
+
+.msg-date {
+  color: #999;
+}
