@@ -1,4 +1,5 @@
 import React from 'react';
+import Searchpagebookslist from './searchpagebookslist';
 
 export default class Searchpagebody extends React.Component {
   render() {
@@ -41,49 +42,7 @@ export default class Searchpagebody extends React.Component {
           <div className="col-md-10">
             <div className="panel panel-default">
               <div className="panel-body">
-                <b><font size="4px;">Result for "Web programming":</font></b>
-                <hr className="hrstyle" />
-                <div className="media">
-                  <div className="media-left media-top">
-                    <img src="../img/searchpage1.jpg" width="100px" />
-                  </div>
-                  <div className="media-body">
-                    <a href="#"><font size="4px;" color="blue">Pure JavaScript (1999, Paperback) Web Developing Programming Code Java Very Good</font></a>
-                    <br />Seller: <a href="#">Leo <span className="glyphicon glyphicon-user"></span></a>
-                    <div className="categories_star_color">
-                      <a href="#"><span className="glyphicon glyphicon-star"></span><span className="glyphicon categories_star_color glyphicon-star"></span><span className="glyphicon categories_star_color glyphicon-star"></span><span className="glyphicon categories_star_color glyphicon-star"></span><span className="glyphicon categories_star_color glyphicon-star"></span></a>
-                    </div>
-                    post by yesterday at 3:48pm · UMass Amherst
-                  </div>
-                </div>
-                <hr />
-                <div className="media">
-                  <div className="media-left media-top">
-                    <img src="../img/searchpage2.jpg" width="100px" />
-                  </div>
-                  <div className="media-body">
-                    <a href="#"><font size="4px;" color="blue">Programming ASP. NET MVC 4 : Developing Real-World Web Applications with ASP</font></a>
-                    <br />Seller: <a href="#">Tim <span className="glyphicon glyphicon-user"></span></a>
-                    <div className="categories_star_color">
-                      <a href="#"><span className="glyphicon glyphicon-star"></span><span className="glyphicon categories_star_color glyphicon-star"></span><span className="glyphicon categories_star_color glyphicon-star"></span><span className="glyphicon categories_star_color glyphicon-star"></span><span className="glyphicon categories_star_color glyphicon-star-empty"></span></a>
-                    </div>
-                    <p>post by Feb 5th at 11:00pm · UMass Amherst</p>
-                  </div>
-                </div>
-                <hr />
-                <div className="media">
-                  <div className="media-left media-top">
-                    <img src="../img/searchpage3.jpg" width="100px" />
-                  </div>
-                  <div className="media-body">
-                    <a href="#"><font size="4px;" color="blue">CGI Programming on the World Wide Web (Paperback)</font></a>
-                    <br />Seller: <a href="#">Kai <span className="glyphicon glyphicon-user"></span></a>
-                    <div className="categories_star_color zeromargin">
-                      <a href="#"><span className="glyphicon glyphicon-star"></span><span className="glyphicon categories_star_color glyphicon-star"></span><span className="glyphicon categories_star_color glyphicon-star"></span><span className="glyphicon categories_star_color glyphicon-star"></span><span className="glyphicon categories_star_color glyphicon-star"></span></a>
-                    </div>
-                    <p>post by Jan 9th at 6:20pm · UMass Amherst</p>
-                  </div>
-                </div>
+                <Searchpagebookslist user={this.props.user}/>
               </div>
             </div>
           </div>

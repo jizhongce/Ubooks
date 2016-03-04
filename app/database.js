@@ -71,9 +71,8 @@ var initialData = {
                 // The date the comment was posted.
                 // 01/24/16 22:00 EST
                 "postDate": 1453690800000
-              }
-
-                  ]
+            }
+        ]
       },
       "2": {
         "_id":2,
@@ -102,22 +101,16 @@ var initialData = {
                 // The date the comment was posted.
                 // 01/24/16 22:00 EST
                 "postDate": 1453690800000
-              }
+            }
 
-            ]
-          }
+        ]
+      }
     },
     "feeds": {
       "4": {
         "_id": 4,
         // Listing of FeedItems in the feed.
-        "Messages": [
-          {
-            "From": 1,
-            "sendDate": 1453690800000,
-            "contents": "hello, I want this book can you contact me?"
-          }
-        ]
+        "contents": [1,2]
       },
       "3": {
         "_id": 3,
