@@ -46,9 +46,30 @@ var initialData = {
         "contents":{
           "bookname":"Introduction-to-algorithms",
           "author":"Tomas",
-          "postDate": 1453668480000,
+          "edition": "3rd",
+          "isbn_10": "0262033844",
+          "isbn_13": "9780262033848",
+          "postDate": "1453668480000",
+          "Publisher": "The MIT Press",
+          "publish_date": "July 31, 2009",
+          "page": "1312",
+          "list_price": "$66.32",
+          "condition": "Great",
+          "description": "Some books on algorithms are rigorous but incomplete; others cover masses of material but lack rigor. Introduction to Algorithms uniquely combines rigor and c.",
           "location": "Amherst, MA"
-        }
+        },
+        "comments": [
+            {
+                // The author of the comment.
+                "author": 1,
+                // The contents of the comment.
+                "contents": "I love this book!",
+                // The date the comment was posted.
+                // 01/24/16 22:00 EST
+                "postDate": 1453690800000
+              }
+
+                  ]
       },
       "2": {
         "_id":2,
@@ -56,10 +77,31 @@ var initialData = {
         "contents":{
           "bookname":"Artificial Intelligence A Modern Approach",
           "author":"Peter",
+          "edition": "3rd",
+          "isbn_10": "0262099822",
+          "isbn_13": "9780261234567",
           "postDate": 1453668480000,
+          "Publisher": "The MASS Press",
+          "publish_date": "July 31, 1004",
+          "page": "999",
+          "list_price": "$80.32",
+          "condition": "Great",
+          "description": "This book is used for learning some knowledges about AI for the college students.",
           "location": "Amherst, MA"
-        }
-      }
+        },
+        "comments": [
+            {
+                // The author of the comment.
+                "author": 2,
+                // The contents of the comment.
+                "contents": "book is good!",
+                // The date the comment was posted.
+                // 01/24/16 22:00 EST
+                "postDate": 1453690800000
+              }
+
+            ]
+          }
     },
     "feeds": {
       "4": {
