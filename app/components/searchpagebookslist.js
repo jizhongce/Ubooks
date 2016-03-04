@@ -28,7 +28,7 @@ export default class Searchpagebookslist extends React.Component {
         <hr />
           {this.state.contents.map((feedItem) => {
             return (
-              <Searchpagebook key={feedItem._id} data={feedItem} test={feedItem._id} />
+              <Searchpagebook key={feedItem._id} data={feedItem} />
             )
           })}
       </div>
