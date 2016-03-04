@@ -24,7 +24,7 @@ export default class Searchpagebookslist extends React.Component {
     return (
     <div>
       <div className="panel-body">
-        <b><font size="4px;">Result for "Web programming":</font></b>
+        <b><font size="4px;">Search result:</font></b>
         <hr />
           {this.state.contents.map((feedItem) => {
             return (
