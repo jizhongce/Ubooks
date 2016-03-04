@@ -12,21 +12,24 @@ var initialData = {
         "fullName": "Tim",
         "exchangeLists": [1],
         "wantLists": [2],
-        "feed":1
+        "feed":1,
+        "mailbox":1
       },
       "2": {
         "_id": 2,
         "fullName": "Kai",
         "exchangeLists": [],
         "wantLists": [],
-        "feed":2
+        "feed":2,
+        "mailbox":2
       },
       "3": {
         "_id": 3,
         "fullName": "Leo",
         "exchangeLists": [],
         "wantLists": [],
-        "feed":3
+        "feed":3,
+        "mailbox":3
       },
       //this is you
       "4": {
@@ -35,7 +38,8 @@ var initialData = {
         // ID of your books.
         "exchangeLists": [2],
         "wantList": [1],
-        "feed":4
+        "feed":4,
+        "mailbox":4
       }
     },
     //books
@@ -50,13 +54,13 @@ var initialData = {
           "isbn_10": "0262033844",
           "isbn_13": "9780262033848",
           "postDate": "1453668480000",
-          "Publisher": "The MIT Press",
+          "publisher": "The MIT Press",
           "publish_date": "July 31, 2009",
           "page": "1312",
           "list_price": "$66.32",
           "condition": "Great",
-          "description": "Some books on algorithms are rigorous but incomplete; others cover masses of material but lack rigor. Introduction to Algorithms uniquely combines rigor and c.",
-          "location": "Amherst, MA"
+          "descriptions": "Some books on algorithms are rigorous but incomplete; others cover masses of material but lack rigor. Introduction to Algorithms uniquely combines rigor and c.",
+          "locations": "Amherst, MA"
         },
         "comments": [
             {
@@ -107,7 +111,13 @@ var initialData = {
       "4": {
         "_id": 4,
         // Listing of FeedItems in the feed.
-        "contents": [1,2]
+        "Messages": [
+          {
+            "From": 1,
+            "sendDate": 1453690800000,
+            "contents": "hello, I want this book can you contact me?"
+          }
+        ]
       },
       "3": {
         "_id": 3,
@@ -121,6 +131,52 @@ var initialData = {
         "_id": 1,
         "contents": []
       }
+    },
+
+    "mailbox":{
+      "4": {
+        "_id": 4,
+        // Listing of messages in the mailbox.
+        "Messages": [
+          {
+            "From": 3,
+            "sendDate": 1453690800000,
+            "contents": "hello"
+          }
+        ]
+      },
+      "3": {
+        "_id": 3,
+        "Messages": [
+          {
+            "From": 4,
+            "sendDate": 1453690800000,
+            "contents": "I want this book!"
+          }
+        ]
+      },
+      "2": {
+        "_id": 2,
+        "Messages": [
+          {
+            "From": 3,
+            "sendDate": 1453690800000,
+            "contents": "Yeah check thi out!"
+          }
+        ]
+      },
+      "1": {
+        "_id": 1,
+        "Messages": [
+          {
+            "From": 2,
+            "sendDate": 1453690800000,
+            "contents": "I want this book! hahahahaha"
+          }
+        ]
+      }
+
+
     }
 };
 
