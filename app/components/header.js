@@ -23,9 +23,9 @@ export default class Header extends React.Component {
                 <button type="button" className="btn btn-default">
                   <font size="3">Post books</font>
                 </button>
-                <button type="button" className="btn btn-default">
+                <Link to={"/howitwork"}>{<button type="button" className="btn btn-default">
                   <font size="3">Help&Contact</font>
-                </button>
+                </button>}</Link>
                 <button type="button" className="btn btn-default">
                   <font size="3">MailBox</font>
                 </button>

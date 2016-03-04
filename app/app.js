@@ -2,11 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Searchpage from './components/searchpage';
 import Frontpage from './components/frontpage';
+import Howitwork from './components/howitwork';
 import { IndexRoute, Router, Route, hashHistory } from 'react-router'
 
-/**
- * A fake profile page.
- */
 class SearchPage extends React.Component {
   render() {
     return (
@@ -17,24 +15,18 @@ class SearchPage extends React.Component {
   }
 }
 
-/**
- * The Feed page. We created a new component just to fix the userId at 4.
- */
 class FrontPage extends React.Component {
   render() {
     return <Frontpage />;
   }
 }
 
+class HowitWork extends React.Component {
+  render() {
+    return <Howitwork />;
+  }
+}
 
-/**
- * The primary component in our application.
- * The Router will give it different child Components as the user clicks
- * around the application.
- *
- * If we implemented all of Facebook, this App would also contain Component
- * objects for the left and right content panes.
- */
 class App extends React.Component {
   render() {
     return (
@@ -50,6 +42,7 @@ ReactDOM.render((
       <IndexRoute component={FrontPage} />
       <Route path="search" component={SearchPage} />
       <Route path="home" component={FrontPage} />
+      <Route path="howitwork" component={HowitWork} />
     </Route>
   </Router>
 ),document.getElementById('UBooksFeed'));
