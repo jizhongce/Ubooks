@@ -32,11 +32,11 @@ export default class Header extends React.Component {
               </div>
               <form className="navbar-form pull-right zeropadding threemargin" role="search">
                 <div className="input-group headerinput">
-                  <input type="text" className="form-control headerinput"  placeholder="Search Book"/>
                   <span className="input-group-btn search_button">
-                    <button type="submit" className="btn btn-default">
+                    <input type="text" className="form-control headerinput"  placeholder="Search Book"/>
+                    <Link to={"/search"}><button type="submit" className="btn btn-default">
                       <span className="glyphicon glyphicon-search"></span>
-                    </button>
+                    </button></Link>
                   </span>
                 </div>
               </form>
