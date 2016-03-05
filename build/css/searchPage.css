@@ -124,6 +124,15 @@ body {
   border-right:none;
   border-color: gray;
 }
+
+.headerinput button{
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-left:none;
+  border-color: gray;
+  margin: 0px;
+}
+
 .header2background{
   margin:0px;
   background-image:url(../img/hearder.jpg);

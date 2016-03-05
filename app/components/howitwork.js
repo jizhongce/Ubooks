@@ -1,13 +1,13 @@
 import React from 'react';
 import Header from './header.js';
-import Searchpagebody from './searchpagebody';
+import Howitworkbody from './howitworkbody';
 
-export default class Searchpage extends React.Component {
+export default class Howitwork extends React.Component {
   render() {
     return (
     <div>
       <Header />
-      <Searchpagebody />
+      <Howitworkbody user={4}/>
     </div>
     )
   }

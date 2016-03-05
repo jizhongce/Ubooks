@@ -36,7 +36,7 @@ var initialData = {
         "_id": 4,
         "fullName": "Carter",
         // ID of your books.
-        "exchangeLists": [2],
+        "exchangeLists": [3],
         "wantList": [1],
         "feed":4,
         "mailbox":4
@@ -47,20 +47,21 @@ var initialData = {
       "1": {
         "_id":1,
         "owner_id":2,
+        "pic":"../img/book1.jpg",
         "contents":{
           "bookname":"Introduction-to-algorithms",
           "author":"Tomas",
           "edition": "3rd",
           "isbn_10": "0262033844",
           "isbn_13": "9780262033848",
-          "postDate": "1453668480000",
+          "postDate": 1453668480000,
           "publisher": "The MIT Press",
           "publish_date": "July 31, 2009",
           "page": "1312",
           "list_price": "$66.32",
           "condition": "Great",
           "descriptions": "Some books on algorithms are rigorous but incomplete; others cover masses of material but lack rigor. Introduction to Algorithms uniquely combines rigor and c.",
-          "locations": "Amherst, MA"
+          "location": "Amherst, MA"
         },
         "comments": [
             {
@@ -70,21 +71,21 @@ var initialData = {
                 "contents": "I love this book!",
                 // The date the comment was posted.
                 // 01/24/16 22:00 EST
-                "postDate": 1453690800000
-              }
-
-                  ]
+                "postDate": 1451973470000
+            }
+        ]
       },
       "2": {
         "_id":2,
         "owner_id":3,
+        "pic":"../img/book2.jpg",
         "contents":{
           "bookname":"Artificial Intelligence A Modern Approach",
           "author":"Peter",
           "edition": "3rd",
           "isbn_10": "0262099822",
           "isbn_13": "9780261234567",
-          "postDate": 1453668480000,
+          "postDate": 1454961080000,
           "Publisher": "The MASS Press",
           "publish_date": "July 31, 1004",
           "page": "999",
@@ -102,22 +103,47 @@ var initialData = {
                 // The date the comment was posted.
                 // 01/24/16 22:00 EST
                 "postDate": 1453690800000
-              }
+            }
 
-            ]
-          }
+        ]
+      },
+      "3": {
+        "_id":3,
+        "owner_id":4,
+        "pic":"../img/book3.jpg",
+        "contents":{
+          "bookname":"Learning Web Design: A Beginner's Guide to HTML, CSS, JavaScript, and Web Graphics",
+          "author":"Jennifer Niederst Robbins",
+          "edition": "4rd",
+          "isbn_10": "1449319270",
+          "isbn_13": "978-1449319274",
+          "postDate": 1443668380000,
+          "publisher": "O'Reilly Media",
+          "publish_date": "August 24, 2012",
+          "page": "642",
+          "list_price": "$31.99",
+          "condition": "Great",
+          "descriptions": "This friendly guide is the perfect place to start. You’ll begin at square one, learning how the Web and web pages work, and then steadily build from there. By the end of the book, you’ll have the skills to create a simple site with multi-column pages that adapt for mobile devices",
+          "location": "Amherst, MA"
+        },
+        "comments": [
+            {
+                // The author of the comment.
+                "author": 1,
+                // The contents of the comment.
+                "contents": "Great book!",
+                // The date the comment was posted.
+                // 01/24/16 22:00 EST
+                "postDate": 1451973470000
+            }
+        ]
+      }
     },
     "feeds": {
       "4": {
         "_id": 4,
         // Listing of FeedItems in the feed.
-        "Messages": [
-          {
-            "From": 1,
-            "sendDate": 1453690800000,
-            "contents": "hello, I want this book can you contact me?"
-          }
-        ]
+        "contents": [1,2,3]
       },
       "3": {
         "_id": 3,
