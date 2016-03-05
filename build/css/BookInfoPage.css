@@ -1,27 +1,40 @@
-.body .left-line{
+.left-line{
   padding-left: 50px;
 
 }
-.body .right-line{
+.right-line{
 
   padding-right: 40px;
 
 }
 
-.body .title{
+.title{
   margin-bottom: 10px;
   padding-left: 25px;
 }
 
-.body .bookimage{
+.bookimage{
   margin-top :15px;
 }
-.body .back{
+.back{
   margin-top :20px;
   margin-left: 20px;
 }
-.body .buy-button button{
+.buy-button button{
   width: 200%;
   background-color: #f2c962;
   border-radius: 10px;
+}
+
+.buy-button button:hover {
+  background-color: #f2c962;
+}
+
+
+.hrstyle{
+  margin-top:0px;
+  margin-bottom:10px;
+  border-color: #555555;
+
+  border-style: solid;
 }

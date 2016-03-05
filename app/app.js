@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Searchpage from './components/searchpage';
+import Bookpage from './components/bookpage';
 import Frontpage from './components/frontpage';
 import { IndexRoute, Router, Route, hashHistory } from 'react-router'
 
@@ -16,6 +17,16 @@ class SearchPage extends React.Component {
     );
   }
 }
+
+class BookPage extends React.Component {
+  render() {
+    return (
+        <Bookpage />
+    );
+  }
+}
+
+
 
 /**
  * The Feed page. We created a new component just to fix the userId at 4.
@@ -50,6 +61,7 @@ ReactDOM.render((
       <IndexRoute component={FrontPage} />
       <Route path="search" component={SearchPage} />
       <Route path="home" component={FrontPage} />
+      <Route path="post" component={BookPage} />
     </Route>
   </Router>
 ),document.getElementById('UBooksFeed'));

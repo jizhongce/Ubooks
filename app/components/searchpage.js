@@ -7,7 +7,7 @@ export default class Searchpage extends React.Component {
     return (
     <div>
       <Header />
-      <Searchpagebody data={this.the}/>
+      <Searchpagebody />
     </div>
     )
   }
