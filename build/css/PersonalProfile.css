@@ -1,0 +1,36 @@
+.main{
+  background-color:rgb(217, 217, 217);
+  border-radius:10px;
+}
+.main-row >div{
+  display: inline-block;
+}
+
+.profile-img{
+  margin-top: 0;
+  margin-left:20px;
+  padding: 0px;
+}
+.account{
+padding-top:20px;
+}
+.main-table{
+  border-style: hidden;
+}
+.book-image{
+  width:120px;
+  height:150px;
+  padding:0px;
+}
+.title{
+  padding-left: 100px;
+}
+
+.info-box{
+  margin-bottom:40px;
+  margin-left:50px;
+}
+
+.info-col{
+  padding:0px;
+}
