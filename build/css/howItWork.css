@@ -29,3 +29,44 @@ body {
   outline: none;
   box-shadow: none;
 }
+
+.backgroundpic{
+  background-image:url(../img/howitworkbackgrounds.jpg);
+  background-size:cover;
+}
+
+.textlocat{
+  text-align:center;
+  font-size: 170%;
+}
+
+.blackfont{
+  color: black;
+  font-size:150%;
+}
+.titlefont{
+  font-size=180%;
+}
+
+.hrfivemargin{
+  margin-bottom: 5px;
+}
+
+.hrcolor{
+  border-color: gray;
+}
+
+.prestyle{
+  border:none;
+  background-color:transparent;
+  margin-bottom:20px;
+}
+
+.zeromarginbotton{
+  margin-bottom:0px;
+}
+
+.spbuttonstyle{
+  color:white;
+  background-color:#46A3FF;
+}

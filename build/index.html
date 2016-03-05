@@ -5,21 +5,65 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Bootstrap Template</title>
+    <title>UBooks</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Custom CSS goes here -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+    <!-- CSS
+    ================================================== -->
+  	<link rel="stylesheet" href="css/base.css">
+  	<link rel="stylesheet" href="css/skeleton.css">
+  	<link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/frontPage.css">
+  	<link rel="stylesheet" href="css/firstPage.css">
+    <link rel="stylesheet" href="css/howItWork.css">
+    <link rel="stylesheet" href="css/searchPage.css">
+
+  	<!-- Favicons
+  	================================================== -->
+  	<link rel="shortcut icon" href="images/favicon.ico">
+  	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  	<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png" />
+  	<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png" />
+
+  	<link href="css/bootstrap.min.css" rel="stylesheet">
+  	<link href="css/searchPage.css" rel="stylesheet">
   </head>
+
+  <!--body start-->
   <body>
+    <style>
+      body{background-image:url(img/body_backgorund1.jpg); background-attachment:fixed; background-size:cover;}
+    </style>
+
     <!-- Custom HTML goes here -->
-    Hello world!
+    <!-- Primary Page Layout
+  	================================================== -->
+    <!--main feed start-->
+    <div id="UBooksFeed">
+
+    </div>
+    <div id="db-reset">
+
+    </div>
+
+    <script type="text/javascript">
+      function showmore(s) {
+        var f = document.getElementById(s);
+        if(f.style.display == 'block')
+          f.style.display = 'none';
+        else
+          f.style.display = 'block';
+      }
+    </script>
+
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="js/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
     <!-- App code -->
-    <script src="js/bundle.js"></script>
+    <script src="js/app.js"></script>
   </body>
 </html>
