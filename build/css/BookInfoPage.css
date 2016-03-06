@@ -31,10 +31,10 @@
 }
 
 
-.hrstyle{
-  margin-top:0px;
-  margin-bottom:10px;
-  border-color: #555555;
+.hrcolor{
+  border-color: gray;
+}
 
-  border-style: solid;
+.body .category{
+  padding-right:2px;
 }

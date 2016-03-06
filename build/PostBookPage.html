@@ -90,7 +90,7 @@ body{background-color: #f8f8f8}
 				<div class="col-md-12">
 					<form class="navbar-form bk-search pull-right" role="search">
 		  			<div class="input-group">
-		    			<input type="text" class="form-control book-search" style="width:300px"placeholder="Search Book">
+		    			<input type="text" class="form-control book-search" style="width:300px" placeholder="Search Book" >
 		    			<span class="input-group-btn">
 		      		<button type="submit" class="btn btn-default">
 		        	<span class="glyphicon glyphicon-search"></span>
@@ -148,7 +148,7 @@ body{background-color: #f8f8f8}
           <div class="col-md-12" style="margin-top:5px;">
             <form role="form">
               <div class="form-group">
-                <label for="subject">*Subject:</label>
+                <label for="subject">*Edition:</label>
                   <input type="text" class="form-control subject" id="subject" placeholder="Subject eg.Computer Science">
               </div>
             </form>
@@ -160,7 +160,7 @@ body{background-color: #f8f8f8}
             <form role="form">
               <div class="form-group">
                 <label for="author">*Author1:</label>
-                  <input type="text" class="form-control author" id="author" placeholder="Author Name eg. Carter Jiang">
+                  <input type="text" class="form-control author" id="author1" placeholder="Author Name eg. Carter Jiang">
               </div>
             </form>
           </div>
@@ -168,7 +168,7 @@ body{background-color: #f8f8f8}
             <form role="form">
               <div class="form-group">
                 <label for="author">Author2:</label>
-                  <input type="text" class="form-control author" id="author" placeholder="Author Name eg. Tim Ji">
+                  <input type="text" class="form-control author" id="author2" placeholder="Author Name eg. Tim Ji">
               </div>
             </form>
           </div>
@@ -179,7 +179,7 @@ body{background-color: #f8f8f8}
             <form role="form">
               <div class="form-group">
                 <label for="ISBN">*ISBN-10:</label>
-                  <input type="text" class="form-control ISBN" id="ISBN" style="margin-bottom:1px;" placeholder="ISBN-10">
+                  <input type="text" class="form-control ISBN" id="ISBN10" style="margin-bottom:1px;" placeholder="ISBN-10">
                   <br><a href="#">How to find it</a>
               </div>
             </form>
@@ -188,18 +188,26 @@ body{background-color: #f8f8f8}
             <form role="form">
               <div class="form-group">
                 <label for="ISBN">*ISBN-13:</label>
-                  <input type="text" class="form-control ISBN" id="ISBN" style="margin-bottom:1px;" placeholder="ISBN-13">
+                  <input type="text" class="form-control ISBN" id="ISBN13" style="margin-bottom:1px;" placeholder="ISBN-13">
               </div>
             </form>
           </div>
         </div>
         <!--This is the Publisher-->
         <div class="row">
-          <div class="col-md-12" style="margin-top:5px;">
+          <div class="col-md-5" style="margin-top:5px;">
             <form role="form">
               <div class="form-group">
                 <label for="publisher">*Publisher:</label>
                   <input type="text" class="form-control publisher" id="publisher" placeholder="Publisher">
+              </div>
+            </form>
+          </div>
+					<div class="col-md-5" style="margin-top:5px;">
+            <form role="form">
+              <div class="form-group">
+                <label for="publisher">*Publish_date:</label>
+                  <input type="text" class="form-control publisher" id="publisher_date" placeholder="eg. 11/11/2011">
               </div>
             </form>
           </div>
@@ -269,24 +277,14 @@ body{background-color: #f8f8f8}
       <!--This is the button-->
       <div class="row">
         <div class="col-md-6" style="margin-top:5px;">
-          <div class="btn-group buttons pull-left" role="group">
-          <button type="submit" class="btn btn-default" style="width:200px;">
-            Save
-          </button>
-          <button type="button" class="btn btn-default" style="width:200px;">
-            Reset
-          </button>
-        	</div>
+					<button type="button" class="btn btn-default" style="width:200px;">
+      			Cancel
+    			</button>
         </div>
         <div class="col-md-6" style="margin-top:5px;">
-          <div class="btn-group buttons pull-right" role="group">
   				<button type="submit" class="btn btn-default" style="width:200px;">
             Submit
     			</button>
-  				<button type="button" class="btn btn-default" style="width:200px;">
-      			Cancel
-    			</button>
-  				</div>
       	</div>
       </div>
 			</div>
