@@ -13,6 +13,7 @@ var initialData = {
         "exchangeLists": [1],
         "wantLists": [2],
         "feed":1,
+        "pic":"../img/book1.jpg",
         "mailbox":1
       },
       "2": {
@@ -21,6 +22,7 @@ var initialData = {
         "exchangeLists": [],
         "wantLists": [],
         "feed":2,
+        "pic":"../img/person2.png",
         "mailbox":2
       },
       "3": {
@@ -29,6 +31,7 @@ var initialData = {
         "exchangeLists": [],
         "wantLists": [],
         "feed":3,
+        "pic":"../img/Carter.jpg",
         "mailbox":3
       },
       //this is you
@@ -39,6 +42,7 @@ var initialData = {
         "exchangeLists": [3],
         "wantList": [1],
         "feed":4,
+        "pic":"../img/person2.png",
         "mailbox":4
       }
     },
@@ -49,7 +53,7 @@ var initialData = {
         "owner_id":2,
         "pic":"../img/book1.jpg",
         "contents":{
-          "bookname":"Introduction-to-algorithms",
+          "bookname": "Introduction-to-algorithms",
           "author":"Tomas",
           "edition": "3rd",
           "isbn_10": "0262033844",
@@ -57,8 +61,9 @@ var initialData = {
           "postDate": 1453668480000,
           "publisher": "The MIT Press",
           "publish_date": "July 31, 2009",
-          "page": "1312",
           "list_price": "$66.32",
+          "highlight": "Yes",
+          "notes": "No",
           "condition": "Great",
           "descriptions": "Some books on algorithms are rigorous but incomplete; others cover masses of material but lack rigor. Introduction to Algorithms uniquely combines rigor and c.",
           "location": "Amherst, MA"
@@ -88,9 +93,10 @@ var initialData = {
           "postDate": 1454961080000,
           "Publisher": "The MASS Press",
           "publish_date": "July 31, 1004",
-          "page": "999",
           "list_price": "$80.32",
           "condition": "Great",
+          "highlight": "No",
+          "notes": "Yes",
           "description": "This book is used for learning some knowledges about AI for the college students.",
           "location": "Amherst, MA"
         },
@@ -120,8 +126,9 @@ var initialData = {
           "postDate": 1443668380000,
           "publisher": "O'Reilly Media",
           "publish_date": "August 24, 2012",
-          "page": "642",
           "list_price": "$31.99",
+          "highlight": "Yes",
+          "notes": "Yes",
           "condition": "Great",
           "descriptions": "This friendly guide is the perfect place to start. You’ll begin at square one, learning how the Web and web pages work, and then steadily build from there. By the end of the book, you’ll have the skills to create a simple site with multi-column pages that adapt for mobile devices",
           "location": "Amherst, MA"
