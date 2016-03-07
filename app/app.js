@@ -5,6 +5,7 @@ import Bookpage from './components/bookpage';
 import Postbookpage from './components/postbookpage';
 import Frontpage from './components/frontpage';
 import Howitwork from './components/howitwork';
+import Profile from './components/profile';
 import { IndexRoute, Router, Route, hashHistory } from 'react-router'
 
 class SearchPage extends React.Component {
@@ -47,6 +48,11 @@ class FrontPage extends React.Component {
   }
 }
 
+class PRofile extends React.Component {
+  render(){
+    return <Profile />;
+  }
+}
 class HowitWork extends React.Component {
   render() {
     return <Howitwork />;
@@ -70,6 +76,7 @@ ReactDOM.render((
       <Route path="home" component={FrontPage} />
       <Route path="post" component={PostbookPage} />
       <Route path="howitwork" component={HowitWork} />
+      <Route path="profile" component={PRofile} />
       <Route path="book" component={BookPage} />
     </Route>
   </Router>
