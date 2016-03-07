@@ -11,7 +11,7 @@ export default class Frontpagebody extends React.Component {
               <div className="overlay">
                 <h2>UBooks</h2>
                 <Link to="/search">{<a className="info" href="#">Find a book</a>}</Link>
-                <a className="info" href="#">Post a book</a>
+                <Link to={"/post"}><a className="info" href="#">Post a book</a></Link>
               </div>
             </div>
           </div>

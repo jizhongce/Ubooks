@@ -63,9 +63,9 @@ export default class Bookinfo extends React.Component{
         </div>
         <div className="row buy-button">
           <div className="col-md-6">
-            <button type="button" className="btn btn-default">
-              <br /><font size = "4" color="black">I Want to Buy or Exchange this Book!</font>
-            </button>
+            <Link to={"/contact"}><button type="button" className="btn btn-default buyorexchange">
+              <font size = "4" color="black">I Want to Buy or Exchange this Book!</font>
+            </button></Link>
           </div>
         </div>
 

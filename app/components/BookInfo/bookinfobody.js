@@ -4,69 +4,52 @@ import CommentThread from './commentthread';
 import Comment from './comment';
 import Bookinfotitle from './bookinfotitle';
 import Category from '../category';
-import {getFeedData} from '../../server';
+import {postComment} from '../../server';
 
 
 export default class Bookinfobody extends React.Component {
 
   constructor(props){
     super(props);
-    this.state = {
-      contents:[]
-    };
+    this.state = this.props.data;
   }
 
-  refresh() {
-    getFeedData(this.props.user, (feedData) => {
-      this.setState(feedData);
-    });
-  }
-
-  componentDidMount() {
-    this.refresh();
-  }
+  handleCommentPost(commentText) {
+  // Post a comment as user ID 4, which is our mock user!
+  postComment(this.props.book, 4, commentText, (bookItem) => {
+    // Update our state to trigger a re-render.
+    this.setState(bookItem);
+  });
+}
 
 
     render() {
       return (
-        <div>
-          <div className="row body">
-            <div className="col-md-2 category">
-              <Category />
-            </div>
-            <div className="col-md-10">
-              <div className="bookinfo panel panel-default">
-                <div className="panel-body">
-                  <Bookinfotitle />
-                    <hr />
-                      {this.state.contents.map((feedItem) => {
-                        if(feedItem._id == this.props.book){
+      <div>
+          <div className="container">
+            <div className="row body">
+              <div className="col-md-2 category">
+                <Category />
+              </div>
+              <div className="col-md-10">
+                <div className="bookinfo panel panel-default">
+                  <div className="panel-body">
+                    <Bookinfotitle />
+                    <Bookinfo key={this.state._id} data={this.state} />
+                    <hr className="hrcolor" />
+                    <CommentThread data={this.props.user} onPost={(commentText) => this.handleCommentPost(commentText)}>
+                      {this.state.comments.map((comment, i) => {
                         return (
-                          <Bookinfo key={feedItem._id} data={feedItem} />
-                        )
-                      }
-                      })}
-
-
-                  <hr className="hrcolor" />
-                    <CommentThread>
-                      {this.state.contents.map((feedItem) => {
-                        if(feedItem._id == this.props.book){
-                        return (
-                            feedItem.comments.map((comment, i) => {
-                              return (
-                                <Comment key={i} data={comment} />
-                              );
-                            })
-                        )
-                      }
+                          <Comment key={i} data={comment} />
+                        );
                       })}
                     </CommentThread>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+      </div>
 
       );
     }

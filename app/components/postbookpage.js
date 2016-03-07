@@ -7,7 +7,7 @@ export default class Postbookpage extends React.Component {
     return (
     <div>
       <Header />
-      <Postbookbody />
+      <Postbookbody user={4}/>
     </div>
     )
   }

@@ -45,20 +45,23 @@
 .condition{
   margin-top:5px;
 }
-.condition .con input{
-  margin-left:20px;
+.condition input {
+  width: 300px !important;
 }
-.highlight .high input{
-  margin-left:20px;
-}
-.notes .note input{
-  margin-left:20px;
-}
+
 .money {
   margin-top:5px;
 }
+.pic {
+  margin-top:5px;
+}
+.pic input{
+  margin-bottom:1px;
+  width: 250px !important;
+}
 .money input{
   margin-bottom:1px;
+
 }
 .discription{
   margin-top:5px;

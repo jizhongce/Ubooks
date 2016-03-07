@@ -23,8 +23,6 @@ export default class Header extends React.Component {
               <Link to={"/post"}><button type="button" className="btn btn-default">
                   <font size="3">Post books</font>
                 </button></Link>
-                <button type="button" className="btn btn-default">
-                </button>
                 <Link to={"/howitwork"}>{<button type="button" className="btn btn-default">
                   <font size="3">Help&Contact</font>
                 </button>}</Link>

@@ -1,7 +1,27 @@
 import React from 'react';
 import CommentEntry from './commententry';
+import {getUserData} from '../../server';
+
 
 export default class CommentThread extends React.Component {
+
+  constructor(props){
+    super(props);
+    this.state = {
+    };
+  }
+
+  refresh() {
+    getUserData(this.props.data, (feedData) => {
+      this.setState(feedData);
+    });
+  }
+
+  componentDidMount() {
+    this.refresh();
+  }
+
+
   render() {
     return (
       <ul className="media-list">
@@ -13,7 +33,7 @@ export default class CommentThread extends React.Component {
           )
         })}
         <li className="media">
-          <CommentEntry />
+          <CommentEntry user={this.state} onPost={this.props.onPost} />
         </li>
       </ul>
     )

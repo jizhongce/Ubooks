@@ -13,7 +13,7 @@ var initialData = {
         "exchangeLists": [1],
         "wantLists": [2],
         "feed":1,
-        "pic":"../img/book1.jpg",
+        "pic":"../img/person1.png",
         "mailbox":1
       },
       "2": {
@@ -31,7 +31,7 @@ var initialData = {
         "exchangeLists": [],
         "wantLists": [],
         "feed":3,
-        "pic":"../img/Carter.jpg",
+        "pic":"../img/person2.png",
         "mailbox":3
       },
       //this is you
@@ -42,7 +42,7 @@ var initialData = {
         "exchangeLists": [3],
         "wantList": [1],
         "feed":4,
-        "pic":"../img/person2.png",
+        "pic":"../img/Carter.jpg",
         "mailbox":4
       }
     },
