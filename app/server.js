@@ -29,9 +29,18 @@ export function getFeedData(user, cb) {
 export function getExchangebook(user, cb) {
   var userData = readDocument('users', user);
   var feedData = readDocument('feeds', userData.feed);
-  feedData.exchange = feedData.contents.map(getFeedItemSync);
+  feedData.exchange = feedData.exchange.map(getFeedItemSync);
   emulateServerReturn(feedData, cb);
 }
+
+export function getNeedbook(user, cb) {
+  var userData = readDocument('users', user);
+  var feedData = readDocument('feeds', userData.feed);
+  feedData.need = feedData.need.map(getFeedItemSync);
+  emulateServerReturn(feedData, cb);
+}
+
+
 
 
 export function getUserdata(user,cb)

@@ -11,6 +11,7 @@ export default class Profilepagebook extends React.Component {
         <div className="media-body">
           <a href="#"><font size="4px;" color="blue">{this.props.book.contents.bookname}</font></a>
           <br />Publisher: <a href="#">{this.props.book.contents.publisher}</a>
+          <br />Description: {this.props.book.contents.descriptions}
           <div className="categories_star_color">
             <a href="#"><span className="glyphicon glyphicon-star"></span><span className="glyphicon categories_star_color glyphicon-star"></span><span className="glyphicon categories_star_color glyphicon-star"></span><span className="glyphicon categories_star_color glyphicon-star"></span><span className="glyphicon categories_star_color glyphicon-star"></span></a>
           </div>

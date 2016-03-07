@@ -1,6 +1,7 @@
 import React from 'react';
-import Profilepagebooklist from './Profilepagebooklist';
+import Profileexchangebooklist from './profileexchangebooklist';
 import {getUserdata} from '../server';
+import Profileneedbooklist from './profileneedbooklist';
 
 
 export default class Profilebody extends React.Component {
@@ -28,7 +29,7 @@ export default class Profilebody extends React.Component {
         <div className="media-body">
           <div className="row">
             <div className="col-md-2">
-            <h2 clss="account"><br /><b>Carter's <br />UBooks</b></h2>
+            <h2 clss="account"><br /><b>{this.state.fullName}’s<br />UBooks</b></h2>
           </div>
            <div className="col-md-8">
             <table className="table main-table" border="0">
@@ -53,12 +54,22 @@ export default class Profilebody extends React.Component {
       <div className="col-md-10">
         <div className="panel panel-default">
           <div className="panel-body">
-            <Profilepagebooklist user={this.props.user} />
+            <Profileexchangebooklist user={this.props.user} />
           </div>
         </div>
       </div>
     </div>
 
+
+    <div className="row">
+    <div className="col-md-10">
+      <div className="panel panel-default">
+        <div className="panel-body">
+          <Profileneedbooklist user={this.props.user} />
+        </div>
+      </div>
+    </div>
+  </div>
   </div>
     )
 }

@@ -1,17 +1,17 @@
 import React from 'react';
-import {getFeedData} from '../server';
+import {getNeedbook} from '../server';
 import Profilepagebook from './profilepagebook';
 
-export default class Profilepagebooklist extends React.Component {
+export default class Profileneedbooklist extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      contents:[]
+    need:[]
     };
   }
 
   refresh() {
-    getFeedData(this.props.user, (bookData) => {
+    getNeedbook(this.props.user, (bookData) => {
       this.setState(bookData);
     });
   }
@@ -28,7 +28,7 @@ export default class Profilepagebooklist extends React.Component {
            <h3>BOOK IN NEED</h3>
         </div>
         <hr />
-          {this.state.contents.map((bookData) => {
+          {this.state.need.map((bookData) => {
             return (
               <Profilepagebook user={4} book={bookData} />
             )
