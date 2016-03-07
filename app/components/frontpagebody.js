@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router';
 
 export default class Frontpagebody extends React.Component {
    render() {
@@ -9,7 +10,7 @@ export default class Frontpagebody extends React.Component {
               <img className="img-responsive" src="img/bookfair.jpg" />
               <div className="overlay">
                 <h2>UBooks</h2>
-                <a className="info" href="#">Find a book</a>
+                <Link to="/search">{<a className="info" href="#">Find a book</a>}</Link>
                 <a className="info" href="#">Post a book</a>
               </div>
             </div>
@@ -20,7 +21,7 @@ export default class Frontpagebody extends React.Component {
               <img className="img-responsive imgsize" src="img/students2.jpg" />
                 <div className="overlay">
                   <h2>UBooks</h2>
-                  <a className="info" href="#">FAQ</a>
+                  <a className="info" href="#">Mail</a>
                 </div>
             </div>
 
@@ -28,7 +29,7 @@ export default class Frontpagebody extends React.Component {
               <img className="img-responsive imgsize" src="img/Student.jpg" />
               <div className="overlay">
                 <h2>UBooks</h2>
-                <a className="info" href="#">Contact Us</a>
+                <Link to="/howitwork">{<a className="info" href="#">Contact Us</a>}</Link>
               </div>
             </div>
           </div>

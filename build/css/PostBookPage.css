@@ -10,3 +10,65 @@
 .subject {
   width: 300px !important;
 }
+.Title-line img{
+  vertical-align: baseline;
+  width: 90%;
+
+}
+.hrcolor{
+  border-color: gray;
+}
+.bookname {
+  margin-top:5px;
+}
+.bookedition {
+  margin-top:5px;
+}
+.highlight {
+  margin-top:5px;
+}
+.authors{
+  margin-top:5px;
+}
+.isbn{
+  margin-top:5px;
+}
+.notes {
+  margin-top:5px;
+}
+.isbn input{
+  margin-bottom:1px;
+}
+.publish{
+  margin-top:5px;
+}
+.condition{
+  margin-top:5px;
+}
+.condition .con input{
+  margin-left:20px;
+}
+.highlight .high input{
+  margin-left:20px;
+}
+.notes .note input{
+  margin-left:20px;
+}
+.money {
+  margin-top:5px;
+}
+.money input{
+  margin-bottom:1px;
+}
+.discription{
+  margin-top:5px;
+}
+.button button{
+  width:200px;
+}
+.button .submit button{
+  float: right;
+}
+.title img{
+  vertical-align: baseline;
+}
