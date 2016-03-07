@@ -10,10 +10,9 @@ export default class Header extends React.Component {
           <div className="col-md-10 col-md-offset-1 zeropadding" >
             <div className="btn-toolbar" role="toolbar">
               <div className="btn-group pageheader1_button pull-left" role="group">
-                <button type="button" className="btn btn-default">
+                  <Link to={"/profile"}>{<button type="button" className="btn btn-default">
                   <span className="glyphicon glyphicon-user"></span>
-                  <font size="3">Carter</font>
-                </button>
+                  <font size="3">Carter</font></button>}</Link>
                 <Link to={"/home"}>{<button type="button" className="btn btn-default">
                   <font size="3">Home</font>
                 </button>}</Link>

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Searchpage from './components/searchpage';
 import Frontpage from './components/frontpage';
 import Howitwork from './components/howitwork';
+import Profile from './components/profile';
 import { IndexRoute, Router, Route, hashHistory } from 'react-router'
 
 class SearchPage extends React.Component {
@@ -21,6 +22,11 @@ class FrontPage extends React.Component {
   }
 }
 
+class PRofile extends React.Component {
+  render(){
+    return <Profile />;
+  }
+}
 class HowitWork extends React.Component {
   render() {
     return <Howitwork />;
@@ -43,6 +49,7 @@ ReactDOM.render((
       <Route path="search" component={SearchPage} />
       <Route path="home" component={FrontPage} />
       <Route path="howitwork" component={HowitWork} />
+      <Route path="profile" component={PRofile} />
     </Route>
   </Router>
 ),document.getElementById('UBooksFeed'));
