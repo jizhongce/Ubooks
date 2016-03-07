@@ -7,6 +7,7 @@ import Frontpage from './components/frontpage';
 import Howitwork from './components/howitwork';
 import Header from './components/header';
 import {Link} from 'react-router';
+import Profile from './components/profile';
 import { IndexRoute, Router, Route, hashHistory } from 'react-router'
 
 class SearchPage extends React.Component {
@@ -59,12 +60,36 @@ class ContactPage extends React.Component {
   }
 }
 
+class SuccessPost extends React.Component {
+  render() {
+    return (
+      <div>
+        <Header />
+        <div className="container">
+          <div className="row body">
+            <div className="col-md-6 col-md-offset-3">
+              <br /><font size="10">Success!</font>
+              <br /><font size="5">Thanks for posting!</font>
+              <br /><Link to="/post"><font size="5">Go Back</font></Link>
+          </div>
+        </div>
+      </div>
+    </div>
+    );
+  }
+}
+
 class FrontPage extends React.Component {
   render() {
     return <Frontpage />;
   }
 }
 
+class PRofile extends React.Component {
+  render(){
+    return <Profile />;
+  }
+}
 class HowitWork extends React.Component {
   render() {
     return <Howitwork />;
@@ -88,8 +113,10 @@ ReactDOM.render((
       <Route path="home" component={FrontPage} />
       <Route path="post" component={PostbookPage} />
       <Route path="howitwork" component={HowitWork} />
+      <Route path="profile" component={PRofile} />
       <Route path="book" component={BookPage} />
       <Route path="contact" component={ContactPage} />
+      <Route path="successpost" component={SuccessPost} />
     </Route>
   </Router>
 ),document.getElementById('UBooksFeed'));

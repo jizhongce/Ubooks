@@ -15,10 +15,6 @@ export default class Bookinfo extends React.Component{
         <div className="row bookimage">
           <div className="col-md-3 pull-left">
             <center><img className="b1" src={this.props.data.pic} width="100"/></center>
-            <div className="view ">
-              <center><a href="#">View</a></center>
-              <center><a href="#"><span className="glyphicon categories_button_smaller glyphicon-user"></span>Contact Seller</a></center>
-            </div>
           </div>
         <div className="col-md-9 pull-left">
           <div className="row title">

@@ -52,7 +52,7 @@ export function postComment(bookitemId, author, contents, cb) {
 }
 
 
-export function postBook(owner_id,pic,bookname,author,edition,isbn_10,isbn_13,publisher,publish_date,list_price,condition,highlight,notes,description,location,cb){
+export function postBook(owner_id,pic,bookname,author,edition,isbn_10,isbn_13,publisher,publish_date,list_price,condition,highlight,notes,description,location){
   var time = new Date().getTime();
   var newBookItem={
     "owner_id":owner_id,
@@ -80,6 +80,34 @@ export function postBook(owner_id,pic,bookname,author,edition,isbn_10,isbn_13,pu
   var feedData = readDocument('feeds', userData.feed);
   feedData.contents.push(newBookItem._id);
   writeDocument('feeds',feedData);
-  emulateServerReturn(newBookItem, cb);
+}
+
+export function getExchangebook(user, cb) {
+  var userData = readDocument('users', user);
+  var feedData = readDocument('feeds', userData.feed);
+  feedData.exchange = feedData.exchange.map(getFeedItemSync);
+  emulateServerReturn(feedData, cb);
+}
+
+export function getNeedbook(user, cb) {
+  var userData = readDocument('users', user);
+  var feedData = readDocument('feeds', userData.feed);
+  feedData.need = feedData.need.map(getFeedItemSync);
+  emulateServerReturn(feedData, cb);
+}
+
+
+
+
+export function getUserdata(user,cb)
+{
+  var userData = readDocument('users',user);
+  emulateServerReturn(userData,cb);
+}
+
+export function getUserbook(bookitem,cb)
+{
+  var bookData = readDocument('booksItems',bookitem);
+  emulateServerReturn(bookData,cb);
 
 }

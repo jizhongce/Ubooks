@@ -39,8 +39,8 @@ var initialData = {
         "_id": 4,
         "fullName": "Carter",
         // ID of your books.
-        "exchangeLists": [3],
-        "wantList": [1],
+        "exchangeLists": [2],
+        "wantList": [2],
         "feed":4,
         "pic":"../img/Carter.jpg",
         "mailbox":4
@@ -80,6 +80,7 @@ var initialData = {
             }
         ]
       },
+
       "2": {
         "_id":2,
         "owner_id":3,
@@ -91,13 +92,13 @@ var initialData = {
           "isbn_10": "0262099822",
           "isbn_13": "9780261234567",
           "postDate": 1454961080000,
-          "Publisher": "The MASS Press",
+          "publisher": "The MASS Press",
           "publish_date": "July 31, 1004",
           "list_price": "$80.32",
           "condition": "Great",
           "highlight": "No",
           "notes": "Yes",
-          "description": "This book is used for learning some knowledges about AI for the college students.",
+          "descriptions": "This book is used for learning some knowledges about AI for the college students.",
           "location": "Amherst, MA"
         },
         "comments": [
@@ -144,13 +145,48 @@ var initialData = {
                 "postDate": 1451973470000
             }
         ]
+      },
+
+      "4": {
+        "_id":4,
+        "owner_id":3,
+        "pic":"../img/system.jpg",
+        "contents":{
+          "bookname": "Computer Systems (A programmer's Perspective)",
+          "author":"Bryant . O'Hallaron",
+          "edition": "Second Editon",
+          "isbn_10": "0262033844",
+          "isbn_13": "9780262033848",
+          "postDate": 1453668480000,
+          "publisher": "Prentice Hall",
+          "publish_date": "September 31, 2010",
+          "list_price": "$89.77",
+          "highlight": "Yes",
+          "notes": "No",
+          "condition": "Great",
+          "descriptions": "This book introduces the important and enduring concepts that underlie computer systems.( used by CS 230)",
+          "location": "Amherst, MA"
+        },
+        "comments": [
+            {
+                // The author of the comment.
+                "author": 2,
+                // The contents of the comment.
+                "contents": "It covers a lot of materials !",
+                // The date the comment was posted.
+                // 01/24/16 22:00 EST
+                "postDate": 1451973470000
+            }
+        ]
       }
     },
     "feeds": {
       "4": {
         "_id": 4,
         // Listing of FeedItems in the feed.
-        "contents": [1,2,3]
+        "contents": [1,2,3],
+        "exchange": [3,4],
+        "need":[1,2]
       },
       "3": {
         "_id": 3,

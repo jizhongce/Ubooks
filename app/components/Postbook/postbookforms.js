@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router';
+import {postBook} from '../../server';
 
 
 
@@ -92,6 +93,12 @@ export default class Postbookforms extends React.Component{
       //this.setState({pic_value: e.target.value});
     }
 
+    onSearch() {
+      // If searchText is 'sandals', navigates to #/search/q?=sandals
+      this.context.router.push({ pathname: "/successpost" });
+    }
+
+
     //handle for the submit button
     handleSubmit(e){
       e.preventDefault();
@@ -110,10 +117,10 @@ export default class Postbookforms extends React.Component{
       var notes = this.state.notes_value;
       var description = this.state.description_value;
       var location = this.state.location_value;
-      this.props.onPostBook(owner_id,pic,bookname,author,edition,isbn_10,isbn_13,publisher,publish_date,list_price,condition,highlight,notes,description,location);
+      postBook(owner_id,pic,bookname,author,edition,isbn_10,isbn_13,publisher,publish_date,list_price,condition,highlight,notes,description,location);
       this.setState({
         owner_id: 4,
-        pic_value: '',
+        pic_value: '../img/book1.jpg',
         bookname_value:'',
         author_value:'',
         edition_value:'',
@@ -128,7 +135,9 @@ export default class Postbookforms extends React.Component{
         description_value:'',
         location_value:'Amherst,MA'
       });
+      this.onSearch();
     }
+
 
   render() {
     return (
@@ -285,3 +294,7 @@ export default class Postbookforms extends React.Component{
 
 
 }
+
+Postbookforms.contextTypes = {
+  router: React.PropTypes.object.isRequired
+};

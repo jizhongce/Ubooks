@@ -3,7 +3,6 @@ import Bookinfo from './bookinfo';
 import CommentThread from './commentthread';
 import Comment from './comment';
 import Bookinfotitle from './bookinfotitle';
-import Category from '../category';
 import {postComment} from '../../server';
 
 
@@ -28,10 +27,7 @@ export default class Bookinfobody extends React.Component {
       <div>
           <div className="container">
             <div className="row body">
-              <div className="col-md-2 category">
-                <Category />
-              </div>
-              <div className="col-md-10">
+              <div className="col-md-10 col-md-offset-1">
                 <div className="bookinfo panel panel-default">
                   <div className="panel-body">
                     <Bookinfotitle />
