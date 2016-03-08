@@ -187,7 +187,7 @@ var initialData = {
         "_id": 4,
         // Listing of FeedItems in the feed.
         "contents": [1,2,3,4],
-        "historys": [1]
+        "historys": []
       },
       "3": {
         "_id": 3,
