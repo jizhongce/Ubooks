@@ -50,6 +50,7 @@ var initialData = {
       "1": {
         "_id":1,
         "owner_id":2,
+        "subject": 1,
         "pic":"../img/book1.jpg",
         "contents":{
           "bookname": "Introduction-to-algorithms",
@@ -83,6 +84,7 @@ var initialData = {
       "2": {
         "_id":2,
         "owner_id":3,
+        "subject": 1,
         "pic":"../img/book2.jpg",
         "contents":{
           "bookname":"Artificial Intelligence A Modern Approach",
@@ -116,6 +118,7 @@ var initialData = {
       "3": {
         "_id":3,
         "owner_id":4,
+        "subject": 2,
         "pic":"../img/book3.jpg",
         "contents":{
           "bookname":"Learning Web Design: A Beginner's Guide to HTML, CSS, JavaScript, and Web Graphics",
@@ -148,6 +151,7 @@ var initialData = {
       "4": {
         "_id":4,
         "owner_id":3,
+        "subject": 3,
         "pic":"../img/system.jpg",
         "contents":{
           "bookname": "Computer Systems (A programmer's Perspective)",
@@ -182,19 +186,23 @@ var initialData = {
       "4": {
         "_id": 4,
         // Listing of FeedItems in the feed.
-        "contents": [1,2,3,4]
+        "contents": [1,2,3,4],
+        "historys": [1]
       },
       "3": {
         "_id": 3,
-        "contents": []
+        "contents": [],
+        "historys": []
       },
       "2": {
         "_id": 2,
-        "contents": []
+        "contents": [],
+        "historys": []
       },
       "1": {
         "_id": 1,
-        "contents": []
+        "contents": [],
+        "historys": []
       }
     },
 

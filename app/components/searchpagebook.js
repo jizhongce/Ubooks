@@ -1,8 +1,16 @@
 import React from 'react';
 import {unixTimeToString} from '../util.js';
 import {Link} from 'react-router';
+import {addHistoryBook} from '../server';
 
 export default class Searchpagebook extends React.Component {
+
+  onSearch() {
+    // If searchText is 'sandals', navigates to #/search/q?=sandals
+    this.context.router.push({ pathname: "/book" });
+  }
+
+
   render() {
     return (
     <div>
@@ -24,3 +32,7 @@ export default class Searchpagebook extends React.Component {
     )
   }
 }
+
+Searchpagebook.contextTypes = {
+  router: React.PropTypes.object.isRequired
+};

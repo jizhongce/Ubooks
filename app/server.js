@@ -26,6 +26,7 @@ export function getFeedData(user, cb) {
   var userData = readDocument('users', user);
   var feedData = readDocument('feeds', userData.feed);
   feedData.contents = feedData.contents.map(getFeedItemSync);
+  feedData.historys = feedData.historys.map(getFeedItemSync);
   emulateServerReturn(feedData, cb);
 }
 
@@ -145,7 +146,7 @@ export function getUserbook(bookitem,cb)
 export function checkbook(Refs,book)
 {
   var bookData = readDocument('booksItems',book);
-  if(bookData.owner_id == Refs){
+  if(bookData.subject == Refs){
     return bookData;
   }
 
@@ -163,5 +164,11 @@ export function getSelectedBook(bookRefs,userid)
       newarray.push(selectedbook[i]);
     }
     return newarray;
+}
 
+export function addHistoryBook(bookid,userid){
+  var userData = readDocument('users', userid);
+  var feedData = readDocument('feeds', userData.feed);
+  feedData.historys.push(bookid);
+  writeDocument('feeds',feedData);
 }

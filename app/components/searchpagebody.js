@@ -8,21 +8,40 @@ export default class Searchpagebody extends React.Component {
     super(props);
     this.state = {
       contents: [],
-      bookid : 1
+      subject : 0,
+      historys: []
     };
   }
 
   refresh() {
     getFeedData(this.props.user, (feedData) => {
-      this.setState({contents:feedData.contents});
+      this.setState({
+        historys:feedData.historys,
+        contents:feedData.contents});
     });
   }
 
-  handleSubmit(e){
+  handleAllSubmit(e){
+    e.preventDefault();
+    this.refresh();
+  }
+  handleEnglishSubmit(e){
     e.preventDefault();
     this.setState({
-      bookid : 3,
-      contents:getSelectedBook(this.state.bookid,this.props.user)});
+      subject : 3,
+      contents:getSelectedBook(this.state.subject,this.props.user)});
+  }
+  handleCSSubmit(e){
+    e.preventDefault();
+    this.setState({
+      subject : 1,
+      contents:getSelectedBook(this.state.subject,this.props.user)});
+  }
+  handleMathSubmit(e){
+    e.preventDefault();
+    this.setState({
+      subject : 2,
+      contents:getSelectedBook(this.state.subject,this.props.user)});
   }
 
   componentDidMount() {
@@ -37,10 +56,16 @@ export default class Searchpagebody extends React.Component {
           <div className="col-md-2">
             <div className="panel panel-default">
               <div className="panel-body">
-                <a className="subject" onClick={(e) => this.handleSubmit(e)}><font size="3px">Browsing History</font></a>
+                <br /><font color="black" size="3">Category</font>
                 <hr className="hrcolor" />
-                  {this.state.contents.map((feedItem) => {
-                    if(feedItem._id==3)
+                  <div><a className="subject" onClick={(e) => this.handleAllSubmit(e)}><span className="glyphicon categories_button_smaller glyphicon-chevron-right"></span><font color="blue">All</font></a></div>
+                  <div><a className="subject" onClick={(e) => this.handleEnglishSubmit(e)}><span className="glyphicon categories_button_smaller glyphicon-chevron-right"></span><font color="blue">English</font></a></div>
+                  <div><a className="subject" onClick={(e) => this.handleCSSubmit(e)}><span className="glyphicon categories_button_smaller glyphicon-chevron-right"></span><font color="blue">Computer Science</font></a></div>
+                  <div><a className="subject" onClick={(e) => this.handleMathSubmit(e)}><span className="glyphicon categories_button_smaller glyphicon-chevron-right"></span><font color="blue">Math</font></a></div>
+                <hr className="hrcolor" />
+                <br /><font color="black" size="3">History Search</font>
+                <hr className="hrcolor" />
+                  {this.state.historys.map((feedItem) => {
                     return (
                       <Searchpagebookslist key={feedItem._id} data={feedItem} />
                     )
@@ -56,7 +81,7 @@ export default class Searchpagebody extends React.Component {
                 <hr />
                   {this.state.contents.map((feedItem) => {
                     return (
-                      <Searchpagebook key={feedItem._id} data={feedItem} />
+                      <Searchpagebook user={this.props.user} key={feedItem._id} data={feedItem} />
                     )
                   })}
               </div>
