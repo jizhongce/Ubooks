@@ -7,11 +7,7 @@ export default class Bookinfo extends React.Component{
     return (
       <div>
         <hr className="hrcolor" />
-				<div className="row back">
-					<div className="col-md-12">
-					<br /><Link to={"/search"}>Go Back to Search</Link>
-					</div>
-				</div>
+        <br />
         <div className="row bookimage">
           <div className="col-md-3 pull-left">
             <center><img className="b1" src={this.props.data.pic} width="100"/></center>

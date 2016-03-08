@@ -34,9 +34,6 @@ export default class CommentEntry extends React.Component{
           <input type="text" className="form-control" placeholder="Write a comment..."
             value={this.state.value} onChange={(e) => this.handleChange(e)} />
           <span className="input-group-btn">
-            <button className="btn btn-default" type="button">
-              ☺
-            </button>
 						<button className="btn btn-default" type="button" onClick={(e) => this.handlePost(e)}>
               Submit
             </button>
