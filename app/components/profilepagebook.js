@@ -1,5 +1,6 @@
 import React from 'react';
 import {unixTimeToString} from '../util.js';
+import {Link} from 'react-router';
 
 export default class Profilepagebook extends React.Component {
   render() {
@@ -9,7 +10,7 @@ export default class Profilepagebook extends React.Component {
           <img src={this.props.book.pic} width="100px" />
         </div>
         <div className="media-body">
-          <a href="#"><font size="4px;" color="blue">{this.props.book.contents.bookname}</font></a>
+          <Link to="/book"><font size="4px;" color="blue">{this.props.book.contents.bookname}</font></Link>
           <br />Publisher: <a href="#">{this.props.book.contents.publisher}</a>
           <br />Description: {this.props.book.contents.descriptions}
           <div className="categories_star_color">

@@ -1,6 +1,6 @@
 import React from 'react';
 import Profileexchangebooklist from './profileexchangebooklist';
-import {getUserdata} from '../server';
+import {getUserdata,getExchangebook,getNeedbook} from '../server';
 import Profileneedbooklist from './profileneedbooklist';
 
 
@@ -8,12 +8,21 @@ export default class Profilebody extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      user : '',
+      exchange : [],
+      want : []
     };
   }
 
   refresh() {
     getUserdata(this.props.user, (feedData) => {
-      this.setState(feedData);
+      this.setState({user:feedData});
+    });
+    getExchangebook(this.props.user, (book) => {
+      this.setState({exchange:book});
+    });
+    getNeedbook(this.props.user, (book) => {
+      this.setState({want:book});
     });
   }
 
@@ -32,7 +41,7 @@ export default class Profilebody extends React.Component {
               <div className="media-body">
                 <div className="row">
                   <div className="col-md-2">
-                    <h2 clss="account"><br /><b>{this.state.fullName}’s<br />UBooks</b></h2>
+                    <h2 clss="account"><br /><b>{this.state.user.fullName}’s<br />UBooks</b></h2>
                   </div>
                   <div className="col-md-8">
                     <table className="table main-table" border="0">
@@ -43,10 +52,10 @@ export default class Profilebody extends React.Component {
                         <th> INBOX MESSAGE</th>
                       </thead>
                       <tbody>
-                        <td><h3><b>{this.state.wantList}</b></h3></td>
-                        <td><h3><b>{this.state.exchangeLists}</b></h3></td>
+                        <td><h3><b>{this.state.want.length}</b></h3></td>
+                        <td><h3><b>{this.state.exchange.length}</b></h3></td>
                         <td><h3><b>Amherst</b></h3></td>
-                        <td><h3><b>{this.state.mailbox}</b></h3></td>
+                        <td><h3><b>{this.state.user.fullName}</b></h3></td>
                       </tbody>
                     </table>
                   </div>
