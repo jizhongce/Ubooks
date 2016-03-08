@@ -29,6 +29,26 @@ export function getFeedData(user, cb) {
   emulateServerReturn(feedData, cb);
 }
 
+function getMailItemSync(mail) {
+  var mailItem = readDocument('mailbox', mail);
+  mailItem.participants = mailItem.participants.map((participant) => readDocument('users', participant));
+  return mailItem;
+}
+
+export function getMailboxData(user, cb) {
+  var userData = readDocument('users', user);
+  userData.mailbox = userData.mailbox.map(getMailItemSync);
+  emulateServerReturn(userData, cb);
+}
+
+export function getMailData(id, cb) {
+  var mailData = readDocument('mailbox', id);
+  mailData.Messages.forEach((msg) => {
+    msg.From = readDocument('users', msg.From);
+  });
+  emulateServerReturn(mailData, cb);
+}
+
 export function getUserData(user, cb){
   var userData = readDocument('users', user);
   emulateServerReturn(userData, cb);
@@ -49,6 +69,17 @@ export function postComment(bookitemId, author, contents, cb) {
   // Return a resolved version of the feed item so React can
   // render it.
   emulateServerReturn(getFeedItemSync(bookitemId), cb);
+}
+
+export function replyMail(mailId, user, content, cb) {
+  var mailItem = readDocument('mailbox', mailId);
+  mailItem.Messages.push({
+    "From": user,
+    "sendDate": new Date().getTime(),
+    "contents": content
+  });
+  writeDocument('mailbox', mailItem);
+  emulateServerReturn(getMailItemSync(mailId), cb);
 }
 
 

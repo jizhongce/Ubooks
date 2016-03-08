@@ -8,6 +8,7 @@ import Howitwork from './components/howitwork';
 import Header from './components/header';
 import {Link} from 'react-router';
 import Profile from './components/profile';
+import Mailbox from './components/mailbox';
 import { IndexRoute, Router, Route, hashHistory } from 'react-router'
 
 class SearchPage extends React.Component {
@@ -117,6 +118,7 @@ ReactDOM.render((
       <Route path="book" component={BookPage} />
       <Route path="contact" component={ContactPage} />
       <Route path="successpost" component={SuccessPost} />
+      <Route path="mailbox/:mail" component={Mailbox} />
     </Route>
   </Router>
 ),document.getElementById('UBooksFeed'));
