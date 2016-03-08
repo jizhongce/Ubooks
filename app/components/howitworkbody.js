@@ -62,10 +62,6 @@ export default class Howitworkbody extends React.Component {
           </div>
         </div>
       </div>
-      <div className="row">
-        <div className="col-md-10 col-md-offset-1">
-        </div>
-      </div>
     </div>
     )
   }
