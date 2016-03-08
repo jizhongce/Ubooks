@@ -70,7 +70,7 @@ export default class Profilebody extends React.Component {
                 <div className="col-md-10">
                   <div className="panel panel-default">
                     <div className="panel-body">
-                      <Profileexchangebooklist user={this.props.user} />
+                      <Profileexchangebooklist data={this.props.user} />
                     </div>
                   </div>
                 </div>
@@ -80,7 +80,7 @@ export default class Profilebody extends React.Component {
                 <div className="col-md-10">
                   <div className="panel panel-default">
                     <div className="panel-body">
-                      <Profileneedbooklist user={this.props.user} />
+                      <Profileneedbooklist data={this.props.user} />
                     </div>
                   </div>
                 </div>
