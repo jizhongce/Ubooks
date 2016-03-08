@@ -38,9 +38,8 @@ var initialData = {
       "4": {
         "_id": 4,
         "fullName": "Carter",
-        // ID of your books.
-        "exchangeLists": [2],
-        "wantList": [2],
+        "exchangeLists": [2,1,3],
+        "wantLists": [2,3],
         "feed":4,
         "pic":"../img/Carter.jpg",
         "mailbox":[3,4]
@@ -184,9 +183,7 @@ var initialData = {
       "4": {
         "_id": 4,
         // Listing of FeedItems in the feed.
-        "contents": [1,2,3],
-        "exchange": [3,4],
-        "need":[1,2]
+        "contents": [1,2,3]
       },
       "3": {
         "_id": 3,

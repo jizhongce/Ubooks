@@ -1,5 +1,7 @@
 import React from 'react';
 import {unixTimeToString} from '../../util.js';
+import {Link} from 'react-router';
+
 
 export default class Comment extends React.Component {
 
@@ -10,7 +12,7 @@ export default class Comment extends React.Component {
             <img className="b1" src={this.props.data.author.pic} width="35" />
           </div>
           <div className="media-body">
-            <a href="#">{this.props.data.author.fullName}</a>: {this.props.data.contents}
+            <Link to="/profile">{this.props.data.author.fullName}</Link>: {this.props.data.contents}
              <br />{unixTimeToString(this.props.data.postDate)}
           </div>
         </div>

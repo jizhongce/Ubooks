@@ -1,37 +1,15 @@
 import React from 'react';
-import Searchpagebook from './searchpagebook';
-import {getFeedData} from '../server';
+import {Link} from 'react-router';
 
 export default class Searchpagebookslist extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      contents: []
-    };
-  }
-
-  refresh() {
-    getFeedData(this.props.user, (feedData) => {
-      this.setState(feedData);
-    });
-  }
-
-  componentDidMount() {
-    this.refresh();
-  }
-
   render() {
     return (
     <div>
-      <div className="panel-body">
-        <b><font size="4px;">Search result:</font></b>
-        <hr />
-          {this.state.contents.map((feedItem) => {
-            return (
-              <Searchpagebook key={feedItem._id} data={feedItem} />
-            )
-          })}
-      </div>
+          <img src={this.props.data.pic} width="100px" />
+        <div>
+          <Link to={"/book"}><font size="4px;" color="blue">{this.props.data.contents.bookname}</font></Link>
+        </div>
+      <hr className="hrcolor"/>
     </div>
     )
   }

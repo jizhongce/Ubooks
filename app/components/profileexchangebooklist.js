@@ -1,18 +1,25 @@
 import React from 'react';
-import {getExchangebook} from '../server';
 import Profilepagebook from './profilepagebook';
+import {getExchangebook} from '../server';
+
 
 export default class Profileexchangebooklist extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+<<<<<<< HEAD
       exchange:[]
     };
   }
+=======
+      exchange : []
+  };
+}
+>>>>>>> 54baee217335ea0e6864372dc1e44d9abc603104
 
   refresh() {
-    getExchangebook(this.props.user, (bookData) => {
-      this.setState(bookData);
+    getExchangebook(this.props.data, (book) => {
+      this.setState({exchange:book});
     });
   }
 
@@ -28,9 +35,9 @@ export default class Profileexchangebooklist extends React.Component {
            <h3>BOOK EXCHANGE</h3>
         </div>
         <hr />
-          {this.state.exchange.map((bookData) => {
+          {this.state.exchange.map((bookData,i) => {
             return (
-              <Profilepagebook user={4} book={bookData} />
+              <Profilepagebook key={i} user={4} book={bookData} />
             )
           })}
       </div>

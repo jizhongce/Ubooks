@@ -115,20 +115,19 @@ export function postBook(owner_id,pic,bookname,author,edition,isbn_10,isbn_13,pu
 
 export function getExchangebook(user, cb) {
   var userData = readDocument('users', user);
-  var feedData = readDocument('feeds', userData.feed);
-  feedData.exchange = feedData.exchange.map(getFeedItemSync);
-  emulateServerReturn(feedData, cb);
+  emulateServerReturn(userData.exchangeLists.map((bookid) => readDocument('booksItems', bookid)), cb);
 }
 
 export function getNeedbook(user, cb) {
   var userData = readDocument('users', user);
-  var feedData = readDocument('feeds', userData.feed);
-  feedData.need = feedData.need.map(getFeedItemSync);
-  emulateServerReturn(feedData, cb);
+  emulateServerReturn(userData.wantLists.map((bookid) => readDocument('booksItems', bookid)), cb);
 }
 
-
-
+export function getMail(user, cb) {
+  var userData = readDocument('users', user);
+  var mailData = readDocument('mailbox', userData.mailbox);
+  emulateServerReturn(mailData.Messages, cb);
+}
 
 export function getUserdata(user,cb)
 {
