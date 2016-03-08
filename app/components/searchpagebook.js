@@ -5,11 +5,15 @@ import {addHistoryBook} from '../server';
 
 export default class Searchpagebook extends React.Component {
 
-  onSearch() {
+  onBook() {
     // If searchText is 'sandals', navigates to #/search/q?=sandals
     this.context.router.push({ pathname: "/book" });
   }
-
+  handleAdd(e){
+    e.preventDefault();
+    addHistoryBook(this.props.data._id,this.props.user);
+    this.onBook();
+  }
 
   render() {
     return (
@@ -19,10 +23,10 @@ export default class Searchpagebook extends React.Component {
           <img src={this.props.data.pic} width="100px" />
         </div>
         <div className="media-body">
-          <Link to={"/book"}><font size="4px;" color="blue">{this.props.data.contents.bookname}</font></Link>
-          <br />Owner: <a href="#">{this.props.data.owner_id.fullName}<span className="glyphicon glyphicon-user"></span></a>
+          <a onClick={(e) => this.handleAdd(e)}><font size="4px;" color="blue">{this.props.data.contents.bookname}</font></a>
+          <br />Owner: <Link to="profile">{this.props.data.owner_id.fullName}<span className="glyphicon glyphicon-user"></span></Link>
           <div className="categories_star_color">
-            <a href="#"><span className="glyphicon glyphicon-star"></span><span className="glyphicon categories_star_color glyphicon-star"></span><span className="glyphicon categories_star_color glyphicon-star"></span><span className="glyphicon categories_star_color glyphicon-star"></span><span className="glyphicon categories_star_color glyphicon-star"></span></a>
+            <span className="glyphicon glyphicon-star"></span><span className="glyphicon categories_star_color glyphicon-star"></span><span className="glyphicon categories_star_color glyphicon-star"></span><span className="glyphicon categories_star_color glyphicon-star"></span><span className="glyphicon categories_star_color glyphicon-star"></span>
           </div>
           post by {unixTimeToString(this.props.data.contents.postDate)}· {this.props.data.contents.location}
         </div>

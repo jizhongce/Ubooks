@@ -15,7 +15,7 @@ export default class Bookpage extends React.Component {
 
   refresh() {
     getFeedData(this.props.user, (feedData) => {
-      this.setState(feedData);
+      this.setState({contents:feedData.contents});
     });
   }
 
