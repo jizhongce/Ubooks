@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router';
 
 export default class Howitworkbody extends React.Component {
   render() {
@@ -25,9 +26,9 @@ export default class Howitworkbody extends React.Component {
                       <img src="img/howitwork_order.jpg" width="100px" />
                     </div>
                     <div className="media-body">
-                      <font size="4px;" color="blue">Your orders</font>
-                      <br /><a href="#"><span className="glyphicon button_smaller glyphicon-hand-right"></span> View your order</a>
-                      <br /><a href="#"><span className="glyphicon button_smaller glyphicon-hand-right"></span> Contact book owner</a>
+                      <br /><font size="5px;" color="black">Your orders</font>
+                      <br /><Link to={"/book"}><span className="glyphicon button_smaller glyphicon-hand-right"></span> View your order</Link>
+                      <br /><Link to={"/book"}><span className="glyphicon button_smaller glyphicon-hand-right"></span> Contact book owner</Link>
                     </div>
                   </div>
                 </div>
@@ -37,9 +38,9 @@ export default class Howitworkbody extends React.Component {
                       <img src="img/howitwork_account_seeting.jpg" width="100px" />
                     </div>
                     <div className="media-body">
-                      <font size="4px;" color="blue">Account setting</font>
-                      <br /><a href="#"><span className="glyphicon button_smaller glyphicon-hand-right"></span> Profile setting</a>
-                      <br /><a href="#"><span className="glyphicon button_smaller glyphicon-hand-right"></span> Login information</a>
+                      <br /><font size="5px;" color="black">Account setting</font>
+                      <br /><Link to={"/profile"}><span className="glyphicon button_smaller glyphicon-hand-right"></span> Profile setting</Link>
+                      <br /><Link to={"/profile"}><span className="glyphicon button_smaller glyphicon-hand-right"></span> Login information</Link>
                     </div>
                   </div>
                 </div>
