@@ -10,7 +10,7 @@ var initialData = {
       "1": {
         "_id": 1,
         "fullName": "Tim",
-        "exchangeLists": [1],
+        "exchangeLists": [],
         "wantLists": [2],
         "feed":1,
         "pic":"../img/person1.png",
@@ -19,7 +19,7 @@ var initialData = {
       "2": {
         "_id": 2,
         "fullName": "Kai",
-        "exchangeLists": [],
+        "exchangeLists": [1],
         "wantLists": [],
         "feed":2,
         "pic":"../img/person2.png",
@@ -28,7 +28,7 @@ var initialData = {
       "3": {
         "_id": 3,
         "fullName": "Leo",
-        "exchangeLists": [],
+        "exchangeLists": [2],
         "wantLists": [],
         "feed":3,
         "pic":"../img/person2.png",
@@ -38,8 +38,8 @@ var initialData = {
       "4": {
         "_id": 4,
         "fullName": "Carter",
-        "exchangeLists": [2,1,3],
-        "wantLists": [2,3],
+        "exchangeLists": [3],
+        "wantLists": [2],
         "feed":4,
         "pic":"../img/Carter.jpg",
         "mailbox":4
