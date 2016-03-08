@@ -14,7 +14,7 @@ var initialData = {
         "wantLists": [2],
         "feed":1,
         "pic":"../img/person1.png",
-        "mailbox":1
+        "mailbox":[]
       },
       "2": {
         "_id": 2,
@@ -23,7 +23,7 @@ var initialData = {
         "wantLists": [],
         "feed":2,
         "pic":"../img/person2.png",
-        "mailbox":2
+        "mailbox":[]
       },
       "3": {
         "_id": 3,
@@ -32,7 +32,7 @@ var initialData = {
         "wantLists": [],
         "feed":3,
         "pic":"../img/person2.png",
-        "mailbox":3
+        "mailbox":[]
       },
       //this is you
       "4": {
@@ -43,7 +43,7 @@ var initialData = {
         "wantList": [2],
         "feed":4,
         "pic":"../img/Carter.jpg",
-        "mailbox":4
+        "mailbox":[3,4]
       }
     },
     //books
@@ -205,17 +205,24 @@ var initialData = {
     "mailbox":{
       "4": {
         "_id": 4,
+        "participants": [3,4],
         // Listing of messages in the mailbox.
         "Messages": [
           {
             "From": 3,
             "sendDate": 1453690800000,
             "contents": "hello"
+          },
+          {
+            "From": 4,
+            "sendDate": 1453690800000,
+            "contents": "hey"
           }
         ]
       },
       "3": {
         "_id": 3,
+        "participants": [2,4],
         "Messages": [
           {
             "From": 4,

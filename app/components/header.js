@@ -25,9 +25,9 @@ export default class Header extends React.Component {
                 <Link to={"/howitwork"}>{<button type="button" className="btn btn-default">
                   <font size="3">Help&Contact</font>
                 </button>}</Link>
-                <button type="button" className="btn btn-default">
+              <Link to={"/mailbox/4"}><button type="button" className="btn btn-default">
                   <font size="3">MailBox</font>
-                </button>
+                </button></Link>
               </div>
               <form className="navbar-form pull-right zeropadding threemargin" role="search">
                 <div className="input-group headerinput">
