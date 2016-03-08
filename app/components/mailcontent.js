@@ -15,15 +15,16 @@ export default class MailContent extends React.Component {
       this.setState({value: e.target.value});
   }
 
-  handleKeyUp(e) {
-    if(e.key === "Enter") {
-      var reply = this.state.value.trim();
-      if(reply !== "") {
-        this.props.onPost(this.state.value);
-        this.setState({ value: ""});
-      }
-    }
-  }
+  handlePost(e) {
+      e.preventDefault();
+          var comment = this.state.value.trim();
+          if (comment !== "") {
+            // Post comment
+            this.props.onPost(this.state.value);
+            this.setState({ value: "" });
+            this.componentDidMount();
+          }
+        }
 
   refresh() {
     getMailData(this.props.mail, (mailData) => {
@@ -55,15 +56,15 @@ export default class MailContent extends React.Component {
             </div>
           );
         })}
+        <br />
+        <div className="input-group">
         <input type="text" className="form-control" placeholder="Reply..." value={this.state.value} onChange={(e) => this.handleChange(e)} />
         <span className="input-group-btn">
-          <button className="btn btn-default" type="button">
-            <span className="glyphicon glyphicon-camera"></span>
-          </button>
-          <button className="btn btn-default" type="button">
-            ☺
+          <button className="btn btn-default" type="button" onClick={(e) => this.handlePost(e)}>
+            Submit
           </button>
         </span>
+      </div>
       </div>
     )
   }

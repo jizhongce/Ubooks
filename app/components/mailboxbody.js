@@ -38,21 +38,9 @@ export default class MailboxBody extends React.Component {
               <div className="nav navbar-nav navbar-left">
                 <h4 className="sender">{this.state.fullName}</h4>
               </div>
-              <div className="nav navbar-nav navbar-right">
-                <div className="btn-toolbar pull-right" role="toolbar">
-                  <div className="btn-group" role="group">
-                    <input type="text" className="form-control navbar-btn" placeholder="Search Message" />
-                  </div>
-                  <div className="btn-group" role="group">
-                    <button type="button" className="btn btn-default navbar-btn">
-                      <span className="glyphicon glyphicon-trash"></span>
-                    </button>
-                  </div>
-                </div>
-              </div>
             </div>
             <hr />
-            <MailContent mail={this.props.mail}/>
+            <MailContent mail={this.props.mail} onPost={(commentText) => this.handleMailReply(commentText)}/>
           </div>
         </div>
       </div>

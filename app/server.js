@@ -141,3 +141,27 @@ export function getUserbook(bookitem,cb)
   emulateServerReturn(bookData,cb);
 
 }
+
+export function checkbook(Refs,book)
+{
+  var bookData = readDocument('booksItems',book);
+  if(bookData.owner_id == Refs){
+    return bookData;
+  }
+
+}
+
+export function getSelectedBook(bookRefs,userid)
+{
+  var userData = readDocument('users', userid);
+  var feedData = readDocument('feeds', userData.feed);
+  var selectbook= feedData.contents.map(getFeedItemSync);
+  var selectedbook = selectbook.map((book)=> checkbook(bookRefs,book._id) );
+  var newarray = new Array();
+  for (var i = 0; i < selectedbook.length; i++) {
+    if(selectedbook[i])
+      newarray.push(selectedbook[i]);
+    }
+    return newarray;
+
+}

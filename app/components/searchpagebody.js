@@ -1,5 +1,5 @@
 import React from 'react';
-import {getFeedData} from '../server';
+import {getFeedData,getSelectedBook} from '../server';
 import Searchpagebook from './searchpagebook';
 import Searchpagebookslist from './searchpagebookslist';
 
@@ -7,14 +7,22 @@ export default class Searchpagebody extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      contents: []
+      contents: [],
+      bookid : 1
     };
   }
 
   refresh() {
     getFeedData(this.props.user, (feedData) => {
-      this.setState(feedData);
+      this.setState({contents:feedData.contents});
     });
+  }
+
+  handleSubmit(e){
+    e.preventDefault();
+    this.setState({
+      bookid : 3,
+      contents:getSelectedBook(this.state.bookid,this.props.user)});
   }
 
   componentDidMount() {
@@ -29,7 +37,7 @@ export default class Searchpagebody extends React.Component {
           <div className="col-md-2">
             <div className="panel panel-default">
               <div className="panel-body">
-                <b><font size="3px">Browsing History</font></b>
+                <a className="subject" onClick={(e) => this.handleSubmit(e)}><font size="3px">Browsing History</font></a>
                 <hr className="hrcolor" />
                   {this.state.contents.map((feedItem) => {
                     if(feedItem._id==3)

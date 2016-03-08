@@ -7,10 +7,7 @@ export default class MailList extends React.Component {
       <div className="col-md-3 message-box">
         <ul className="nav nav-pills nav-stacked">
           <li role="presentation">
-            <a href="#">
-              <span className="glyphicon glyphicon-plus"></span>
-              Create New Message
-            </a>
+              <b>New Message</b>
           </li>
           <hr />
           {
