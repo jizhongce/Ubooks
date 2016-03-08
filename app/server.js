@@ -92,6 +92,11 @@ export function getNeedbook(user, cb) {
   emulateServerReturn(userData.wantLists.map((bookid) => readDocument('booksItems', bookid)), cb);
 }
 
+export function getMail(user, cb) {
+  var userData = readDocument('users', user);
+  var mailData = readDocument('mailbox', userData.mailbox);
+  emulateServerReturn(mailData.Messages, cb);
+}
 
 export function getUserdata(user,cb)
 {

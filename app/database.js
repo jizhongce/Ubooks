@@ -208,6 +208,11 @@ var initialData = {
             "From": 3,
             "sendDate": 1453690800000,
             "contents": "hello"
+          },
+          {
+            "From": 2,
+            "sendDate": 1453690800000,
+            "contents": "hello"
           }
         ]
       },

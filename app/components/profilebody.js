@@ -1,6 +1,6 @@
 import React from 'react';
 import Profileexchangebooklist from './profileexchangebooklist';
-import {getUserdata,getExchangebook,getNeedbook} from '../server';
+import {getUserdata,getExchangebook,getNeedbook,getMail} from '../server';
 import Profileneedbooklist from './profileneedbooklist';
 
 
@@ -10,7 +10,8 @@ export default class Profilebody extends React.Component {
     this.state = {
       user : '',
       exchange : [],
-      want : []
+      want : [],
+      message : []
     };
   }
 
@@ -23,6 +24,9 @@ export default class Profilebody extends React.Component {
     });
     getNeedbook(this.props.user, (book) => {
       this.setState({want:book});
+    });
+    getMail(this.props.user, (Message) => {
+      this.setState({message:Message});
     });
   }
 
@@ -55,7 +59,7 @@ export default class Profilebody extends React.Component {
                         <td><h3><b>{this.state.want.length}</b></h3></td>
                         <td><h3><b>{this.state.exchange.length}</b></h3></td>
                         <td><h3><b>Amherst</b></h3></td>
-                        <td><h3><b>{this.state.user.fullName}</b></h3></td>
+                        <td><h3><b>{this.state.message.length}</b></h3></td>
                       </tbody>
                     </table>
                   </div>
