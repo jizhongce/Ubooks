@@ -38,6 +38,8 @@ export default class Profilebody extends React.Component {
 
         <div className="row">
           <div className="col-md-10 col-md-offset-1">
+            <div className="panel panel-default">
+            <div className="col-md-offset-1">
             <div className="media main">
               <div className="media-left media-middle">
                 <img src="img/Carter.jpg" className="img-circle profile-img" width="90" height="100" />
@@ -86,6 +88,8 @@ export default class Profilebody extends React.Component {
                 </div>
               </div>
             </div>
+            </div>
+          </div>
           </div>
         </div>
 
