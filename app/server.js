@@ -145,14 +145,14 @@ export function getUserbook(bookitem,cb)
 
 export function checkbook(Refs,book)
 {
-  var bookData = readDocument('booksItems',book);
+  var bookData = getFeedItemSync(book);
   if(bookData.subject == Refs){
     return bookData;
   }
 
 }
 
-export function getSelectedBook(bookRefs,userid)
+export function getSelectedBook(bookRefs,userid,cb)
 {
   var userData = readDocument('users', userid);
   var feedData = readDocument('feeds', userData.feed);
@@ -163,7 +163,7 @@ export function getSelectedBook(bookRefs,userid)
     if(selectedbook[i])
       newarray.push(selectedbook[i]);
     }
-    return newarray;
+    emulateServerReturn(newarray,cb);
 }
 
 export function addHistoryBook(bookid,userid){

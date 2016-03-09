@@ -25,23 +25,30 @@ export default class Searchpagebody extends React.Component {
     e.preventDefault();
     this.refresh();
   }
+
   handleEnglishSubmit(e){
     e.preventDefault();
-    this.setState({
-      subject : 3,
-      contents:getSelectedBook(this.state.subject,this.props.user)});
+    getSelectedBook(this.state.subject,this.props.user,(books) => {
+      this.setState({
+        subject: 3,
+        contents:books});
+    });
   }
   handleCSSubmit(e){
     e.preventDefault();
-    this.setState({
-      subject : 1,
-      contents:getSelectedBook(this.state.subject,this.props.user)});
+    getSelectedBook(this.state.subject,this.props.user,(books) => {
+      this.setState({
+        subject: 2,
+        contents:books});
+    });
   }
   handleMathSubmit(e){
     e.preventDefault();
-    this.setState({
-      subject : 2,
-      contents:getSelectedBook(this.state.subject,this.props.user)});
+    getSelectedBook(this.state.subject,this.props.user,(books) => {
+      this.setState({
+        subject: 1,
+        contents:books});
+    });
   }
 
   componentDidMount() {
@@ -58,10 +65,10 @@ export default class Searchpagebody extends React.Component {
               <div className="panel-body">
                 <br /><font color="black" size="3">Category</font>
                 <hr className="hrcolor" />
-                  <div><a className="subject" onClick={(e) => this.handleAllSubmit(e)}><span className="glyphicon categories_button_smaller glyphicon-chevron-right"></span><font color="blue">All</font></a></div>
-                  <div><a className="subject" onClick={(e) => this.handleEnglishSubmit(e)}><span className="glyphicon categories_button_smaller glyphicon-chevron-right"></span><font color="blue">English</font></a></div>
-                  <div><a className="subject" onClick={(e) => this.handleCSSubmit(e)}><span className="glyphicon categories_button_smaller glyphicon-chevron-right"></span><font color="blue">Computer Science</font></a></div>
-                  <div><a className="subject" onClick={(e) => this.handleMathSubmit(e)}><span className="glyphicon categories_button_smaller glyphicon-chevron-right"></span><font color="blue">Math</font></a></div>
+                  <div><p className="subject" onClick={(e) => this.handleAllSubmit(e)}><span className="glyphicon categories_button_smaller glyphicon-chevron-right"></span><font color="blue">All</font></p></div>
+                  <div><p className="subject" onClick={(e) => this.handleEnglishSubmit(e)}><span className="glyphicon categories_button_smaller glyphicon-chevron-right"></span><font color="blue">English</font></p></div>
+                  <div><p className="subject" onClick={(e) => this.handleCSSubmit(e)}><span className="glyphicon categories_button_smaller glyphicon-chevron-right"></span><font color="blue">Computer Science</font></p></div>
+                  <div><p className="subject" onClick={(e) => this.handleMathSubmit(e)}><span className="glyphicon categories_button_smaller glyphicon-chevron-right"></span><font color="blue">Math</font></p></div>
                 <hr className="hrcolor" />
                 <br /><font color="black" size="3">History Search</font>
                 <hr className="hrcolor" />
