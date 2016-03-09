@@ -28,25 +28,22 @@ export default class Searchpagebody extends React.Component {
 
   handleEnglishSubmit(e){
     e.preventDefault();
-    getSelectedBook(this.state.subject,this.props.user,(books) => {
+    getSelectedBook(3,this.props.user,(books) => {
       this.setState({
-        subject: 3,
         contents:books});
     });
   }
   handleCSSubmit(e){
     e.preventDefault();
-    getSelectedBook(this.state.subject,this.props.user,(books) => {
+    getSelectedBook(2,this.props.user,(books) => {
       this.setState({
-        subject: 2,
         contents:books});
     });
   }
   handleMathSubmit(e){
     e.preventDefault();
-    getSelectedBook(this.state.subject,this.props.user,(books) => {
+    getSelectedBook(1,this.props.user,(books) => {
       this.setState({
-        subject: 1,
         contents:books});
     });
   }

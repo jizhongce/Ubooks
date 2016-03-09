@@ -42,7 +42,7 @@ var initialData = {
         "wantLists": [2],
         "feed":4,
         "pic":"../img/Carter.jpg",
-        "mailbox":[3,4]
+        "mailbox":[4]
       }
     },
     //books
