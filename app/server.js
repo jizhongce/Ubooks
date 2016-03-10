@@ -111,7 +111,9 @@ export function postBook(owner_id,pic,bookname,author,edition,isbn_10,isbn_13,pu
   var userData = readDocument('users', owner_id);
   var feedData = readDocument('feeds', userData.feed);
   feedData.contents.push(newBookItem._id);
+  userData.exchangeLists.push(newBookItem._id);
   writeDocument('feeds',feedData);
+  writeDocument('users',userData);
 }
 
 export function getExchangebook(user, cb) {
