@@ -10,8 +10,8 @@ export default class Frontpagebody extends React.Component {
               <img className="img-responsive" src="img/bookfair.jpg" />
               <div className="overlay">
                 <h2>UBooks</h2>
-                <Link to="/search">{<a className="info" href="#">Find a book</a>}</Link>
-                <Link to={"/post"}><a className="info" href="#">Post a book</a></Link>
+                <Link to="/search"><div className="info">Find a book</div></Link>
+                <Link to={"/post"}><div className="info">Post a book</div></Link>
               </div>
             </div>
           </div>
@@ -21,7 +21,7 @@ export default class Frontpagebody extends React.Component {
               <img className="img-responsive imgsize" src="img/students2.jpg" />
                 <div className="overlay">
                   <h2>UBooks</h2>
-                  <a className="info" href="#">Mail</a>
+                  <Link to="/mailbox/4"><div className="info">Mail</div></Link>
                 </div>
             </div>
 
@@ -29,7 +29,7 @@ export default class Frontpagebody extends React.Component {
               <img className="img-responsive imgsize" src="img/Student.jpg" />
               <div className="overlay">
                 <h2>UBooks</h2>
-                <Link to="/howitwork">{<a className="info" href="#">Contact Us</a>}</Link>
+                <Link to="/howitwork"><div className="info">Contact Us</div></Link>
               </div>
             </div>
           </div>

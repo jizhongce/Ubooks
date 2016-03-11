@@ -2,6 +2,10 @@ import React from 'react';
 import {Link} from 'react-router';
 
 export default class Header extends React.Component {
+  onSearch(searchText) {
+    this.context.router.push({ pathname: "/search", query: { q: searchText } });
+  }
+
   render() {
     return (
     <div>
@@ -10,7 +14,7 @@ export default class Header extends React.Component {
           <div className="col-md-10 col-md-offset-1 zeropadding" >
             <div className="btn-toolbar" role="toolbar">
               <div className="btn-group pageheader1_button pull-left" role="group">
-                  <Link to={"/profile"}>{<button type="button" className="btn btn-default">
+                <Link to={"/profile"}>{<button type="button" className="btn btn-default">
                   <span className="glyphicon glyphicon-user"></span>
                   <font size="3">Carter</font></button>}</Link>
                 <Link to={"/home"}>{<button type="button" className="btn btn-default">
@@ -19,13 +23,13 @@ export default class Header extends React.Component {
                 <Link to={"/search"}>{<button type="button" className="btn btn-default">
                   <font size="3">Find books</font>
                 </button>}</Link>
-              <Link to={"/post"}><button type="button" className="btn btn-default">
+                <Link to={"/post"}><button type="button" className="btn btn-default">
                   <font size="3">Post books</font>
                 </button></Link>
                 <Link to={"/howitwork"}>{<button type="button" className="btn btn-default">
                   <font size="3">Help&Contact</font>
                 </button>}</Link>
-              <Link to={"/mailbox/4"}><button type="button" className="btn btn-default">
+                <Link to={"/mailbox/4"}><button type="button" className="btn btn-default">
                   <font size="3">MailBox</font>
                 </button></Link>
               </div>
@@ -33,9 +37,9 @@ export default class Header extends React.Component {
                 <div className="input-group headerinput">
                   <span className="input-group-btn search_button">
                     <input type="text" className="form-control headerinput"  placeholder="Search Book"/>
-                    <Link to={"/search"}><button type="submit" className="btn btn-default">
+                    <button type="submit" className="btn btn-default" onClick={(e) => this.onSearch(e)}>
                       <span className="glyphicon glyphicon-search"></span>
-                    </button></Link>
+                    </button>
                   </span>
                 </div>
               </form>
@@ -59,3 +63,7 @@ export default class Header extends React.Component {
     )
   }
 }
+
+Header.contextTypes = {
+  router: React.PropTypes.object.isRequired
+};
