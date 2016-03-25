@@ -50,20 +50,24 @@ export default class Profilebody extends React.Component {
                     <h2 clss="account"><br /><b>{this.state.user.fullName}’s<br />UBooks</b></h2>
                   </div>
                   <div className="col-md-8">
-                    <table className="table main-table" border="0">
-                      <thead>
-                        <th> BOOK IN NEED</th>
-                        <th> BOOK EXCHANGE</th>
-                        <th> AVAILABLE PLACE</th>
-                        <th> INBOX MESSAGE</th>
-                      </thead>
-                      <tbody>
-                        <td><h3><b>{this.state.want.length}</b></h3></td>
-                        <td><h3><b>{this.state.exchange.length}</b></h3></td>
-                        <td><h3><b>Amherst</b></h3></td>
-                        <td><h3><b>{this.state.message.length}</b></h3></td>
-                      </tbody>
-                    </table>
+                    <div className="ulstyle ulmargin" border="0">
+                      <ul>
+                        <li> BOOK IN NEED</li>
+                        <li><h3><b>{this.state.want.length}</b></h3></li>
+                      </ul>
+                      <ul>
+                        <li> BOOK EXCHANGE</li>
+                        <li><h3><b>{this.state.exchange.length}</b></h3></li>
+                      </ul>
+                      <ul>
+                        <li> AVAILABLE PLACE</li>
+                        <li><h3><b>Amherst</b></h3></li>
+                      </ul>
+                      <ul>
+                        <li> INBOX MESSAGE</li>
+                        <li><h3><b>{this.state.message.length}</b></h3></li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>

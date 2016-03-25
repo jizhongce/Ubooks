@@ -68,3 +68,13 @@ body {
 .imgsize{
   height:260px;
 }
+
+.ulstyle ul{
+  float: left;;
+  list-style: none;
+  margin: 10px;
+}
+
+.ulmargin{
+  margin-top: 20px;
+}
