@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Searchpage from './components/searchpage';
+import Searchpagebody from './components/searchpagebody.js';
 import Bookpage from './components/bookpage';
-import Postbookpage from './components/postbookpage';
-import Frontpage from './components/frontpage';
-import Howitwork from './components/howitwork';
+import Postbookpagebody from './components/Postbook/postbookbody.js';
+import Frontpagebody from './components/frontpagebody';
+import Howitworkbody from './components/howitworkbody.js';
 import Header from './components/header';
 import {Link} from 'react-router';
-import Profile from './components/profile';
+import Profilebody from './components/profilebody';
 import Mailbox from './components/mailbox';
 import { IndexRoute, Router, Route, hashHistory } from 'react-router'
 
@@ -15,7 +15,7 @@ class SearchPage extends React.Component {
   render() {
     return (
       <div>
-        <Searchpage />
+        <Searchpagebody user={4}/>
       </div>
     );
   }
@@ -36,7 +36,7 @@ class PostbookPage extends React.Component {
   render() {
     return (
       <div>
-        <Postbookpage />
+        <Postbookpagebody user={4}/>
       </div>
     );
   }
@@ -46,7 +46,6 @@ class ContactPage extends React.Component {
   render() {
     return (
       <div>
-        <Header />
         <div className="container">
           <div className="row body">
             <div className="col-md-6 col-md-offset-3">
@@ -65,7 +64,6 @@ class SuccessPost extends React.Component {
   render() {
     return (
       <div>
-        <Header />
         <div className="container">
           <div className="row body">
             <div className="col-md-6 col-md-offset-3">
@@ -82,25 +80,28 @@ class SuccessPost extends React.Component {
 
 class FrontPage extends React.Component {
   render() {
-    return <Frontpage />;
+    return <Frontpagebody user={4}/>;
   }
 }
 
 class PRofile extends React.Component {
   render(){
-    return <Profile />;
+    return <Profilebody user={4}/>;
   }
 }
 class HowitWork extends React.Component {
   render() {
-    return <Howitwork />;
+    return <Howitworkbody user={4} />;
   }
 }
 
 class App extends React.Component {
   render() {
     return (
-      <div>{this.props.children}</div>
+      <div>
+        <Header/>
+        {this.props.children}
+      </div>
     )
   }
 }

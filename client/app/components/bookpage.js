@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from './header.js';
 import Bookinfobody from './Bookinfo/bookinfobody';
 import {getFeedData} from '../server';
 
@@ -29,7 +28,6 @@ export default class Bookpage extends React.Component {
   render() {
     return (
     <div>
-      <Header />
         {this.state.contents.map((bookItem,i) => {
           if(bookItem._id == this.props.book){
           return (
