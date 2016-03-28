@@ -23,11 +23,11 @@ export default class Howitworkbody extends React.Component {
                 <div className="col-md-5 col-md-offset-2">
                   <div className="media">
                     <div className="media-left media-top">
-                      <img src="img/howitwork_order.jpg" width="100px" />
+                      <img src="img/book-need.jpg" width="100px" height="90px"/>
                     </div>
                     <div className="media-body">
-                      <br /><font size="5px;" color="black">Your orders</font>
-                      <br /><Link to={"/book"}><span className="glyphicon button_smaller glyphicon-hand-right"></span> View your order</Link>
+                      <br /><font size="5px;" color="black">Your books</font>
+                      <br /><Link to={"/book"}><span className="glyphicon button_smaller glyphicon-hand-right"></span> View your books</Link>
                       <br /><Link to={"/book"}><span className="glyphicon button_smaller glyphicon-hand-right"></span> Contact book owner</Link>
                     </div>
                   </div>
