@@ -9,7 +9,8 @@ import Header from './components/header';
 import {Link} from 'react-router';
 import Profilebody from './components/profilebody';
 import Mailbox from './components/mailbox';
-import { IndexRoute, Router, Route, hashHistory } from 'react-router'
+import { IndexRoute, Router, Route, hashHistory } from 'react-router';
+import ErrorBanner from './components/errorbanner'
 
 class SearchPage extends React.Component {
   render() {
@@ -100,7 +101,14 @@ class App extends React.Component {
     return (
       <div>
         <Header/>
-        {this.props.children}
+          <div className="row">
+              <div className="col-md-12">
+                <ErrorBanner />
+              </div>
+            </div>
+          <div className="row">
+            {this.props.children}
+          </div>
       </div>
     )
   }
