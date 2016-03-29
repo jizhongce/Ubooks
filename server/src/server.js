@@ -1,6 +1,3 @@
-// Implement your server in this file.
-// We should be able to run your server with node src/server.js
-//Import the databse so that we can use the function in the database
 var database = require('./database');
 var readDocument = database.readDocument;
 var writeDocument = database.writeDocument;
@@ -27,7 +24,31 @@ app.use(function(err, req, res, next) {
 });
 
 //Functions start from here
+function getUserIdFromToken(authorizationLine) {
+  try {
+    var token = authorizationLine.slice(7);
+    var regularString = new Buffer(token, 'base64').toString('utf8');
+    var tokenObj = JSON.parse(regularString);
+    var id = tokenObj['id'];
+    if (typeof id === 'number') {
+      return id;
+    } else {
+      // Not a number. Return -1, an invalid ID.
+      return -1;
+    }
+  } catch (e) {
+    // Return an invalid ID.
+    return -1;
+  }
+}
 
+app.post('/resetdb', function(req, res) {
+  console.log("Resetting database...");
+  // This is a debug route, so don't do any validation.
+  database.resetDatabase();
+  // res.send() sends an empty response with status code 200
+  res.send();
+});
 
 
 app.listen(3000, function() {
