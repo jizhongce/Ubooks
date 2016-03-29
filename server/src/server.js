@@ -30,7 +30,21 @@ app.use(function(err, req, res, next) {
 });
 
 
+function getFeedItemSync(feedItemId) {
+  var feedItem = readDocument('booksItems', feedItemId);
+  feedItem.owner_id = readDocument('users',feedItem.owner_id);
+  feedItem.comments.forEach((comment) => {
+    comment.author = readDocument('users', comment.author);
+  });
+  return feedItem;
+}
 
+function getFeedData() {
+  var feedData = readDocument('feeds', 1);
+  feedData.contents = feedData.contents.map(getFeedItemSync);
+  feedData.historys = feedData.historys.map(getFeedItemSync);
+  return feedData;
+}
 //Functions start from here
 function getUserIdFromToken(authorizationLine) {
   try {
