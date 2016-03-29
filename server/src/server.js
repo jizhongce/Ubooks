@@ -12,9 +12,20 @@ var app = express();
 //end
 
 
-
 app.use(express.static('../client/build'));
 
+/**
+ * Translate JSON Schema Validation failures into error 400s.
+ */
+app.use(function(err, req, res, next) {
+  if (err.name === 'JsonSchemaValidation') {
+    // Set a bad request http response status
+    res.status(400).end();
+  } else {
+    // It's some other sort of error; pass it to next error middleware handler
+    next(err);
+  }
+});
 
 //Functions start from here
 
