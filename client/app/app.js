@@ -5,6 +5,7 @@ import Bookpage from './components/bookpage';
 import Postbookpagebody from './components/Postbook/postbookbody.js';
 import Frontpagebody from './components/frontpagebody';
 import Howitworkbody from './components/howitworkbody.js';
+import ResetDatabase from'./components/resetdatabase.js';
 import Header from './components/header';
 import {Link} from 'react-router';
 import Profilebody from './components/profilebody';
@@ -108,6 +109,7 @@ class App extends React.Component {
           </div>
           <div className="row">
             {this.props.children}
+            <ResetDatabase />
           </div>
       </div>
     )
