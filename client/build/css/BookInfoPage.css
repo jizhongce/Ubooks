@@ -41,3 +41,7 @@
 .body .category{
   padding-right:2px;
 }
+/* Prevent an HTML element from displaying at all. */
+.hidden {
+  display: 'none';
+}

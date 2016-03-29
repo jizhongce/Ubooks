@@ -8,25 +8,28 @@ var initialData = {
         "wantLists": [2],
         "feed":1,
         "pic":"../img/person1.png",
-        "mailbox":[]
+        "mailbox":[],
+        "historys": []
       },
       "2": {
         "_id": 2,
         "fullName": "Kai",
         "exchangeLists": [1],
         "wantLists": [],
-        "feed":2,
+        "feed":1,
         "pic":"../img/person2.png",
-        "mailbox":[]
+        "mailbox":[],
+        "historys": []
       },
       "3": {
         "_id": 3,
         "fullName": "Leo",
         "exchangeLists": [2],
         "wantLists": [],
-        "feed":3,
+        "feed":1,
         "pic":"../img/person2.png",
-        "mailbox":[]
+        "mailbox":[],
+        "historys": []
       },
       //this is you
       "4": {
@@ -34,9 +37,10 @@ var initialData = {
         "fullName": "Carter",
         "exchangeLists": [3,4],
         "wantLists": [2,1],
-        "feed":4,
+        "feed":1,
         "pic":"../img/Carter.jpg",
-        "mailbox":[4]
+        "mailbox":[4],
+        "historys": []
       }
     },
     //books
@@ -181,26 +185,10 @@ var initialData = {
       }
     },
     "feeds": {
-      "4": {
-        "_id": 4,
-        // Listing of FeedItems in the feed.
-        "contents": [1,2,3,4],
-        "historys": []
-      },
-      "3": {
-        "_id": 3,
-        "contents": [],
-        "historys": []
-      },
-      "2": {
-        "_id": 2,
-        "contents": [],
-        "historys": []
-      },
       "1": {
         "_id": 1,
-        "contents": [],
-        "historys": []
+        // Listing of FeedItems in the feed.
+        "contents": [1,2,3,4]
       }
     },
 

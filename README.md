@@ -1,4 +1,9 @@
-# Startup Product: Client Side
+# UBooks
 
-This repository will hold the *client side* of your product. The client
-side of your product runs in the browser.
+UBooks created by Morningstar
+
+Team Member:
+Kai
+Ye Jiang
+Zhongce Ji
+Zhuodong Huang
