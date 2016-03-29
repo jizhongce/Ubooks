@@ -11,77 +11,95 @@
       "id": "owner_id",
       "type": "integer"
     },
+    "subject": {
+      "id": "subject",
+      "type": "integer"
+    },
     "pic": {
       "id": "pic",
       "type": "string"
     },
-    "contents": {
-      "id": "contents",
-      "type": "object",
-      "properties": {
-        "bookname": {
-          "id": "bookname",
-          "type": "string"
-        },
-        "author": {
-          "id": "author",
-          "type": "string"
-        },
-        "edition": {
-          "id": "edition",
-          "type": "string"
-        },
-        "isbn_10": {
-          "id": "isbn_10",
-          "type": "string"
-        },
-        "course": {
-          "id": "course",
-          "type": "string"
-        },
-        "isbn_13": {
-          "id": "isbn_13",
-          "type": "string"
-        },
-        "publisher": {
-          "id": "publisher",
-          "type": "string"
-        },
-        "publish_date": {
-          "id": "publish_date",
-          "type": "string"
-        },
-        "list_price": {
-          "id": "list_price",
-          "type": "string"
-        },
-        "highlight": {
-          "id": "highlight",
-          "type": "string"
-        },
-        "notes": {
-          "id": "notes",
-          "type": "string"
-        },
-        "condition": {
-          "id": "condition",
-          "type": "string"
-        },
-        "descriptions": {
-          "id": "descriptions",
-          "type": "string"
-        },
-        "location": {
-          "id": "location",
-          "type": "string"
-        }
-      }
+    "bookname": {
+      "id": "bookname",
+      "type": "string"
+    },
+    "author": {
+      "id": "author",
+      "type": "string"
+    },
+    "edition": {
+      "id": "edition",
+      "type": "string"
+    },
+    "isbn_10": {
+      "id": "isbn_10",
+      "type": "string"
+    },
+    "isbn_13": {
+      "id": "isbn_13",
+      "type": "string"
+    },
+    "postDate": {
+      "id": "postDate",
+      "type": "integer"
+    },
+    "publisher": {
+      "id": "publisher",
+      "type": "string"
+    },
+    "publish_date": {
+      "id": "publish_date",
+      "type": "string"
+    },
+    "list_price": {
+      "id": "list_price",
+      "type": "string"
+    },
+    "highlight": {
+      "id": "highlight",
+      "type": "string"
+    },
+    "notes": {
+      "id": "notes",
+      "type": "string"
+    },
+    "condition": {
+      "id": "condition",
+      "type": "string"
+    },
+    "descriptions": {
+      "id": "descriptions",
+      "type": "string"
+    },
+    "location": {
+      "id": "location",
+      "type": "string"
+    },
+    "comments": {
+      "id": "comments",
+      "type": "array",
+      "items": []
     }
   },
   "required": [
     "_id",
     "owner_id",
+    "subject",
     "pic",
-    "contents"
+    "bookname",
+    "author",
+    "edition",
+    "isbn_10",
+    "isbn_13",
+    "postDate",
+    "publisher",
+    "publish_date",
+    "list_price",
+    "highlight",
+    "notes",
+    "condition",
+    "descriptions",
+    "location",
+    "comments"
   ]
 }

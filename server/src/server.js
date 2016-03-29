@@ -2,6 +2,12 @@ var database = require('./database');
 var readDocument = database.readDocument;
 var writeDocument = database.writeDocument;
 var addDocument = database.addDocument;
+//import the body parser
+var bodyParser = require('body-parser');
+var validate = require('express-jsonschema').validate;
+//import the schemas
+var commentSchema = require('./schemas/comment.json');
+var bookitemSchema = require('./schemas/bookitem.json');
 // Imports the express Node module.
 var express = require('express');
 // Creates an Express server.
@@ -22,6 +28,8 @@ app.use(function(err, req, res, next) {
     next(err);
   }
 });
+
+
 
 //Functions start from here
 function getUserIdFromToken(authorizationLine) {
@@ -49,6 +57,7 @@ app.post('/resetdb', function(req, res) {
   // res.send() sends an empty response with status code 200
   res.send();
 });
+
 
 
 app.listen(3000, function() {

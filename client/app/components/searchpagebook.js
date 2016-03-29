@@ -23,12 +23,12 @@ export default class Searchpagebook extends React.Component {
           <img src={this.props.data.pic} width="100px" />
         </div>
         <div className="media-body">
-          <a onClick={(e) => this.handleAdd(e)}><font size="4px;" color="blue">{this.props.data.contents.bookname}</font></a>
+          <a onClick={(e) => this.handleAdd(e)}><font size="4px;" color="blue">{this.props.data.bookname}</font></a>
           <br />Owner: <Link to="profile">{this.props.data.owner_id.fullName}<span className="glyphicon glyphicon-user"></span></Link>
           <div className="categories_star_color">
             <span className="glyphicon glyphicon-star"></span><span className="glyphicon categories_star_color glyphicon-star"></span><span className="glyphicon categories_star_color glyphicon-star"></span><span className="glyphicon categories_star_color glyphicon-star"></span><span className="glyphicon categories_star_color glyphicon-star"></span>
           </div>
-          post by {unixTimeToString(this.props.data.contents.postDate)}· {this.props.data.contents.location}
+          post by {unixTimeToString(this.props.data.postDate)}· {this.props.data.location}
         </div>
       </div>
       <hr />
