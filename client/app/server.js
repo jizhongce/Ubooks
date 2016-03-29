@@ -1,8 +1,4 @@
 import {readDocument,writeDocument,addDocument} from './database.js';
-
-
-
-
 /**
  * Emulates how a REST call is *asynchronous* -- it calls your function back
  * some time in the future with data.
@@ -83,7 +79,6 @@ export function replyMail(mailId, user, content, cb) {
   emulateServerReturn(getMailItemSync(mailId), cb);
 }
 
-
 export function postBook(owner_id,pic,bookname,author,edition,isbn_10,isbn_13,publisher,publish_date,list_price,condition,highlight,notes,description,location){
   var time = new Date().getTime();
   var newBookItem={
@@ -151,7 +146,6 @@ export function checkbook(Refs,book)
   if(bookData.subject == Refs){
     return bookData;
   }
-
 }
 
 export function getSelectedBook(bookRefs,userid,cb)
@@ -175,9 +169,6 @@ export function addHistoryBook(bookid,userid){
   writeDocument('feeds',feedData);
 }
 
-
-
-
 // here is the error handle function
 //Do not change anything here
 var token = 'eyJpZCI6NH0='; // <-- Put your base64'd JSON token here
@@ -193,7 +184,7 @@ function sendXHR(verb, resource, body, cb) {
   // The below comment tells ESLint that FacebookError is a global.
   // Otherwise, ESLint would complain about it! (See what happens in Atom if
   // you remove the comment...)
-  /* global FacebookError */
+  /* global UbookError */
 
   // Response received from server. It could be a failure, though!
   xhr.addEventListener('load', function() {
