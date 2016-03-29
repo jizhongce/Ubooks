@@ -5,6 +5,10 @@ var database = require('./database');
 var readDocument = database.readDocument;
 var writeDocument = database.writeDocument;
 var addDocument = database.addDocument;
+//Import the Schema for post
+var bookitemSchema = require('./schemas/bookitem.json');
+//Import the Schema for comment
+var commentSchema = require('./schemas/comment.json');
 // Imports the express Node module.
 var express = require('express');
 // Creates an Express server.
