@@ -48,7 +48,6 @@ var initialData = {
       "1": {
         "_id":1,
         "owner_id":2,
-        "subject": 1,
         "pic":"../img/book1.jpg",
         "bookname": "Introduction-to-algorithms",
         "author":"Tomas",
@@ -80,7 +79,6 @@ var initialData = {
       "2": {
         "_id":2,
         "owner_id":3,
-        "subject": 1,
         "pic":"../img/book2.jpg",
         "bookname":"Artificial Intelligence A Modern Approach",
         "author":"Peter",
@@ -112,7 +110,6 @@ var initialData = {
       "3": {
         "_id":3,
         "owner_id":4,
-        "subject": 2,
         "pic":"../img/book3.jpg",
         "bookname":"Learning Web Design: A Beginner's Guide to HTML, CSS, JavaScript, and Web Graphics",
         "author":"Jennifer Niederst Robbins",
@@ -143,7 +140,6 @@ var initialData = {
       "4": {
         "_id":4,
         "owner_id":3,
-        "subject": 3,
         "pic":"../img/system.jpg",
         "bookname": "Computer Systems (A programmer's Perspective)",
         "author":"Bryant . O'Hallaron",
