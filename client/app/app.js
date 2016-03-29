@@ -101,11 +101,11 @@ class App extends React.Component {
     return (
       <div>
         <Header/>
-          <div className="row">
-              <div className="col-md-12">
-                <ErrorBanner />
-              </div>
+          <div>
+            <div className="col-md-12">
+              <ErrorBanner />
             </div>
+          </div>
           <div className="row">
             {this.props.children}
           </div>

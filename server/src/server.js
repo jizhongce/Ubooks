@@ -11,8 +11,6 @@ var express = require('express');
 var app = express();
 //end
 
-
-
 app.use(express.static('../client/build'));
 
 
