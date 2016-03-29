@@ -84,22 +84,20 @@ export function postBook(owner_id,pic,bookname,author,edition,isbn_10,isbn_13,pu
   var newBookItem={
     "owner_id":owner_id,
     "pic":pic,
-    "contents":{
-      "bookname":bookname,
-      "author":author,
-      "edition": edition,
-      "isbn_10": isbn_10,
-      "isbn_13": isbn_13,
-      "postDate": time,
-      "Publisher": publisher,
-      "publish_date": publish_date,
-      "list_price": list_price,
-      "condition": condition,
-      "highlight": highlight,
-      "notes": notes,
-      "description": description,
-      "location": location
-    },
+    "bookname":bookname,
+    "author":author,
+    "edition": edition,
+    "isbn_10": isbn_10,
+    "isbn_13": isbn_13,
+    "postDate": time,
+    "Publisher": publisher,
+    "publish_date": publish_date,
+    "list_price": list_price,
+    "condition": condition,
+    "highlight": highlight,
+    "notes": notes,
+    "description": description,
+    "location": location,
     "comments": []
   };
   newBookItem = addDocument('booksItems',newBookItem);

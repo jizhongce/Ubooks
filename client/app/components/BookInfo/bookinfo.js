@@ -15,7 +15,7 @@ export default class Bookinfo extends React.Component{
         <div className="col-md-9 pull-left">
           <div className="row title">
             <div className="col-md-12">
-            <font size = "5" color="black">{this.props.data.contents.bookname}</font>
+            <font size = "5" color="black">{this.props.data.bookname}</font>
             </div>
           </div>
           <div className="row">
@@ -35,18 +35,18 @@ export default class Bookinfo extends React.Component{
 
             </div>
             <div className="col-md-6 right-line">
-              <br /><font size = "4" color="black">{this.props.data.contents.edition}</font>
-              <br /><font size = "4" color="black">{this.props.data.contents.author}</font>
-              <br /><font size = "4" color="black">{this.props.data.contents.isbn_10}</font>
-              <br /><font size = "4" color="black">{this.props.data.contents.isbn_13}</font>
-              <br /><font size = "4" color="black">{this.props.data.contents.publisher}</font>
-              <br /><font size = "4" color="black">{this.props.data.contents.publish_date}</font>
-              <br /><font size = "4" color="black">{this.props.data.contents.list_price}</font>
-              <br /><font size = "4" color="black">{this.props.data.contents.location}</font>
-              <br /><font size = "4" color="black">{this.props.data.contents.condition}</font>
-              <br /><font size = "4" color="black">{this.props.data.contents.highlight}</font>
-              <br /><font size = "4" color="black">{this.props.data.contents.notes}</font>
-              <br /><font size = "4" color="black">{this.props.data.contents.descriptions}</font>
+              <br /><font size = "4" color="black">{this.props.data.edition}</font>
+              <br /><font size = "4" color="black">{this.props.data.author}</font>
+              <br /><font size = "4" color="black">{this.props.data.isbn_10}</font>
+              <br /><font size = "4" color="black">{this.props.data.isbn_13}</font>
+              <br /><font size = "4" color="black">{this.props.data.publisher}</font>
+              <br /><font size = "4" color="black">{this.props.data.publish_date}</font>
+              <br /><font size = "4" color="black">{this.props.data.list_price}</font>
+              <br /><font size = "4" color="black">{this.props.data.location}</font>
+              <br /><font size = "4" color="black">{this.props.data.condition}</font>
+              <br /><font size = "4" color="black">{this.props.data.highlight}</font>
+              <br /><font size = "4" color="black">{this.props.data.notes}</font>
+              <br /><font size = "4" color="black">{this.props.data.descriptions}</font>
 
             </div>
           </div>
