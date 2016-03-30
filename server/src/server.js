@@ -16,20 +16,6 @@ var app = express();
 
 app.use(express.static('../client/build'));
 
-/**
- * Translate JSON Schema Validation failures into error 400s.
- */
-app.use(function(err, req, res, next) {
-  if (err.name === 'JsonSchemaValidation') {
-    // Set a bad request http response status
-    res.status(400).end();
-  } else {
-    // It's some other sort of error; pass it to next error middleware handler
-    next(err);
-  }
-});
-
-
 function getFeedItemSync(feedItemId) {
   var feedItem = readDocument('booksItems', feedItemId);
   feedItem.owner_id = readDocument('users',feedItem.owner_id);
@@ -42,9 +28,9 @@ function getFeedItemSync(feedItemId) {
 function getFeedData() {
   var feedData = readDocument('feeds', 1);
   feedData.contents = feedData.contents.map(getFeedItemSync);
-  feedData.historys = feedData.historys.map(getFeedItemSync);
   return feedData;
 }
+
 //Functions start from here
 function getUserIdFromToken(authorizationLine) {
   try {
@@ -64,15 +50,41 @@ function getUserIdFromToken(authorizationLine) {
   }
 }
 
+/**
+ * Get the feed data for a particular user.
+ */
+app.get('/user/:userid/feed', function(req, res) {
+  var userid = req.params.userid;
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
+  var useridNumber = parseInt(userid, 10);
+  if (fromUser === useridNumber) {
+    res.send(getFeedData(userid));
+  } else {
+    res.status(401).end();
+  }
+});
+
+//resetDatabase
 app.post('/resetdb', function(req, res) {
   console.log("Resetting database...");
-  // This is a debug route, so don't do any validation.
   database.resetDatabase();
-  // res.send() sends an empty response with status code 200
   res.send();
 });
 
 
+//important!!!! never write after this line!!!!
+/**
+ * Translate JSON Schema Validation failures into error 400s.
+ */
+app.use(function(err, req, res, next) {
+  if (err.name === 'JsonSchemaValidation') {
+    // Set a bad request http response status
+    res.status(400).end();
+  } else {
+    // It's some other sort of error; pass it to next error middleware handler
+    next(err);
+  }
+});
 
 app.listen(3000, function() {
    console.log('Example app listening on port 3000!');

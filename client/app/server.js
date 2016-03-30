@@ -1,4 +1,4 @@
-import {readDocument,writeDocument,addDocument} from './database.js';
+import {readDocument,writeDocument,addDocument} from './database'
 /**
  * Emulates how a REST call is *asynchronous* -- it calls your function back
  * some time in the future with data.
@@ -19,11 +19,11 @@ function getFeedItemSync(feedItemId) {
 }
 
 export function getFeedData(user, cb) {
-  var userData = readDocument('users', user);
-  var feedData = readDocument('feeds', userData.feed);
-  feedData.contents = feedData.contents.map(getFeedItemSync);
-  feedData.historys = feedData.historys.map(getFeedItemSync);
-  emulateServerReturn(feedData, cb);
+  // We don't need to send a body, so pass in 'undefined' for the body.
+  sendXHR('GET', '/user/4/feed', undefined, (xhr) => {
+    // Call the callback with the data.
+    cb(JSON.parse(xhr.responseText));
+  });
 }
 
 function getMailItemSync(mail) {

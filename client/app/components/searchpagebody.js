@@ -1,7 +1,6 @@
 import React from 'react';
 import {getFeedData,getSelectedBook} from '../server';
 import Searchpagebook from './searchpagebook';
-import Searchpagebookslist from './searchpagebookslist';
 
 export default class Searchpagebody extends React.Component {
   constructor(props) {
@@ -16,7 +15,6 @@ export default class Searchpagebody extends React.Component {
   refresh() {
     getFeedData(this.props.user, (feedData) => {
       this.setState({
-        historys:feedData.historys,
         contents:feedData.contents});
     });
   }
@@ -69,11 +67,7 @@ export default class Searchpagebody extends React.Component {
                 <hr className="hrcolor" />
                 <br /><font color="black" size="3">History Search</font>
                 <hr className="hrcolor" />
-                  {this.state.historys.map((feedItem) => {
-                    return (
-                      <Searchpagebookslist key={feedItem._id} data={feedItem} />
-                    )
-                  })}
+                  hahahahah
               </div>
             </div>
           </div>
