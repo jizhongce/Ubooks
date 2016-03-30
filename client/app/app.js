@@ -102,15 +102,11 @@ class App extends React.Component {
     return (
       <div>
         <Header/>
-          <div>
-            <div className="col-md-12">
-              <ErrorBanner />
-            </div>
-          </div>
-          <div className="row">
-            {this.props.children}
-            <ResetDatabase />
-          </div>
+        <div className="row zeromargin">
+          <ErrorBanner />
+        </div>
+        {this.props.children}
+        <ResetDatabase />
       </div>
     )
   }

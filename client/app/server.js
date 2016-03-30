@@ -1,4 +1,4 @@
-import {readDocument,writeDocument,addDocument} from './database.js';
+import {readDocument,writeDocument,addDocument} from './database'
 /**
  * Emulates how a REST call is *asynchronous* -- it calls your function back
  * some time in the future with data.
@@ -17,6 +17,7 @@ function getFeedItemSync(feedItemId) {
   });
   return feedItem;
 }
+
 
 export function getFeedData(cb) {
   sendXHR('GET','/feed',undefined,(xhr)=>{

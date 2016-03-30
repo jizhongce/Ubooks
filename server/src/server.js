@@ -16,7 +16,6 @@ var app = express();
 
 app.use(express.static('../client/build'));
 
-
 function getFeedItemSync(feedItemId) {
   var feedItem = readDocument('booksItems', feedItemId);
   feedItem.owner_id = readDocument('users',feedItem.owner_id);
@@ -29,14 +28,12 @@ function getFeedItemSync(feedItemId) {
 function getFeedData() {
   var feedData = readDocument('feeds', 1);
   feedData.contents = feedData.contents.map(getFeedItemSync);
-  feedData.historys = feedData.historys.map(getFeedItemSync);
   return feedData;
 }
 
 app.get('/feed',function(req,res){
     res.send(getFeedData());
 });
-
 
 //Functions start from here
 function getUserIdFromToken(authorizationLine) {
@@ -57,18 +54,13 @@ function getUserIdFromToken(authorizationLine) {
   }
 }
 
-app.get('/user')
 
 
 app.post('/resetdb', function(req, res) {
   console.log("Resetting database...");
-  // This is a debug route, so don't do any validation.
   database.resetDatabase();
-  // res.send() sends an empty response with status code 200
   res.send();
 });
-
-
 
 
 
