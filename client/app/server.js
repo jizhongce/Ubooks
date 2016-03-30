@@ -130,10 +130,9 @@ export function getUserdata(user,cb)
   emulateServerReturn(userData,cb);
 }
 
-export function getUserbook(bookitem,cb)
+export function getBook(bookid)
 {
-  var bookData = readDocument('booksItems',bookitem);
-  emulateServerReturn(bookData,cb);
+  return getFeedItemSync(bookid);
 
 }
 

@@ -3,14 +3,14 @@ import Bookinfo from './bookinfo';
 import CommentThread from './commentthread';
 import Comment from './comment';
 import Bookinfotitle from './bookinfotitle';
-import {postComment} from '../../server';
+import {postComment,getBook} from '../../server';
 
 
 export default class Bookinfobody extends React.Component {
 
   constructor(props){
     super(props);
-    this.state = this.props.data;
+    this.state = getBook(this.props.book);
   }
 
   handleCommentPost(commentText) {
