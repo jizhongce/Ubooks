@@ -31,6 +31,10 @@ function getFeedData() {
   return feedData;
 }
 
+app.get('/feed',function(req,res){
+    res.send(getFeedData());
+});
+
 //Functions start from here
 function getUserIdFromToken(authorizationLine) {
   try {
@@ -50,21 +54,8 @@ function getUserIdFromToken(authorizationLine) {
   }
 }
 
-/**
- * Get the feed data for a particular user.
- */
-app.get('/user/:userid/feed', function(req, res) {
-  var userid = req.params.userid;
-  var fromUser = getUserIdFromToken(req.get('Authorization'));
-  var useridNumber = parseInt(userid, 10);
-  if (fromUser === useridNumber) {
-    res.send(getFeedData(userid));
-  } else {
-    res.status(401).end();
-  }
-});
 
-//resetDatabase
+
 app.post('/resetdb', function(req, res) {
   console.log("Resetting database...");
   database.resetDatabase();
@@ -72,8 +63,9 @@ app.post('/resetdb', function(req, res) {
 });
 
 
-//important!!!! never write after this line!!!!
+
 /**
+......................Add all function before this line .........................................................
  * Translate JSON Schema Validation failures into error 400s.
  */
 app.use(function(err, req, res, next) {
@@ -85,6 +77,8 @@ app.use(function(err, req, res, next) {
     next(err);
   }
 });
+
+
 
 app.listen(3000, function() {
    console.log('Example app listening on port 3000!');

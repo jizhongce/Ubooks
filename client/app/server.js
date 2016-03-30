@@ -18,10 +18,9 @@ function getFeedItemSync(feedItemId) {
   return feedItem;
 }
 
-export function getFeedData(user, cb) {
-  // We don't need to send a body, so pass in 'undefined' for the body.
-  sendXHR('GET', '/user/4/feed', undefined, (xhr) => {
-    // Call the callback with the data.
+
+export function getFeedData(cb) {
+  sendXHR('GET','/feed',undefined,(xhr)=>{
     cb(JSON.parse(xhr.responseText));
   });
 }
