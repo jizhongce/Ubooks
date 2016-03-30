@@ -16,19 +16,6 @@ var app = express();
 
 app.use(express.static('../client/build'));
 
-/**
- * Translate JSON Schema Validation failures into error 400s.
- */
-app.use(function(err, req, res, next) {
-  if (err.name === 'JsonSchemaValidation') {
-    // Set a bad request http response status
-    res.status(400).end();
-  } else {
-    // It's some other sort of error; pass it to next error middleware handler
-    next(err);
-  }
-});
-
 
 function getFeedItemSync(feedItemId) {
   var feedItem = readDocument('booksItems', feedItemId);
@@ -45,6 +32,12 @@ function getFeedData() {
   feedData.historys = feedData.historys.map(getFeedItemSync);
   return feedData;
 }
+
+app.get('/feed',function(req,res){
+    res.send(getFeedData());
+});
+
+
 //Functions start from here
 function getUserIdFromToken(authorizationLine) {
   try {
@@ -64,12 +57,33 @@ function getUserIdFromToken(authorizationLine) {
   }
 }
 
+app.get('/user')
+
+
 app.post('/resetdb', function(req, res) {
   console.log("Resetting database...");
   // This is a debug route, so don't do any validation.
   database.resetDatabase();
   // res.send() sends an empty response with status code 200
   res.send();
+});
+
+
+
+
+
+/**
+......................Add all function before this line .........................................................
+ * Translate JSON Schema Validation failures into error 400s.
+ */
+app.use(function(err, req, res, next) {
+  if (err.name === 'JsonSchemaValidation') {
+    // Set a bad request http response status
+    res.status(400).end();
+  } else {
+    // It's some other sort of error; pass it to next error middleware handler
+    next(err);
+  }
 });
 
 

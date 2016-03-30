@@ -18,12 +18,10 @@ function getFeedItemSync(feedItemId) {
   return feedItem;
 }
 
-export function getFeedData(user, cb) {
-  var userData = readDocument('users', user);
-  var feedData = readDocument('feeds', userData.feed);
-  feedData.contents = feedData.contents.map(getFeedItemSync);
-  feedData.historys = feedData.historys.map(getFeedItemSync);
-  emulateServerReturn(feedData, cb);
+export function getFeedData(cb) {
+  sendXHR('GET','/feed',undefined,(xhr)=>{
+    cb(JSON.parse(xhr.responseText));
+  });
 }
 
 function getMailItemSync(mail) {
