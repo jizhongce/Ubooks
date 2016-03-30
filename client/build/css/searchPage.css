@@ -78,9 +78,10 @@ body {
 .pageheader1_button font{
   font-weight: 600;
   color: #5B5B5B;
+  font-size: 15px;
 }
 
-.pageheader1_button button:hover{
+ .mybutton:hover{
   background-color: white;
   border: none;
 }
@@ -118,11 +119,18 @@ body {
 }
 
 .headerinput input{
-  width:250px;
+  width:150px !important;
   border-top-left-radius: 15px;
   border-bottom-left-radius: 15px;
   border-right:none;
   border-color: gray;
+  transition:width 0.75s;
+  -moz-transition:width 0.75s;
+  -webkit-transition:width 0.75s;
+  -o-transition:width 0.75s;
+}
+.headerinput input:hover{
+  width:250px !important;
 }
 
 .headerinput button{

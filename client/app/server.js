@@ -1,4 +1,4 @@
-import {readDocument,writeDocument,addDocument} from './database'
+import {readDocument,writeDocument,addDocument,getCollection} from './database'
 /**
  * Emulates how a REST call is *asynchronous* -- it calls your function back
  * some time in the future with data.
@@ -160,12 +160,27 @@ export function getSelectedBook(bookRefs,userid,cb)
     emulateServerReturn(newarray,cb);
 }
 
+//leo function start
 export function addHistoryBook(bookid,userid){
   var userData = readDocument('users', userid);
-  var feedData = readDocument('feeds', userData.feed);
-  feedData.historys.push(bookid);
-  writeDocument('feeds',feedData);
+  userData.historys.push(bookid);
+  writeDocument('users', userData);
 }
+
+export function gethistory(userid)
+{
+  var userData = readDocument('users', userid);
+  userData.historys = userData.historys.map((history)=> readDocument('booksItems', history) );
+  return userData.historys;
+}
+
+export function getbookcollection()
+{
+  var feedData = readDocument('feeds', 1);
+  feedData.contents = feedData.contents.map(getFeedItemSync);
+  return feedData;
+}
+//leo function end
 
 // here is the error handle function
 //Do not change anything here
