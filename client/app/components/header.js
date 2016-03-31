@@ -2,8 +2,38 @@ import React from 'react';
 import {Link} from 'react-router';
 
 export default class Header extends React.Component {
-  onSearch(searchText) {
-    this.context.router.push({ pathname: "/search", query: { q: searchText } });
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchTerm: props.searchTerm
+    };
+  }
+
+  handleChange(e) {
+    e.preventDefault();
+    this.setState({
+      searchTerm: e.target.value
+    });
+  }
+
+  handleSearchButtonClick(e) {
+    e.preventDefault();
+    this.search();
+  }
+
+  search() {
+    var trimmedTerm = this.state.searchTerm.trim();
+    if (trimmedTerm !== "") {
+      this.context.router.push({ pathname: "/searchresult", query: { q: trimmedTerm } });
+    }
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (newProps.searchTerm !== null) {
+      this.setState({
+        searchTerm: newProps.searchTerm
+      });
+    }
   }
 
   render() {
@@ -36,8 +66,8 @@ export default class Header extends React.Component {
               <form className="navbar-form pull-right zeropadding threemargin" role="search">
                 <div className="input-group headerinput">
                   <span className="input-group-btn search_button">
-                    <input type="text" className="form-control"  placeholder="Search Book"/>
-                    <button type="submit" className="btn btn-default" onClick={(e) => this.onSearch(e)}>
+                    <input type="text" className="form-control"  placeholder="Search Book" value={this.state.searchTerm} onChange={(e) => this.handleChange(e)}/>
+                    <button type="submit" className="btn btn-default" onClick={(e) => this.handleSearchButtonClick(e)}>
                       <span className="glyphicon glyphicon-search"></span>
                     </button>
                   </span>

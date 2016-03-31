@@ -12,6 +12,10 @@ import Profilebody from './components/profilebody';
 import Mailbox from './components/mailbox';
 import { IndexRoute, Router, Route, hashHistory } from 'react-router';
 import ErrorBanner from './components/errorbanner'
+import {hideElement} from './util';
+import {myfilter,gethistory} from './server';
+import Searchpagebook from './components/searchpagebook';
+import Searchpagebookslist from './components/searchpagebookslist';
 
 class SearchPage extends React.Component {
   render() {
@@ -97,11 +101,127 @@ class HowitWork extends React.Component {
   }
 }
 
-class App extends React.Component {
+class SearchResultsPage extends React.Component {
+  getSearchTerm() {
+    var queryVars = this.props.location.query;
+    var searchTerm = "";
+    if (queryVars && queryVars.q) {
+      searchTerm = queryVars.q;
+      searchTerm.trim();
+    }
+    return searchTerm;
+  }
+  render() {
+    var searchTerm = this.getSearchTerm();
+    return (
+      <SearchResults key={searchTerm} user={4} searchTerm={searchTerm} />
+    );
+  }
+}
+
+class SearchResults extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loaded: false,
+      invalidSearch: false,
+      results: [],
+      historys:[]
+    };
+  }
+
+  refresh() {
+    gethistory(this.props.user,(history) => {
+      this.setState({
+        historys:history
+      });
+    });
+    var searchTerm = this.props.searchTerm;
+    if (searchTerm !== "") {
+      myfilter(searchTerm, (feedItems) => {
+        this.setState({
+          loaded: true,
+          results: feedItems
+        });
+      });
+    } else {
+      this.setState({
+        invalidSearch: true
+      });
+    }
+  }
+
+  componentDidMount() {
+    this.refresh();
+  }
+
   render() {
     return (
+    <div>
+      <div className={hideElement(this.state.loaded || this.state.invalidSearch)+ " col-md-offset-3"}>
+        Search results are loading...
+      </div>
+      <div className={hideElement(!this.state.invalidSearch)+ " col-md-offset-3"}>
+        <b>Invalid search query.</b>
+      </div>
+      <div className={hideElement(!this.state.loaded) + " container"}>
+        <div className="row">
+          <div className="col-md-2 zeropadding">
+            <div className="panel panel-default">
+              <div className="panel-body">
+                <br /><font color="black" size="3">Popular Books</font>
+                <hr className="hrcolor" />
+
+              </div>
+            </div>
+          </div>
+
+          <div className="col-md-8">
+            <div className="panel panel-default">
+              <div className="panel-body keywordinput zeromargin">
+                <div className="col-md-12 bookinstore">
+                  <b><font className="pull-left">Search Results for {this.props.searchTerm}: ({this.state.results.length} results)</font></b>
+                </div>
+                <hr/>
+                {this.state.results.map((feedItem) => {
+                  return (
+                    <Searchpagebook user={this.props.user} key={feedItem._id} data={feedItem} />
+                  )
+                })}
+              </div>
+            </div>
+          </div>
+
+          <div className="col-md-2 zeropadding">
+            <div className={hideElement(this.state.historys.length === 0) + " panel panel-default" }>
+              <div className="panel-body">
+                <br /><font  color="black" size="3">Watch History</font>
+                <hr className="hrcolor"/>
+                    {this.state.historys.map((feedItem) => {
+                      return (
+                        <Searchpagebookslist key={feedItem._id} data={feedItem} />
+                      )
+                    })}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+  }
+}
+
+class App extends React.Component {
+  render() {
+    var queryVars = this.props.location.query;
+    var searchTerm = null;
+    if (queryVars && queryVars.searchTerm) {
+      searchTerm = queryVars.searchTerm;
+    }
+    return (
       <div>
-        <Header/>
+        <Header searchTerm={searchTerm} />
         <div className="row zeromargin">
           <ErrorBanner />
         </div>
@@ -126,6 +246,7 @@ ReactDOM.render((
       <Route path="contact" component={ContactPage} />
       <Route path="successpost" component={SuccessPost} />
       <Route path="mailbox/:mail" component={Mailbox} />
+      <Route path="searchresult" component={SearchResultsPage} />
     </Route>
   </Router>
 ),document.getElementById('UBooksFeed'));

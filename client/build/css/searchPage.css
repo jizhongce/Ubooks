@@ -85,7 +85,7 @@ body {
 .pageheader1_button font{
   font-weight: 600;
   color: #5B5B5B;
-  font-size: 18px;
+  font-size: 16px;
 }
 .pageheader1_button button:active,
 .pageheader1_button button:visited,
@@ -168,4 +168,21 @@ body {
 }
 .subject:hover{
   color: red;
+}
+
+.hidden {
+  display: 'none' !important;
+}
+
+.keywordinput input{
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  border-color: gray;
+  margin-bottom: 5px;
+}
+
+.bookinstore font{
+  font-size: 150%;
 }

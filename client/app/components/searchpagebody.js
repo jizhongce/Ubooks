@@ -1,23 +1,42 @@
 import React from 'react';
-import {gethistory, getbookcollection} from '../server';
+import {gethistory, getbookcollection, myfilter} from '../server';
 import Searchpagebook from './searchpagebook';
 import Searchpagebookslist from './searchpagebookslist';
+import {hideElement} from '../util';
 
 export default class Searchpagebody extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      search: [],
-      historys: []
+      books: [],
+      historys: [],
+      searchTerm: ''
     };
   }
 
-  refresh() {
-    var mhistorys = gethistory(this.props.user);
-    var msearch = getbookcollection();
+  handleChange(e) {
+    e.preventDefault();
     this.setState({
-      search:msearch.contents,
-      historys: mhistorys
+      searchTerm: e.target.value
+    });
+    this.handleClick();
+  }
+
+  handleClick(){
+    myfilter(this.state.searchTerm, (result) => {
+        this.setState({books:result});
+    });
+  }
+
+  refresh() {
+    gethistory(this.props.user,(history) => {
+      this.setState({historys:history});
+    });
+    getbookcollection((feed) => {
+      this.setState({books:feed.contents});
+    });
+    this.setState({
+      searchTerm: ''
     });
   }
 
@@ -42,28 +61,30 @@ export default class Searchpagebody extends React.Component {
 
           <div className="col-md-8">
             <div className="panel panel-default">
-              <div className="panel-body">
-                <b><font size="4px;">Search result:</font></b>
-                <hr />
-                  {this.state.search.map((feedItem) => {
-                    return (
-                      <Searchpagebook user={this.props.user} key={feedItem._id} data={feedItem} />
-                    )
-                  })}
+              <div className="panel-body keywordinput zeromargin">
+                <div className="col-md-12 bookinstore">
+                  <b><font className="pull-left">Books in store:</font></b>
+                </div>
+                <hr/>
+                {this.state.books.map((feedItem) => {
+                  return (
+                    <Searchpagebook user={this.props.user} key={feedItem._id} data={feedItem} />
+                  )
+                })}
               </div>
             </div>
           </div>
 
           <div className="col-md-2 zeropadding">
-            <div className="panel panel-default">
+            <div className={hideElement(this.state.historys.length === 0) + " panel panel-default" }>
               <div className="panel-body">
-                <br /><font color="black" size="3">History Search</font>
-                <hr className="hrcolor" />
-                  {this.state.historys.map((feedItem) => {
-                    return (
-                      <Searchpagebookslist key={feedItem._id} data={feedItem} />
-                    )
-                  })}
+                <br /><font  color="black" size="3">Watch History</font>
+                <hr className="hrcolor"/>
+                    {this.state.historys.map((feedItem) => {
+                      return (
+                        <Searchpagebookslist key={feedItem._id} data={feedItem} />
+                      )
+                    })}
               </div>
             </div>
           </div>

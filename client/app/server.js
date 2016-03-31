@@ -19,7 +19,7 @@ function getFeedItemSync(feedItemId) {
 }
 
 
-export function getFeedData(cb) {
+export function getFeedData(userid, cb) {
   sendXHR('GET','/feed',undefined,(xhr)=>{
     cb(JSON.parse(xhr.responseText));
   });
@@ -61,36 +61,6 @@ export function replyMail(mailId, user, content, cb) {
   });
   writeDocument('mailbox', mailItem);
   emulateServerReturn(getMailItemSync(mailId), cb);
-}
-
-export function postBook(owner_id,pic,bookname,author,edition,isbn_10,isbn_13,publisher,publish_date,list_price,condition,highlight,notes,description,location){
-  var time = new Date().getTime();
-  var newBookItem={
-    "owner_id":owner_id,
-    "pic":pic,
-    "bookname":bookname,
-    "author":author,
-    "edition": edition,
-    "isbn_10": isbn_10,
-    "isbn_13": isbn_13,
-    "postDate": time,
-    "Publisher": publisher,
-    "publish_date": publish_date,
-    "list_price": list_price,
-    "condition": condition,
-    "highlight": highlight,
-    "notes": notes,
-    "description": description,
-    "location": location,
-    "comments": []
-  };
-  newBookItem = addDocument('booksItems',newBookItem);
-  var userData = readDocument('users', owner_id);
-  var feedData = readDocument('feeds', userData.feed);
-  feedData.contents.push(newBookItem._id);
-  userData.exchangeLists.push(newBookItem._id);
-  writeDocument('feeds',feedData);
-  writeDocument('users',userData);
 }
 
 export function getExchangebook(user, cb) {
@@ -136,13 +106,14 @@ export function getSelectedBook(bookRefs,userid,cb)
 }
 
 //Tim function goes here
+//get book
 export function getBook(bookid,cb){
   sendXHR('GET','/book/' + bookid,undefined,(xhr)=>{
     cb(JSON.parse(xhr.responseText));
   });
 
 }
-
+//Post comment
 export function postComment(bookitemId, author, contents, cb) {
   sendXHR('PUT','/bookitem/'+bookitemId+'/commentthread/comment',
   {
@@ -152,7 +123,30 @@ export function postComment(bookitemId, author, contents, cb) {
     cb(JSON.parse(xhr.responseText));
   });
 }
-
+//Post books
+export function postBook(owner_id,pic,bookname,author,edition,isbn_10,isbn_13,publisher,publish_date,list_price,condition,highlight,notes,description,location,cb){
+  sendXHR('POST','/bookitem/',
+  {
+    owner_id : owner_id,
+    pic : pic,
+    bookname : bookname,
+    author : author,
+    edition : edition,
+    isbn_10 : isbn_10,
+    isbn_13 : isbn_13,
+    publisher : publisher,
+    publish_date : publish_date,
+    list_price : list_price,
+    highlight : highlight,
+    notes : notes,
+    condition : condition,
+    descriptions : description,
+    location : location,
+    comments: []
+  },() => {
+    cb();
+  });
+}
 
 //Tim function end
 
@@ -161,22 +155,42 @@ export function postComment(bookitemId, author, contents, cb) {
 //leo function start
 export function addHistoryBook(bookid,userid){
   var userData = readDocument('users', userid);
-  userData.historys.push(bookid);
+  var add = true;
+  for (var i = 0; i < userData.historys.length; i++) {
+    if(userData.historys[i] === bookid)
+      add = false;
+    }
+  if(add){
+    if(userData.historys.length > 2){
+      userData.historys.splice(0, 1);
+    }
+    userData.historys.push(bookid);
+  }
   writeDocument('users', userData);
 }
 
-export function gethistory(userid)
+export function gethistory(userid,cb)
 {
   var userData = readDocument('users', userid);
   userData.historys = userData.historys.map((history)=> readDocument('booksItems', history) );
-  return userData.historys;
+  emulateServerReturn(userData.historys,cb);
 }
 
-export function getbookcollection()
+export function getbookcollection(cb)
 {
   var feedData = readDocument('feeds', 1);
   feedData.contents = feedData.contents.map(getFeedItemSync);
-  return feedData;
+  emulateServerReturn(feedData,cb);
+}
+
+export function myfilter(searchTerm, cb){
+  var mysearch = searchTerm.toLowerCase();
+  var feedItemIDs = readDocument('feeds', 1).contents;
+  var result = feedItemIDs.filter((feedItemID) => {
+      var feedItem = readDocument('booksItems', feedItemID);
+      return feedItem.bookname.toLowerCase().indexOf(mysearch) !== -1;
+  }).map(getFeedItemSync);
+  emulateServerReturn(result,cb);
 }
 //leo function end
 
