@@ -32,7 +32,7 @@ class BookPage extends React.Component {
   render() {
     return (
       <div>
-        <Bookinfobody user={4} book={1}/>
+        <Bookinfobody user={4} book={this.props.params.bookid}/>
       </div>
     );
   }
@@ -93,6 +93,11 @@ class FrontPage extends React.Component {
 class PRofile extends React.Component {
   render(){
     return <Profilebody user={4}/>;
+  }
+}
+class otherprofile extends React.Component {
+  render(){
+    return <Profilebody user={this.props.params.id}/>;
   }
 }
 class HowitWork extends React.Component {
@@ -253,7 +258,8 @@ ReactDOM.render((
       <Route path="post" component={PostbookPage} />
       <Route path="howitwork" component={HowitWork} />
       <Route path="profile" component={PRofile} />
-      <Route path="book" component={BookPage} />
+      <Route path="otherprofile/:id" component={otherprofile} />
+      <Route path="book/:bookid" component={BookPage} />
       <Route path="contact" component={ContactPage} />
       <Route path="successpost" component={SuccessPost} />
       <Route path="mailbox/:mail" component={Mailbox} />

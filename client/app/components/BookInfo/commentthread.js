@@ -21,7 +21,7 @@ export default class CommentThread extends React.Component {
           )
         })}
         <li className="media">
-          <CommentEntry user={this.state.data} onPost={this.props.onPost} />
+          <CommentEntry user={this.state} onPost={this.props.onPost} />
         </li>
       </ul>
     )
