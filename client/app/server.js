@@ -46,26 +46,11 @@ export function getMailData(id, cb) {
 }
 
 export function getUserData(user, cb){
-  var userData = readDocument('users', user);
-  emulateServerReturn(userData, cb);
+sendXHR('GET','/user/'+user,undefined,(xhr)=>{
+  cb(JSON.parse(xhr.responseText));
+});
 }
 
-export function postComment(bookitemId, author, contents, cb) {
-  // Since a CommentThread is embedded in a FeedItem object,
-  // we don't have to resolve it. Read the document,
-  // update the embedded object, and then update the
-  // document in the database.
-  var feedItem = readDocument('booksItems', bookitemId);
-  feedItem.comments.push({
-    "author": author,
-    "contents": contents,
-    "postDate": new Date().getTime()
-  });
-  writeDocument('booksItems', feedItem);
-  // Return a resolved version of the feed item so React can
-  // render it.
-  emulateServerReturn(getFeedItemSync(bookitemId), cb);
-}
 
 export function replyMail(mailId, user, content, cb) {
   var mailItem = readDocument('mailbox', mailId);
@@ -109,19 +94,21 @@ export function postBook(owner_id,pic,bookname,author,edition,isbn_10,isbn_13,pu
 }
 
 export function getExchangebook(user, cb) {
-  var userData = readDocument('users', user);
-  emulateServerReturn(userData.exchangeLists.map((bookid) => readDocument('booksItems', bookid)), cb);
+sendXHR('GET','/user/'+user+'/exchangebooks',undefined,(xhr)=>{
+  cb(JSON.parse(xhr.responseText));
+});
 }
 
 export function getNeedbook(user, cb) {
-  var userData = readDocument('users', user);
-  emulateServerReturn(userData.wantLists.map((bookid) => readDocument('booksItems', bookid)), cb);
+  sendXHR('GET','/user/'+user+'/needbooks',undefined,(xhr)=>{
+    cb(JSON.parse(xhr.responseText));
+  });
 }
 
 export function getMail(user, cb) {
-  var userData = readDocument('users', user);
-  var mailData = readDocument('mailbox', userData.mailbox);
-  emulateServerReturn(mailData.Messages, cb);
+  sendXHR('GET','/user/'+user+'/mailbox',undefined,(xhr)=>{
+    cb(JSON.parse(xhr.responseText));
+  });
 }
 
 export function getUserdata(user,cb)
@@ -130,12 +117,6 @@ export function getUserdata(user,cb)
   emulateServerReturn(userData,cb);
 }
 
-export function getUserbook(bookitem,cb)
-{
-  var bookData = readDocument('booksItems',bookitem);
-  emulateServerReturn(bookData,cb);
-
-}
 
 export function checkbook(Refs,book)
 {
@@ -158,6 +139,29 @@ export function getSelectedBook(bookRefs,userid,cb)
     }
     emulateServerReturn(newarray,cb);
 }
+
+//Tim function goes here
+export function getBook(bookid,cb){
+  sendXHR('GET','/book/' + bookid,undefined,(xhr)=>{
+    cb(JSON.parse(xhr.responseText));
+  });
+
+}
+
+export function postComment(bookitemId, author, contents, cb) {
+  sendXHR('PUT','/bookitem/'+bookitemId+'/commentthread/comment',
+  {
+    author: author,
+    contents: contents
+  },(xhr) => {
+    cb(JSON.parse(xhr.responseText));
+  });
+}
+
+
+//Tim function end
+
+
 
 //leo function start
 export function addHistoryBook(bookid,userid){
