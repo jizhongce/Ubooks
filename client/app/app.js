@@ -13,7 +13,7 @@ import Mailbox from './components/mailbox';
 import { IndexRoute, Router, Route, hashHistory } from 'react-router';
 import ErrorBanner from './components/errorbanner'
 import {hideElement} from './util';
-import {myfilter,gethistory} from './server';
+import {myfilter,gethistory,getbookcollection} from './server';
 import Searchpagebook from './components/searchpagebook';
 import Searchpagebookslist from './components/searchpagebookslist';
 
@@ -126,7 +126,8 @@ class SearchResults extends React.Component {
       loaded: false,
       invalidSearch: false,
       results: [],
-      historys:[]
+      historys:[],
+      books:[]
     };
   }
 
@@ -134,6 +135,11 @@ class SearchResults extends React.Component {
     gethistory(this.props.user,(history) => {
       this.setState({
         historys:history
+      });
+    });
+    getbookcollection((feed) => {
+      this.setState({
+        books:feed.contents
       });
     });
     var searchTerm = this.props.searchTerm;
@@ -169,9 +175,14 @@ class SearchResults extends React.Component {
           <div className="col-md-2 zeropadding">
             <div className="panel panel-default">
               <div className="panel-body">
-                <br /><font color="black" size="3">Popular Books</font>
+                <font color="black" size="3">Recommendation</font>
                 <hr className="hrcolor" />
-
+                  {this.state.books.map((feedItem) => {
+                    if(feedItem._id === 2 || feedItem._id === 4)
+                    return (
+                      <Searchpagebookslist user={this.props.user} key={feedItem._id} data={feedItem} />
+                    )
+                  })}
               </div>
             </div>
           </div>
@@ -195,7 +206,7 @@ class SearchResults extends React.Component {
           <div className="col-md-2 zeropadding">
             <div className={hideElement(this.state.historys.length === 0) + " panel panel-default" }>
               <div className="panel-body">
-                <br /><font  color="black" size="3">Watch History</font>
+                <font  color="black" size="3">Watch History</font>
                 <hr className="hrcolor"/>
                     {this.state.historys.map((feedItem) => {
                       return (
