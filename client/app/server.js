@@ -1,4 +1,4 @@
-import {readDocument,writeDocument,addDocument,getCollection} from './database'
+import {readDocument,writeDocument,addDocument} from './database'
 /**
  * Emulates how a REST call is *asynchronous* -- it calls your function back
  * some time in the future with data.
@@ -19,7 +19,7 @@ function getFeedItemSync(feedItemId) {
 }
 
 
-export function getFeedData(cb) {
+export function getFeedData(userid, cb) {
   sendXHR('GET','/feed',undefined,(xhr)=>{
     cb(JSON.parse(xhr.responseText));
   });
@@ -162,22 +162,42 @@ export function getSelectedBook(bookRefs,userid,cb)
 //leo function start
 export function addHistoryBook(bookid,userid){
   var userData = readDocument('users', userid);
-  userData.historys.push(bookid);
+  var add = true;
+  for (var i = 0; i < userData.historys.length; i++) {
+    if(userData.historys[i] === bookid)
+      add = false;
+    }
+  if(add){
+    if(userData.historys.length > 2){
+      userData.historys.splice(0, 1);
+    }
+    userData.historys.push(bookid);
+  }
   writeDocument('users', userData);
 }
 
-export function gethistory(userid)
+export function gethistory(userid,cb)
 {
   var userData = readDocument('users', userid);
   userData.historys = userData.historys.map((history)=> readDocument('booksItems', history) );
-  return userData.historys;
+  emulateServerReturn(userData.historys,cb);
 }
 
-export function getbookcollection()
+export function getbookcollection(cb)
 {
   var feedData = readDocument('feeds', 1);
   feedData.contents = feedData.contents.map(getFeedItemSync);
-  return feedData;
+  emulateServerReturn(feedData,cb);
+}
+
+export function myfilter(searchTerm, cb){
+  var mysearch = searchTerm.toLowerCase();
+  var feedItemIDs = readDocument('feeds', 1).contents;
+  var result = feedItemIDs.filter((feedItemID) => {
+      var feedItem = readDocument('booksItems', feedItemID);
+      return feedItem.bookname.toLowerCase().indexOf(mysearch) !== -1;
+  }).map(getFeedItemSync);
+  emulateServerReturn(result,cb);
 }
 //leo function end
 

@@ -152,3 +152,20 @@ body {
 .subject:hover{
   color: red;
 }
+
+.hidden {
+  display: 'none' !important;
+}
+
+.keywordinput input{
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  border-color: gray;
+  margin-bottom: 5px;
+}
+
+.bookinstore font{
+  font-size: 150%;
+}

@@ -1,24 +1,15 @@
 import React from 'react';
 import {unixTimeToString} from '../util.js';
 import {Link} from 'react-router';
-import {addHistoryBook, gethistory} from '../server';
+import {addHistoryBook} from '../server';
 
 export default class Searchpagebook extends React.Component {
-
   onBook() {
     // If searchText is 'sandals', navigates to #/search/q?=sandals
     this.context.router.push({ pathname: "/book" });
   }
   handleAdd(e){
     e.preventDefault();
-    var mhistorys = gethistory(this.props.user);
-    var add = true;
-    for(var i = 0; i < mhistorys.length; i++)
-    {
-      if(mhistorys[i]._id === this.props.data._id)
-        add = false;
-    }
-    if(add)
     addHistoryBook(this.props.data._id,this.props.user);
     this.onBook();
   }
