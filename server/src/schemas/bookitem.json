@@ -3,16 +3,8 @@
   "id": "/",
   "type": "object",
   "properties": {
-    "_id": {
-      "id": "_id",
-      "type": "integer"
-    },
     "owner_id": {
       "id": "owner_id",
-      "type": "integer"
-    },
-    "subject": {
-      "id": "subject",
       "type": "integer"
     },
     "pic": {
@@ -38,10 +30,6 @@
     "isbn_13": {
       "id": "isbn_13",
       "type": "string"
-    },
-    "postDate": {
-      "id": "postDate",
-      "type": "integer"
     },
     "publisher": {
       "id": "publisher",
@@ -82,16 +70,13 @@
     }
   },
   "required": [
-    "_id",
     "owner_id",
-    "subject",
     "pic",
     "bookname",
     "author",
     "edition",
     "isbn_10",
     "isbn_13",
-    "postDate",
     "publisher",
     "publish_date",
     "list_price",

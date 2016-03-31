@@ -117,18 +117,59 @@ app.get('/book/:bookid',function(req,res){
 
 //Use PUT for posting comment
 app.put('/bookitem/:bookitemid/commentthread/comment',validate({ body: commentSchema }) ,function(req, res) {
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
   var body = req.body;
   var bookitemId = parseInt(req.params.bookitemid, 10);
   var bookItem = readDocument('booksItems', bookitemId);
+  if(fromUser === body.author){
     bookItem.comments.push({
     "author": body.author,
     "contents": body.contents,
     "postDate": new Date().getTime()
   });
   writeDocument('booksItems', bookItem);
-  res.send(getFeedItemSync(bookitemId));
+  res.send(getFeedItemSync(bookitemId));}
+  else{
+    res.status(401).end();
+  }
 });
 
+app.post('/bookitem/',validate({ body: bookitemSchema}), function(req, res){
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
+  var body = req.body;
+  if (body.owner_id == fromUser) {
+    var time = new Date().getTime();
+    var newBookItem={
+      "owner_id": body.owner_id,
+      "pic": body.pic,
+      "bookname": body.bookname,
+      "author": body.author,
+      "edition": body.edition,
+      "isbn_10": body.isbn_10,
+      "isbn_13": body.isbn_13,
+      "postDate": time,
+      "Publisher": body.publisher,
+      "publish_date": body.publish_date,
+      "list_price": body.list_price,
+      "condition": body.condition,
+      "highlight": body.highlight,
+      "notes": body.notes,
+      "description": body.description,
+      "location": body.location,
+      "comments": []
+};
+    newBookItem = addDocument('booksItems',newBookItem);
+    var userData = readDocument('users', body.owner_id);
+    var feedData = readDocument('feeds', userData.feed);
+    feedData.contents.push(newBookItem._id);
+    userData.exchangeLists.push(newBookItem._id);
+    writeDocument('feeds',feedData);
+    writeDocument('users',userData);
+    res.send();
+  } else {
+    res.status(401).end();
+  }
+});
 
 //Tim's function ends here
 

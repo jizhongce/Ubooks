@@ -117,7 +117,7 @@ export default class Postbookforms extends React.Component{
       var notes = this.state.notes_value;
       var description = this.state.description_value;
       var location = this.state.location_value;
-      postBook(owner_id,pic,bookname,author,edition,isbn_10,isbn_13,publisher,publish_date,list_price,condition,highlight,notes,description,location);
+      postBook(owner_id,pic,bookname,author,edition,isbn_10,isbn_13,publisher,publish_date,list_price,condition,highlight,notes,description,location,()=>{});
       this.setState({
         owner_id: 4,
         pic_value: '../img/book1.jpg',
