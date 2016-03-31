@@ -62,36 +62,6 @@ export function replyMail(mailId, user, content, cb) {
   emulateServerReturn(getMailItemSync(mailId), cb);
 }
 
-export function postBook(owner_id,pic,bookname,author,edition,isbn_10,isbn_13,publisher,publish_date,list_price,condition,highlight,notes,description,location){
-  var time = new Date().getTime();
-  var newBookItem={
-    "owner_id":owner_id,
-    "pic":pic,
-    "bookname":bookname,
-    "author":author,
-    "edition": edition,
-    "isbn_10": isbn_10,
-    "isbn_13": isbn_13,
-    "postDate": time,
-    "Publisher": publisher,
-    "publish_date": publish_date,
-    "list_price": list_price,
-    "condition": condition,
-    "highlight": highlight,
-    "notes": notes,
-    "description": description,
-    "location": location,
-    "comments": []
-  };
-  newBookItem = addDocument('booksItems',newBookItem);
-  var userData = readDocument('users', owner_id);
-  var feedData = readDocument('feeds', userData.feed);
-  feedData.contents.push(newBookItem._id);
-  userData.exchangeLists.push(newBookItem._id);
-  writeDocument('feeds',feedData);
-  writeDocument('users',userData);
-}
-
 export function getExchangebook(user, cb) {
   var userData = readDocument('users', user);
   emulateServerReturn(userData.exchangeLists.map((bookid) => readDocument('booksItems', bookid)), cb);
@@ -138,13 +108,14 @@ export function getSelectedBook(bookRefs,userid,cb)
 }
 
 //Tim function goes here
+//get book
 export function getBook(bookid,cb){
   sendXHR('GET','/book/' + bookid,undefined,(xhr)=>{
     cb(JSON.parse(xhr.responseText));
   });
 
 }
-
+//Post comment
 export function postComment(bookitemId, author, contents, cb) {
   sendXHR('PUT','/bookitem/'+bookitemId+'/commentthread/comment',
   {
@@ -154,7 +125,30 @@ export function postComment(bookitemId, author, contents, cb) {
     cb(JSON.parse(xhr.responseText));
   });
 }
-
+//Post books
+export function postBook(owner_id,pic,bookname,author,edition,isbn_10,isbn_13,publisher,publish_date,list_price,condition,highlight,notes,description,location,cb){
+  sendXHR('POST','/bookitem/',
+  {
+    owner_id : owner_id,
+    pic : pic,
+    bookname : bookname,
+    author : author,
+    edition : edition,
+    isbn_10 : isbn_10,
+    isbn_13 : isbn_13,
+    publisher : publisher,
+    publish_date : publish_date,
+    list_price : list_price,
+    highlight : highlight,
+    notes : notes,
+    condition : condition,
+    descriptions : description,
+    location : location,
+    comments: []
+  },() => {
+    cb();
+  });
+}
 
 //Tim function end
 
