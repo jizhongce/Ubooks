@@ -46,8 +46,9 @@ export function getMailData(id, cb) {
 }
 
 export function getUserData(user, cb){
-  var userData = readDocument('users', user);
-  emulateServerReturn(userData, cb);
+sendXHR('GET','/user/'+user,undefined,(xhr)=>{
+  cb(JSON.parse(xhr.responseText));
+});
 }
 
 export function postComment(bookitemId, author, contents, cb) {
@@ -109,19 +110,21 @@ export function postBook(owner_id,pic,bookname,author,edition,isbn_10,isbn_13,pu
 }
 
 export function getExchangebook(user, cb) {
-  var userData = readDocument('users', user);
-  emulateServerReturn(userData.exchangeLists.map((bookid) => readDocument('booksItems', bookid)), cb);
+sendXHR('GET','/user/'+user+'/exchangebooks',undefined,(xhr)=>{
+  cb(JSON.parse(xhr.responseText));
+});
 }
 
 export function getNeedbook(user, cb) {
-  var userData = readDocument('users', user);
-  emulateServerReturn(userData.wantLists.map((bookid) => readDocument('booksItems', bookid)), cb);
+  sendXHR('GET','/user/'+user+'/needbooks',undefined,(xhr)=>{
+    cb(JSON.parse(xhr.responseText));
+  });
 }
 
 export function getMail(user, cb) {
-  var userData = readDocument('users', user);
-  var mailData = readDocument('mailbox', userData.mailbox);
-  emulateServerReturn(mailData.Messages, cb);
+  sendXHR('GET','/user/'+user+'/mailbox',undefined,(xhr)=>{
+    cb(JSON.parse(xhr.responseText));
+  });
 }
 
 export function getUserdata(user,cb)
