@@ -45,7 +45,7 @@ export function getMailData(id, cb) {
   emulateServerReturn(mailData, cb);
 }
 
-export function getUserData(user, cb){
+export function getUserdata(user, cb){
 sendXHR('GET','/user/'+user,undefined,(xhr)=>{
   cb(JSON.parse(xhr.responseText));
 });
@@ -81,11 +81,6 @@ export function getMail(user, cb) {
   });
 }
 
-export function getUserdata(user,cb)
-{
-  var userData = readDocument('users',user);
-  emulateServerReturn(userData,cb);
-}
 
 
 export function checkbook(Refs,book)

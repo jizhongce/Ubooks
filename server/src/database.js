@@ -35,8 +35,8 @@ var initialData = {
       "4": {
         "_id": 4,
         "fullName": "Carter",
-        "exchangeLists": [4],
-        "wantLists": [2,1],
+        "exchangeLists": [3,2],
+        "wantLists": [1,4],
         "feed":1,
         "pic":"img/Carter.jpg",
         "mailbox":[4],

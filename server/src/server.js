@@ -71,7 +71,8 @@ app.get('/user/:userid/needbooks',function(req,res){
   var useridNum = parseInt(userid,10);
   if(fromUser === useridNum)
   {
-    
+    var user = readDocument('users',useridNum);
+    res.send(user.wantLists.map((bookid)=>getFeedItemSync(bookid)));
   }else{
     res.status(401).end()
   }
