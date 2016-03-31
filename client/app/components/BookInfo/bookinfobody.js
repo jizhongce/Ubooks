@@ -51,7 +51,7 @@ export default class Bookinfobody extends React.Component {
                     <Bookinfotitle />
                     <Bookinfo key={this.state.book._id} data={this.state.book} />
                     <hr className="hrcolor" />
-                    <CommentThread data={this.props.user} onPost={(commentText) => this.handleCommentPost(commentText)}>
+                    <CommentThread data={this.state.owner_id} onPost={(commentText) => this.handleCommentPost(commentText)}>
                       {this.state.book.comments.map((comment, i) => {
                         return (
                           <Comment key={i} data={comment} />
