@@ -1,4 +1,4 @@
-import {readDocument,writeDocument,addDocument,getCollection} from './database'
+import {readDocument,writeDocument,addDocument} from './database'
 /**
  * Emulates how a REST call is *asynchronous* -- it calls your function back
  * some time in the future with data.
@@ -111,11 +111,6 @@ export function getMail(user, cb) {
   });
 }
 
-export function getUserdata(user,cb)
-{
-  var userData = readDocument('users',user);
-  emulateServerReturn(userData,cb);
-}
 
 
 export function checkbook(Refs,book)
