@@ -13,6 +13,10 @@ var express = require('express');
 // Creates an Express server.
 var app = express();
 //end
+// Support receiving text in HTTP request bodies
+app.use(bodyParser.text());
+// Support receiving JSON in HTTP request bodies
+app.use(bodyParser.json());
 
 app.use(express.static('../client/build'));
 
@@ -104,6 +108,30 @@ function getUserIdFromToken(authorizationLine) {
     return -1;
   }
 }
+
+//Tim's function goes from here
+app.get('/book/:bookid',function(req,res){
+  var bookid = parseInt(req.params.bookid, 10);
+  res.send(getFeedItemSync(bookid));
+});
+
+//Use PUT for posting comment
+app.put('/bookitem/:bookitemid/commentthread/comment',validate({ body: commentSchema }) ,function(req, res) {
+  var body = req.body;
+  var bookitemId = parseInt(req.params.bookitemid, 10);
+  var bookItem = readDocument('booksItems', bookitemId);
+    bookItem.comments.push({
+    "author": body.author,
+    "contents": body.contents,
+    "postDate": new Date().getTime()
+  });
+  writeDocument('booksItems', bookItem);
+  res.send(getFeedItemSync(bookitemId));
+});
+
+
+//Tim's function ends here
+
 
 
 

@@ -1,3 +1,5 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
 // Modify with your startup's name!
 var startupName = "MorningStar";
 
@@ -11,35 +13,39 @@ var initialData = {
         "wantLists": [2],
         "feed":1,
         "pic":"../img/person1.png",
-        "mailbox":[]
+        "mailbox":[],
+        "historys": []
       },
       "2": {
         "_id": 2,
         "fullName": "Kai",
         "exchangeLists": [1],
         "wantLists": [],
-        "feed":2,
+        "feed":1,
         "pic":"../img/person2.png",
-        "mailbox":[]
+        "mailbox":[],
+        "historys": []
       },
       "3": {
         "_id": 3,
         "fullName": "Leo",
         "exchangeLists": [2],
         "wantLists": [],
-        "feed":3,
+        "feed":1,
         "pic":"../img/person2.png",
-        "mailbox":[]
+        "mailbox":[],
+        "historys": []
       },
       //this is you
       "4": {
         "_id": 4,
         "fullName": "Carter",
-        "exchangeLists": [3],
-        "wantLists": [2],
-        "feed":4,
+        "exchangeLists": [3,4],
+        "wantLists": [2,1],
+        "feed":1,
         "pic":"../img/Carter.jpg",
-        "mailbox":[4]
+        "mailbox":[4],
+        "historys": []
       }
     },
     //books
@@ -47,24 +53,21 @@ var initialData = {
       "1": {
         "_id":1,
         "owner_id":2,
-        "subject": 1,
         "pic":"../img/book1.jpg",
-        "contents":{
-          "bookname": "Introduction-to-algorithms",
-          "author":"Tomas",
-          "edition": "3rd",
-          "isbn_10": "0262033844",
-          "isbn_13": "9780262033848",
-          "postDate": 1453668480000,
-          "publisher": "The MIT Press",
-          "publish_date": "July 31, 2009",
-          "list_price": "$66.32",
-          "highlight": "Yes",
-          "notes": "No",
-          "condition": "Great",
-          "descriptions": "Some books on algorithms are rigorous but incomplete; others cover masses of material but lack rigor. Introduction to Algorithms uniquely combines rigor and c.",
-          "location": "Amherst, MA"
-        },
+        "bookname": "Introduction-to-algorithms",
+        "author":"Tomas",
+        "edition": "3rd",
+        "isbn_10": "0262033844",
+        "isbn_13": "9780262033848",
+        "postDate": 1453668480000,
+        "publisher": "The MIT Press",
+        "publish_date": "July 31, 2009",
+        "list_price": "$66.32",
+        "highlight": "Yes",
+        "notes": "No",
+        "condition": "Great",
+        "descriptions": "Some books on algorithms are rigorous but incomplete; others cover masses of material but lack rigor. Introduction to Algorithms uniquely combines rigor and c.",
+        "location": "Amherst, MA",
         "comments": [
             {
                 // The author of the comment.
@@ -81,24 +84,21 @@ var initialData = {
       "2": {
         "_id":2,
         "owner_id":3,
-        "subject": 1,
         "pic":"../img/book2.jpg",
-        "contents":{
-          "bookname":"Artificial Intelligence A Modern Approach",
-          "author":"Peter",
-          "edition": "3rd",
-          "isbn_10": "0262099822",
-          "isbn_13": "9780261234567",
-          "postDate": 1454961080000,
-          "publisher": "The MASS Press",
-          "publish_date": "July 31, 1004",
-          "list_price": "$80.32",
-          "condition": "Great",
-          "highlight": "No",
-          "notes": "Yes",
-          "descriptions": "This book is used for learning some knowledges about AI for the college students.",
-          "location": "Amherst, MA"
-        },
+        "bookname":"Artificial Intelligence A Modern Approach",
+        "author":"Peter",
+        "edition": "3rd",
+        "isbn_10": "0262099822",
+        "isbn_13": "9780261234567",
+        "postDate": 1454961080000,
+        "publisher": "The MASS Press",
+        "publish_date": "July 31, 1004",
+        "list_price": "$80.32",
+        "condition": "Great",
+        "highlight": "No",
+        "notes": "Yes",
+        "descriptions": "This book is used for learning some knowledges about AI for the college students.",
+        "location": "Amherst, MA",
         "comments": [
             {
                 // The author of the comment.
@@ -115,24 +115,21 @@ var initialData = {
       "3": {
         "_id":3,
         "owner_id":4,
-        "subject": 2,
         "pic":"../img/book3.jpg",
-        "contents":{
-          "bookname":"Learning Web Design: A Beginner's Guide to HTML, CSS, JavaScript, and Web Graphics",
-          "author":"Jennifer Niederst Robbins",
-          "edition": "4rd",
-          "isbn_10": "1449319270",
-          "isbn_13": "978-1449319274",
-          "postDate": 1443668380000,
-          "publisher": "O'Reilly Media",
-          "publish_date": "August 24, 2012",
-          "list_price": "$31.99",
-          "highlight": "Yes",
-          "notes": "Yes",
-          "condition": "Great",
-          "descriptions": "This friendly guide is the perfect place to start. You’ll begin at square one, learning how the Web and web pages work, and then steadily build from there. By the end of the book, you’ll have the skills to create a simple site with multi-column pages that adapt for mobile devices",
-          "location": "Amherst, MA"
-        },
+        "bookname":"Learning Web Design: A Beginner's Guide to HTML, CSS, JavaScript, and Web Graphics",
+        "author":"Jennifer Niederst Robbins",
+        "edition": "4rd",
+        "isbn_10": "1449319270",
+        "isbn_13": "978-1449319274",
+        "postDate": 1443668380000,
+        "publisher": "O'Reilly Media",
+        "publish_date": "August 24, 2012",
+        "list_price": "$31.99",
+        "highlight": "Yes",
+        "notes": "Yes",
+        "condition": "Great",
+        "descriptions": "This friendly guide is the perfect place to start. You’ll begin at square one, learning how the Web and web pages work, and then steadily build from there. By the end of the book, you’ll have the skills to create a simple site with multi-column pages that adapt for mobile devices",
+        "location": "Amherst, MA",
         "comments": [
             {
                 // The author of the comment.
@@ -148,24 +145,21 @@ var initialData = {
       "4": {
         "_id":4,
         "owner_id":3,
-        "subject": 3,
         "pic":"../img/system.jpg",
-        "contents":{
-          "bookname": "Computer Systems (A programmer's Perspective)",
-          "author":"Bryant . O'Hallaron",
-          "edition": "Second Editon",
-          "isbn_10": "0262033844",
-          "isbn_13": "9780262033848",
-          "postDate": 1453668480000,
-          "publisher": "Prentice Hall",
-          "publish_date": "September 31, 2010",
-          "list_price": "$89.77",
-          "highlight": "Yes",
-          "notes": "No",
-          "condition": "Great",
-          "descriptions": "This book introduces the important and enduring concepts that underlie computer systems.( used by CS 230)",
-          "location": "Amherst, MA"
-        },
+        "bookname": "Computer Systems (A programmer's Perspective)",
+        "author":"Bryant . O'Hallaron",
+        "edition": "Second Editon",
+        "isbn_10": "0262033844",
+        "isbn_13": "9780262033848",
+        "postDate": 1453668480000,
+        "publisher": "Prentice Hall",
+        "publish_date": "September 31, 2010",
+        "list_price": "$89.77",
+        "highlight": "Yes",
+        "notes": "No",
+        "condition": "Great",
+        "descriptions": "This book introduces the important and enduring concepts that underlie computer systems.( used by CS 230)",
+        "location": "Amherst, MA",
         "comments": [
             {
                 // The author of the comment.
@@ -180,26 +174,10 @@ var initialData = {
       }
     },
     "feeds": {
-      "4": {
-        "_id": 4,
-        // Listing of FeedItems in the feed.
-        "contents": [1,2,3,4],
-        "historys": []
-      },
-      "3": {
-        "_id": 3,
-        "contents": [],
-        "historys": []
-      },
-      "2": {
-        "_id": 2,
-        "contents": [],
-        "historys": []
-      },
       "1": {
         "_id": 1,
-        "contents": [],
-        "historys": []
+        // Listing of FeedItems in the feed.
+        "contents": [1,2,3,4]
       }
     },
 
@@ -252,8 +230,6 @@ var initialData = {
           }
         ]
       }
-
-
     }
 };
 
@@ -307,29 +283,37 @@ export function addDocument(collectionName, newDoc) {
 }
 
 /**
+ * Returns an entire object collection.
+ */
+function getCollection(collectionName) {
+  return JSONClone(data[collectionName]);
+}
+module.exports.getCollection = getCollection;
+
+/**
  * Reset our browser-local database.
  */
-// export function resetDatabase() {
-//   localStorage.setItem(startupName, JSON.stringify(initialData));
-//   data = JSONClone(initialData);
-// }
-//
-// /**
-//  * Reset database button.
-//  */
-// class ResetDatabase extends React.Component {
-//   render() {
-//     return (
-//       <button className="btn btn-default" type="button" onClick={() => {
-//         resetDatabase();
-//         window.alert("Database reset! Refreshing the page now...");
-//         document.location.reload(false);
-//       }}>Reset Mock DB</button>
-//     );
-//   }
-// }
-//
-// ReactDOM.render(
-//   <ResetDatabase />,
-//   document.getElementById('db-reset')
-// );
+export function resetDatabase() {
+  localStorage.setItem(startupName, JSON.stringify(initialData));
+  data = JSONClone(initialData);
+}
+
+/**
+ * Reset database button.
+ */
+class ResetDatabase extends React.Component {
+  render() {
+    return (
+      <button className="btn btn-default" type="button" onClick={() => {
+        resetDatabase();
+        window.alert("this is old one. Database reset! Refreshing the page now...");
+        document.location.reload(false);
+      }}>Reset Mock DB</button>
+    );
+  }
+}
+
+ReactDOM.render(
+  <ResetDatabase />,
+  document.getElementById('db-reset')
+);

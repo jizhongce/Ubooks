@@ -1,7 +1,7 @@
 import React from 'react';
 import {unixTimeToString} from '../util.js';
 import {Link} from 'react-router';
-import {addHistoryBook} from '../server';
+import {addHistoryBook, gethistory} from '../server';
 
 export default class Searchpagebook extends React.Component {
 
@@ -11,6 +11,14 @@ export default class Searchpagebook extends React.Component {
   }
   handleAdd(e){
     e.preventDefault();
+    var mhistorys = gethistory(this.props.user);
+    var add = true;
+    for(var i = 0; i < mhistorys.length; i++)
+    {
+      if(mhistorys[i]._id === this.props.data._id)
+        add = false;
+    }
+    if(add)
     addHistoryBook(this.props.data._id,this.props.user);
     this.onBook();
   }

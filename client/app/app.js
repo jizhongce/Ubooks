@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Searchpagebody from './components/searchpagebody.js';
-import Bookpage from './components/bookpage';
 import Postbookpagebody from './components/Postbook/postbookbody.js';
 import Frontpagebody from './components/frontpagebody';
 import Howitworkbody from './components/howitworkbody.js';
+import Bookinfobody from './components/Bookinfo/bookinfobody';
 import ResetDatabase from'./components/resetdatabase.js';
 import Header from './components/header';
 import {Link} from 'react-router';
@@ -28,7 +28,7 @@ class BookPage extends React.Component {
   render() {
     return (
       <div>
-        <Bookpage user={4} book={1}/>
+        <Bookinfobody user={4} book={1}/>
       </div>
     );
   }

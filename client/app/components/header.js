@@ -16,27 +16,27 @@ export default class Header extends React.Component {
               <div className="btn-group pageheader1_button pull-left" role="group">
                 <Link to={"/profile"}>{<button type="button" className="btn btn-default">
                   <span className="glyphicon glyphicon-user"></span>
-                  <font size="3">Carter</font></button>}</Link>
+                  <font>Carter</font></button>}</Link>
                 <Link to={"/home"}>{<button type="button" className="btn btn-default">
-                  <font size="3">Home</font>
+                  <font>Home</font>
                 </button>}</Link>
                 <Link to={"/search"}>{<button type="button" className="btn btn-default">
-                  <font size="3">Find books</font>
+                  <font>Find books</font>
                 </button>}</Link>
                 <Link to={"/post"}><button type="button" className="btn btn-default">
-                  <font size="3">Post books</font>
+                  <font>Post books</font>
                 </button></Link>
                 <Link to={"/howitwork"}>{<button type="button" className="btn btn-default">
-                  <font size="3">Help&Contact</font>
+                  <font>Help&Contact</font>
                 </button>}</Link>
                 <Link to={"/mailbox/4"}><button type="button" className="btn btn-default">
-                  <font size="3">MailBox</font>
+                  <font>MailBox</font>
                 </button></Link>
               </div>
               <form className="navbar-form pull-right zeropadding threemargin" role="search">
                 <div className="input-group headerinput">
                   <span className="input-group-btn search_button">
-                    <input type="text" className="form-control headerinput"  placeholder="Search Book"/>
+                    <input type="text" className="form-control"  placeholder="Search Book"/>
                     <button type="submit" className="btn btn-default" onClick={(e) => this.onSearch(e)}>
                       <span className="glyphicon glyphicon-search"></span>
                     </button>

@@ -1,4 +1,4 @@
-import {readDocument,writeDocument,addDocument} from './database'
+import {readDocument,writeDocument,addDocument,getCollection} from './database'
 /**
  * Emulates how a REST call is *asynchronous* -- it calls your function back
  * some time in the future with data.
@@ -51,22 +51,6 @@ sendXHR('GET','/user/'+user,undefined,(xhr)=>{
 });
 }
 
-export function postComment(bookitemId, author, contents, cb) {
-  // Since a CommentThread is embedded in a FeedItem object,
-  // we don't have to resolve it. Read the document,
-  // update the embedded object, and then update the
-  // document in the database.
-  var feedItem = readDocument('booksItems', bookitemId);
-  feedItem.comments.push({
-    "author": author,
-    "contents": contents,
-    "postDate": new Date().getTime()
-  });
-  writeDocument('booksItems', feedItem);
-  // Return a resolved version of the feed item so React can
-  // render it.
-  emulateServerReturn(getFeedItemSync(bookitemId), cb);
-}
 
 export function replyMail(mailId, user, content, cb) {
   var mailItem = readDocument('mailbox', mailId);
@@ -133,12 +117,6 @@ export function getUserdata(user,cb)
   emulateServerReturn(userData,cb);
 }
 
-export function getUserbook(bookitem,cb)
-{
-  var bookData = readDocument('booksItems',bookitem);
-  emulateServerReturn(bookData,cb);
-
-}
 
 export function checkbook(Refs,book)
 {
@@ -162,12 +140,50 @@ export function getSelectedBook(bookRefs,userid,cb)
     emulateServerReturn(newarray,cb);
 }
 
+//Tim function goes here
+export function getBook(bookid,cb){
+  sendXHR('GET','/book/' + bookid,undefined,(xhr)=>{
+    cb(JSON.parse(xhr.responseText));
+  });
+
+}
+
+export function postComment(bookitemId, author, contents, cb) {
+  sendXHR('PUT','/bookitem/'+bookitemId+'/commentthread/comment',
+  {
+    author: author,
+    contents: contents
+  },(xhr) => {
+    cb(JSON.parse(xhr.responseText));
+  });
+}
+
+
+//Tim function end
+
+
+
+//leo function start
 export function addHistoryBook(bookid,userid){
   var userData = readDocument('users', userid);
-  var feedData = readDocument('feeds', userData.feed);
-  feedData.historys.push(bookid);
-  writeDocument('feeds',feedData);
+  userData.historys.push(bookid);
+  writeDocument('users', userData);
 }
+
+export function gethistory(userid)
+{
+  var userData = readDocument('users', userid);
+  userData.historys = userData.historys.map((history)=> readDocument('booksItems', history) );
+  return userData.historys;
+}
+
+export function getbookcollection()
+{
+  var feedData = readDocument('feeds', 1);
+  feedData.contents = feedData.contents.map(getFeedItemSync);
+  return feedData;
+}
+//leo function end
 
 // here is the error handle function
 //Do not change anything here
