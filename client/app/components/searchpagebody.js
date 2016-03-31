@@ -64,9 +64,7 @@ export default class Searchpagebody extends React.Component {
               <div className="panel-body keywordinput zeromargin">
                 <div className="col-md-12 bookinstore">
                   <b><font className="pull-left">Books in store:</font></b>
-                  <input type="text" className="pull-right" placeholder="Display by keyword" value={this.state.searchTerm} onChange={(e) => this.handleChange(e)}/>
-                  <button onClick={(e) => this.handleClick(e)}>test</button>
-              </div>
+                </div>
                 <hr/>
                 {this.state.books.map((feedItem) => {
                   return (
