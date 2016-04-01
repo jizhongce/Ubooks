@@ -6,7 +6,7 @@ import {addHistoryBook} from '../server';
 export default class Searchpagebook extends React.Component {
   onBook() {
     // If searchText is 'sandals', navigates to #/search/q?=sandals
-    this.context.router.push({ pathname: "/book" });
+    this.context.router.push({ pathname: "/book/"+ this.props.data._id});
   }
   handleAdd(e){
     e.preventDefault();
@@ -24,7 +24,7 @@ export default class Searchpagebook extends React.Component {
         </div>
         <div className="media-body">
           <a onClick={(e) => this.handleAdd(e)}><font size="4px;" color="blue">{this.props.data.bookname}</font></a>
-          <br />Owner: <Link to="profile">{this.props.data.owner_id.fullName}<span className="glyphicon glyphicon-user"></span></Link>
+          <br />Owner: <Link to={"/otherprofile/"+this.props.data.owner_id._id}>{this.props.data.owner_id.fullName}<span className="glyphicon glyphicon-user"></span></Link>
           <div className="categories_star_color">
             <span className="glyphicon glyphicon-star"></span><span className="glyphicon categories_star_color glyphicon-star"></span><span className="glyphicon categories_star_color glyphicon-star"></span><span className="glyphicon categories_star_color glyphicon-star"></span><span className="glyphicon categories_star_color glyphicon-star"></span>
           </div>
