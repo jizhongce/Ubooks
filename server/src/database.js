@@ -14,8 +14,8 @@ var initialData = {
       "2": {
         "_id": 2,
         "fullName": "Kai",
-        "exchangeLists": [1],
-        "wantLists": [],
+        "exchangeLists": [],
+        "wantLists": [1],
         "feed":1,
         "pic":"../img/person2.png",
         "mailbox":[],
