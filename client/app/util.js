@@ -15,3 +15,11 @@ export function hideElement(shouldHide) {
     return '';
   }
 }
+//give the warning if
+export function Missfield(miss) {
+  if (miss == true) {
+    return 'missing';
+  } else {
+    return '';
+  }
+}

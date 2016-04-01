@@ -12,7 +12,7 @@ export default class Comment extends React.Component {
             <img className="b1" src={this.props.data.author.pic} width="35" />
           </div>
           <div className="media-body">
-            <Link to={"/otherprofile/"+this.props.data.author._id}>{this.props.data.author.fullName}</Link>: {this.props.data.contents}
+            <Link to={"/otherprofile/"+this.props.data.author._id}><font>{this.props.data.author.fullName}</font></Link>: <font>{this.props.data.contents}</font>
              <br />{unixTimeToString(this.props.data.postDate)}
           </div>
         </div>

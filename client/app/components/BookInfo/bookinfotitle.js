@@ -14,7 +14,7 @@ export default class Bookinfotitle extends React.Component{
           <h2><font size = "6" color="black">Book Informations</font></h2>
         </div>
         <div className="col-md-3 pull-right">
-          <br /><Link to={"/search"}><span className="glyphicon glyphicon-hand-right"></span> Go Back to Search</Link>
+          <br /><Link to={"/search"}><span className="glyphicon glyphicon-hand-right"></span> <font>Go Back to Search</font></Link>
         </div>
       </div>
     </div>
