@@ -44,7 +44,11 @@ app.get('/user/:userid',function(req,res){
   var userid = req.params.userid;
   var fromUser = getUserIdFromToken(req.get('Authorization'));
   var useridNum = parseInt(userid,10);
-  if(fromUser === useridNum)
+
+  var isUser = (fromUser === useridNum);
+  var morkupIsUser = true;
+
+  if(morkupIsUser||isUser)
   {
     var userData = readDocument('users',useridNum);
     res.send(userData);
@@ -57,10 +61,14 @@ app.get('/user/:userid/exchangebooks',function(req,res){
   var userid = req.params.userid;
   var fromUser = getUserIdFromToken(req.get('Authorization'));
   var useridNum = parseInt(userid,10);
-  if(fromUser === useridNum)
+
+  var isUser = (fromUser === useridNum);
+  var morkupIsUser = true;
+
+  if(morkupIsUser||isUser)
   {
-     var user = readDocument('users',useridNum);
-     res.send(user.exchangeLists.map((bookid)=>getFeedItemSync(bookid)));
+    var user = readDocument('users',useridNum);
+    res.send(user.exchangeLists.map((bookid)=>getFeedItemSync(bookid)));
   }else{
     res.status(401).end()
   }
@@ -70,7 +78,11 @@ app.get('/user/:userid/needbooks',function(req,res){
   var userid = req.params.userid;
   var fromUser = getUserIdFromToken(req.get('Authorization'));
   var useridNum = parseInt(userid,10);
-  if(fromUser === useridNum)
+
+  var isUser = (fromUser === useridNum);
+  var morkupIsUser = true;
+
+  if(morkupIsUser||isUser)
   {
     var user = readDocument('users',useridNum);
     res.send(user.wantLists.map((bookid)=>getFeedItemSync(bookid)));
@@ -84,7 +96,11 @@ app.get('/user/:userid/mailbox',function(req,res){
   var userid = req.params.userid;
   var fromUser = getUserIdFromToken(req.get('Authorization'));
   var useridNum = parseInt(userid,10);
-  if(fromUser === useridNum)
+
+  var isUser = (fromUser === useridNum);
+  var morkupIsUser = true;
+
+  if(morkupIsUser||isUser)
   {
     var user = readDocument('users',useridNum);
     res.send(user.mailbox.map((mailNum)=>readDocument('mailbox',mailNum)));
