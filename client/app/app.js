@@ -84,6 +84,24 @@ class SuccessPost extends React.Component {
   }
 }
 
+class loginmockup extends React.Component {
+  render() {
+    return (
+      <div>
+        <div className="container">
+          <div className="row body">
+            <div className="col-md-6 col-md-offset-3">
+              <br /><font size="5">This is login page</font>
+              <br /><font size="5">Will finish this when we learn about it</font>
+              <br /><Link to="/howitwork"><font size="5">Go Back</font></Link>
+          </div>
+        </div>
+      </div>
+    </div>
+    );
+  }
+}
+
 class FrontPage extends React.Component {
   render() {
     return <Frontpagebody user={4}/>;
@@ -259,6 +277,7 @@ ReactDOM.render((
       <Route path="successpost" component={SuccessPost} />
       <Route path="mailbox/:mail" component={Mailbox} />
       <Route path="searchresult" component={SearchResultsPage} />
+      <Route path="login" component={loginmockup} />
     </Route>
   </Router>
 ),document.getElementById('UBooksFeed'));

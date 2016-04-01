@@ -37,12 +37,13 @@ body {
 
 .textlocat{
   text-align:center;
-  font-size: 170%;
+  font-size: 180%;
 }
 
 .blackfont{
   color: black;
   font-size:150%;
+  font-weight: 500;
 }
 .titlefont{
   font-size=180%;
@@ -68,5 +69,16 @@ body {
 
 .spbuttonstyle{
   color:white;
+  font-weight: 200;
   background-color:#46A3FF;
+}
+
+.spbuttonstyle:hover{
+  color:white;
+  font-weight: 200;
+  background-color:#0080FF;
+}
+
+.fifteenbottommargin{
+  margin-bottom: 15px;
 }

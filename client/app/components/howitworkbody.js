@@ -23,12 +23,13 @@ export default class Howitworkbody extends React.Component {
                 <div className="col-md-5 col-md-offset-2">
                   <div className="media">
                     <div className="media-left media-top">
-                      <img src="img/book-need.jpg" width="100px" height="90px"/>
+                      <div className="row fifteenbottommargin"></div>
+                      <img src="img/book-need.jpg" width="75px" height="75px" />
                     </div>
                     <div className="media-body">
                       <br /><font size="5px;" color="black">Your books</font>
-                      <br /><Link to={"/book"}><span className="glyphicon button_smaller glyphicon-hand-right"></span> View your books</Link>
-                      <br /><Link to={"/book"}><span className="glyphicon button_smaller glyphicon-hand-right"></span> Contact book owner</Link>
+                      <br /><Link to={"/search"}><span className="glyphicon button_smaller glyphicon-hand-right"></span> Looking for a book</Link>
+                      <br /><Link to={"/post"}><span className="glyphicon button_smaller glyphicon-hand-right"></span> Try to post a book</Link>
                     </div>
                   </div>
                 </div>
@@ -40,7 +41,7 @@ export default class Howitworkbody extends React.Component {
                     <div className="media-body">
                       <br /><font size="5px;" color="black">Account setting</font>
                       <br /><Link to={"/profile"}><span className="glyphicon button_smaller glyphicon-hand-right"></span> Profile setting</Link>
-                      <br /><Link to={"/profile"}><span className="glyphicon button_smaller glyphicon-hand-right"></span> Login information</Link>
+                      <br /><Link to={"/login"}><span className="glyphicon button_smaller glyphicon-hand-right"></span> Login information</Link>
                     </div>
                   </div>
                 </div>
@@ -51,7 +52,7 @@ export default class Howitworkbody extends React.Component {
                   <pre className="prestyle"></pre>
                   <div className="text textlocat" >
                     <b><font size="5px;">Need our assistance?</font></b>
-                    <br /><a href="mailto:aaa@5icool.org?subject=ccc&body=xxx%0d%0ayyy"><button className="spbuttonstyle" type="button" name="button">Contact us</button></a>
+                    <br /><a href="mailto:aaa@5icool.org?subject=ccc&body=xxx%0d%0ayyy"><button className="spbuttonstyle" type="button" name="button"><font>Contact us</font></button></a>
                   </div>
                 </div>
                 <div className="col-md-5 col-md-offset-1">
