@@ -219,17 +219,30 @@ app.get('/user/:userid/historys',function(req,res){
   }
 });
 
-//get books collection
-app.get('/bookscollcetion',function(req,res){
+function getbookitemcollection(){
   var collection = getCollection('booksItems');
   var bookarray = [];
   for(var i = 1; collection[i]; i++){
     bookarray.push(getFeedItemSync(collection[i]._id));
   }
-  res.send(bookarray);
+  return bookarray;
+}
+
+//get books collection
+app.get('/bookscollcetion',function(req,res){
+  res.send(getbookitemcollection());
 });
 
-
+//filter
+app.get('/bookscollcetion/:searchTerm',function(req,res){
+  var mysearch = req.params.searchTerm;
+  mysearch = mysearch.toLowerCase();
+  var collection = getbookitemcollection();
+  var result = collection.filter((bookitem)=>{
+    return bookitem.bookname.toLowerCase().indexOf(mysearch) !== -1;
+  });
+  res.send(result);
+});
 //Leo's http runction end here
 
 

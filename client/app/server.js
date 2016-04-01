@@ -1,4 +1,4 @@
-import {readDocument,writeDocument,addDocument} from './database'
+
 /**
  * Emulates how a REST call is *asynchronous* -- it calls your function back
  * some time in the future with data.
@@ -174,13 +174,9 @@ export function getbookcollection(userid,cb)
 }
 
 export function myfilter(searchTerm, cb){
-  var mysearch = searchTerm.toLowerCase();
-  var feedItemIDs = readDocument('feeds', 1).contents;
-  var result = feedItemIDs.filter((feedItemID) => {
-      var feedItem = readDocument('booksItems', feedItemID);
-      return feedItem.bookname.toLowerCase().indexOf(mysearch) !== -1;
-  }).map(getFeedItemSync);
-  emulateServerReturn(result,cb);
+  sendXHR('GET', '/bookscollcetion/' + searchTerm, undefined, (xhr) => {
+    cb(JSON.parse(xhr.responseText));
+  });
 }
 //leo function end
 

@@ -70,7 +70,7 @@ export default class Searchpagebody extends React.Component {
               <div className="panel-body keywordinput zeromargin">
                 <div className="col-md-12 bookinstore">
                   <b><font className="pull-left">Books available in store:</font></b>
-                  <input type="text" className="keywordinput pull-right"  placeholder="Filter. try enter: intro" value={this.state.searchTerm} onChange={(e) => this.handleChange(e)}/>
+                  <input type="text" className="keywordinput pull-right"  placeholder="Filter. try enter: app" value={this.state.searchTerm} onChange={(e) => this.handleChange(e)}/>
                 </div>
                 <hr/>
                 {this.state.books.map((feedItem) => {
