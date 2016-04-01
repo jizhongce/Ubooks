@@ -26,6 +26,9 @@ export default class Header extends React.Component {
     if (trimmedTerm !== "") {
       this.context.router.push({ pathname: "/searchresult", query: { q: trimmedTerm } });
     }
+    this.setState({
+      searchTerm:''
+    });
   }
 
   componentWillReceiveProps(newProps) {

@@ -8,6 +8,7 @@ export default class Searchpagebody extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      recommendation:[],
       books: [],
       historys: [],
       searchTerm: ''
@@ -16,14 +17,11 @@ export default class Searchpagebody extends React.Component {
 
   handleChange(e) {
     e.preventDefault();
+    var value = e.target.value;
     this.setState({
-      searchTerm: e.target.value
+      searchTerm: value
     });
-    this.handleClick();
-  }
-
-  handleClick(){
-    myfilter(this.state.searchTerm, (result) => {
+    myfilter(value, (result) => {
         this.setState({books:result});
     });
   }
@@ -32,8 +30,11 @@ export default class Searchpagebody extends React.Component {
     gethistory(this.props.user,(history) => {
       this.setState({historys:history});
     });
-    getbookcollection((feed) => {
-      this.setState({books:feed.contents});
+    getbookcollection(this.props.user, (bookarray) => {
+      this.setState({
+        books:bookarray,
+        recommendation:bookarray
+      });
     });
     this.setState({
       searchTerm: ''
@@ -52,9 +53,14 @@ export default class Searchpagebody extends React.Component {
           <div className="col-md-2 zeropadding">
             <div className="panel panel-default">
               <div className="panel-body">
-                <br /><font color="black" size="3">Popular Books</font>
+                <font color="black" size="3">Recommendation</font>
                 <hr className="hrcolor" />
-
+                  {this.state.recommendation.map((feedItem) => {
+                    if(feedItem._id === 2 || feedItem._id === 4)
+                    return (
+                      <Searchpagebookslist user={this.props.user} key={feedItem._id} data={feedItem} />
+                    )
+                  })}
               </div>
             </div>
           </div>
@@ -63,7 +69,8 @@ export default class Searchpagebody extends React.Component {
             <div className="panel panel-default">
               <div className="panel-body keywordinput zeromargin">
                 <div className="col-md-12 bookinstore">
-                  <b><font className="pull-left">Books in store:</font></b>
+                  <b><font className="pull-left">Books available in store:</font></b>
+                  <input type="text" className="keywordinput pull-right"  placeholder="Filter. try enter: intro" value={this.state.searchTerm} onChange={(e) => this.handleChange(e)}/>
                 </div>
                 <hr/>
                 {this.state.books.map((feedItem) => {
@@ -78,7 +85,7 @@ export default class Searchpagebody extends React.Component {
           <div className="col-md-2 zeropadding">
             <div className={hideElement(this.state.historys.length === 0) + " panel panel-default" }>
               <div className="panel-body">
-                <br /><font  color="black" size="3">Watch History</font>
+                <font  color="black" size="3">Watch History</font>
                 <hr className="hrcolor"/>
                     {this.state.historys.map((feedItem) => {
                       return (

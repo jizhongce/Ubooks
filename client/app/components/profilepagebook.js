@@ -10,7 +10,7 @@ export default class Profilepagebook extends React.Component {
           <img src={this.props.book.pic} width="100px" />
         </div>
         <div className="media-body">
-          <Link to="/book"><font size="4px;" color="blue">{this.props.book.bookname}</font></Link>
+          <Link to={"/book/"+this.props.book._id}><font size="4px;" color="blue">{this.props.book.bookname}</font></Link>
           <br />Publisher: {this.props.book.publisher}
           <div className="categories_star_color">
           </div>

@@ -13,7 +13,7 @@ import Mailbox from './components/mailbox';
 import { IndexRoute, Router, Route, hashHistory } from 'react-router';
 import ErrorBanner from './components/errorbanner'
 import {hideElement} from './util';
-import {myfilter,gethistory} from './server';
+import {myfilter,gethistory,getbookcollection} from './server';
 import Searchpagebook from './components/searchpagebook';
 import Searchpagebookslist from './components/searchpagebookslist';
 
@@ -32,7 +32,7 @@ class BookPage extends React.Component {
   render() {
     return (
       <div>
-        <Bookinfobody user={4} book={1}/>
+        <Bookinfobody user={4} book={this.props.params.bookid}/>
       </div>
     );
   }
@@ -95,6 +95,11 @@ class PRofile extends React.Component {
     return <Profilebody user={4}/>;
   }
 }
+class otherprofile extends React.Component {
+  render(){
+    return <Profilebody user={this.props.params.id}/>;
+  }
+}
 class HowitWork extends React.Component {
   render() {
     return <Howitworkbody user={4} />;
@@ -123,10 +128,10 @@ class SearchResults extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loaded: false,
       invalidSearch: false,
       results: [],
-      historys:[]
+      historys:[],
+      books:[]
     };
   }
 
@@ -136,11 +141,15 @@ class SearchResults extends React.Component {
         historys:history
       });
     });
+    getbookcollection(this.props.user, (bookarray) => {
+      this.setState({
+        books:bookarray
+      });
+    });
     var searchTerm = this.props.searchTerm;
     if (searchTerm !== "") {
       myfilter(searchTerm, (feedItems) => {
         this.setState({
-          loaded: true,
           results: feedItems
         });
       });
@@ -158,20 +167,22 @@ class SearchResults extends React.Component {
   render() {
     return (
     <div>
-      <div className={hideElement(this.state.loaded || this.state.invalidSearch)+ " col-md-offset-3"}>
-        Search results are loading...
-      </div>
       <div className={hideElement(!this.state.invalidSearch)+ " col-md-offset-3"}>
         <b>Invalid search query.</b>
       </div>
-      <div className={hideElement(!this.state.loaded) + " container"}>
+      <div className={hideElement(this.state.invalidSearch) + " container"}>
         <div className="row">
           <div className="col-md-2 zeropadding">
             <div className="panel panel-default">
               <div className="panel-body">
-                <br /><font color="black" size="3">Popular Books</font>
+                <font color="black" size="3">Recommendation</font>
                 <hr className="hrcolor" />
-
+                  {this.state.books.map((feedItem) => {
+                    if(feedItem._id === 2 || feedItem._id === 4)
+                    return (
+                      <Searchpagebookslist user={this.props.user} key={feedItem._id} data={feedItem} />
+                    )
+                  })}
               </div>
             </div>
           </div>
@@ -195,7 +206,7 @@ class SearchResults extends React.Component {
           <div className="col-md-2 zeropadding">
             <div className={hideElement(this.state.historys.length === 0) + " panel panel-default" }>
               <div className="panel-body">
-                <br /><font  color="black" size="3">Watch History</font>
+                <font  color="black" size="3">Watch History</font>
                 <hr className="hrcolor"/>
                     {this.state.historys.map((feedItem) => {
                       return (
@@ -242,7 +253,8 @@ ReactDOM.render((
       <Route path="post" component={PostbookPage} />
       <Route path="howitwork" component={HowitWork} />
       <Route path="profile" component={PRofile} />
-      <Route path="book" component={BookPage} />
+      <Route path="otherprofile/:id" component={otherprofile} />
+      <Route path="book/:bookid" component={BookPage} />
       <Route path="contact" component={ContactPage} />
       <Route path="successpost" component={SuccessPost} />
       <Route path="mailbox/:mail" component={Mailbox} />

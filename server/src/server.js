@@ -2,6 +2,7 @@ var database = require('./database');
 var readDocument = database.readDocument;
 var writeDocument = database.writeDocument;
 var addDocument = database.addDocument;
+var getCollection = database.getCollection;
 //import the body parser
 var bodyParser = require('body-parser');
 var validate = require('express-jsonschema').validate;
@@ -189,6 +190,63 @@ app.post('/bookitem/',validate({ body: bookitemSchema}), function(req, res){
 });
 
 //Tim's function ends here
+
+//Leo's http function start here
+//add watch history
+function addHistoryBook(bookid,userid){
+  var userData = readDocument('users', userid);
+  var add = true;
+  for (var i = 0; i < userData.historys.length; i++) {
+    if(userData.historys[i] === bookid)
+      add = false;
+    }
+  if(add){
+    if(userData.historys.length > 2){
+      userData.historys.splice(0, 1);
+    }
+    userData.historys.push(bookid);
+  }
+  writeDocument('users', userData);
+}
+
+//updata watch history
+app.put('/user/:userid/historys/:bookid', function(req, res) {
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
+  var userId = parseInt(req.params.userid, 10);
+  var bookId = parseInt(req.params.bookid, 10);
+  if (fromUser === userId) {
+    addHistoryBook(bookId, userId);
+    res.send();
+  } else {
+    res.status(401).end();
+  }
+});
+
+//get histroys
+app.get('/user/:userid/historys',function(req,res){
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
+  var userId = parseInt(req.params.userid, 10);
+  var userData = readDocument('users', userId);
+  userData.historys = userData.historys.map((history)=> readDocument('booksItems', history) );
+  if (fromUser === userId) {
+    res.send(userData.historys);
+  } else {
+    res.status(401).end();
+  }
+});
+
+//get books collection
+app.get('/bookscollcetion',function(req,res){
+  var collection = getCollection('booksItems');
+  var bookarray = [];
+  for(var i = 1; collection[i]; i++){
+    bookarray.push(getFeedItemSync(collection[i]._id));
+  }
+  res.send(bookarray);
+});
+
+
+//Leo's http runction end here
 
 
 
