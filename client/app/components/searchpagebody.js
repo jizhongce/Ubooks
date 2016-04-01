@@ -30,10 +30,10 @@ export default class Searchpagebody extends React.Component {
     gethistory(this.props.user,(history) => {
       this.setState({historys:history});
     });
-    getbookcollection((feed) => {
+    getbookcollection(this.props.user, (bookarray) => {
       this.setState({
-        books:feed.contents,
-        recommendation:feed.contents
+        books:bookarray,
+        recommendation:bookarray
       });
     });
     this.setState({

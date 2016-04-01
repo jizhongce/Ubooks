@@ -153,34 +153,24 @@ export function postBook(owner_id,pic,bookname,author,edition,isbn_10,isbn_13,pu
 
 
 //leo function start
-export function addHistoryBook(bookid,userid){
-  var userData = readDocument('users', userid);
-  var add = true;
-  for (var i = 0; i < userData.historys.length; i++) {
-    if(userData.historys[i] === bookid)
-      add = false;
-    }
-  if(add){
-    if(userData.historys.length > 2){
-      userData.historys.splice(0, 1);
-    }
-    userData.historys.push(bookid);
-  }
-  writeDocument('users', userData);
+export function addHistoryBook(bookid,userid,cb){
+  sendXHR('PUT', '/user/' + userid + '/historys/' + bookid, undefined, () => {
+    cb();
+  });
 }
 
 export function gethistory(userid,cb)
 {
-  var userData = readDocument('users', userid);
-  userData.historys = userData.historys.map((history)=> readDocument('booksItems', history) );
-  emulateServerReturn(userData.historys,cb);
+  sendXHR('GET', '/user/' + userid + '/historys', undefined, (xhr) => {
+    cb(JSON.parse(xhr.responseText));
+  });
 }
 
-export function getbookcollection(cb)
+export function getbookcollection(userid,cb)
 {
-  var feedData = readDocument('feeds', 1);
-  feedData.contents = feedData.contents.map(getFeedItemSync);
-  emulateServerReturn(feedData,cb);
+  sendXHR('GET', '/bookscollcetion', undefined, (xhr) => {
+    cb(JSON.parse(xhr.responseText));
+  });
 }
 
 export function myfilter(searchTerm, cb){

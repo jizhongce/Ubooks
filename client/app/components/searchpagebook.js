@@ -10,8 +10,9 @@ export default class Searchpagebook extends React.Component {
   }
   handleAdd(e){
     e.preventDefault();
-    addHistoryBook(this.props.data._id,this.props.user);
-    this.onBook();
+    addHistoryBook(this.props.data._id,this.props.user,() => {
+      this.onBook();
+    });
   }
 
   render() {

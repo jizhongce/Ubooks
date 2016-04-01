@@ -123,7 +123,6 @@ class SearchResults extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loaded: false,
       invalidSearch: false,
       results: [],
       historys:[],
@@ -137,16 +136,15 @@ class SearchResults extends React.Component {
         historys:history
       });
     });
-    getbookcollection((feed) => {
+    getbookcollection(this.props.user, (bookarray) => {
       this.setState({
-        books:feed.contents
+        books:bookarray
       });
     });
     var searchTerm = this.props.searchTerm;
     if (searchTerm !== "") {
       myfilter(searchTerm, (feedItems) => {
         this.setState({
-          loaded: true,
           results: feedItems
         });
       });
@@ -164,13 +162,10 @@ class SearchResults extends React.Component {
   render() {
     return (
     <div>
-      <div className={hideElement(this.state.loaded || this.state.invalidSearch)+ " col-md-offset-3"}>
-        Search results are loading...
-      </div>
       <div className={hideElement(!this.state.invalidSearch)+ " col-md-offset-3"}>
         <b>Invalid search query.</b>
       </div>
-      <div className={hideElement(!this.state.loaded) + " container"}>
+      <div className={hideElement(this.state.invalidSearch) + " container"}>
         <div className="row">
           <div className="col-md-2 zeropadding">
             <div className="panel panel-default">
