@@ -42,7 +42,19 @@ export default class Header extends React.Component {
   render() {
     return (
     <div>
-      <div className="page-header pageheader1">
+      <div className="page-header pageheader2">
+        <div className="row header2background">
+          <div id="logo" className="col-md-11 col-md-offset-1">
+            <br />
+            <h2><font size="6"><img className="logo logoposition" src="../img/Logo.jpg" /></font><font size="13">UBooks</font></h2>
+            <h4>Students exchange textbook with students!</h4>
+            <h4>·FAST ·EASY ·BEST</h4>
+            <br />
+          </div>
+        </div>
+      </div>
+
+      <div id="headerbar" className="page-header pageheader1">
         <div className="row zeromargin" >
           <div className="col-md-10 col-md-offset-1 zeropadding" >
             <div className="btn-toolbar" role="toolbar">
@@ -77,18 +89,6 @@ export default class Header extends React.Component {
                 </div>
               </form>
             </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="page-header pageheader2">
-        <div className="row header2background">
-          <div id="logo" className="col-md-11 col-md-offset-1">
-            <br />
-            <h2><font size="6"><img className="logo logoposition" src="../img/Logo.jpg" /></font><font size="13">UBooks</font></h2>
-            <h4>Students exchange textbook with students!</h4>
-            <h4>·FAST ·EASY ·BEST</h4>
-            <br />
           </div>
         </div>
       </div>
