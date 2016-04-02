@@ -22,33 +22,33 @@
   margin-top:5px;
 }
 .bookname input:focus{
-  -webkit-box-shadow: 0px 0px 9px 1px rgba(255,89,0,1);
-  -moz-box-shadow: 0px 0px 9px 1px rgba(255,89,0,1);
-  box-shadow: 0px 0px 9px 1px rgba(255,89,0,1);
+  -webkit-box-shadow: 0px 0px 8px 1px rgba(0,0,0,1);
+  -moz-box-shadow: 0px 0px 8px 1px rgba(0,0,0,1);
+  box-shadow: 0px 0px 8px 1px rgba(0,0,0,1);
 }
 .bookedition {
   margin-top:5px;
 }
 .bookedition input:focus{
-  -webkit-box-shadow: 0px 0px 9px 1px rgba(255,89,0,1);
-  -moz-box-shadow: 0px 0px 9px 1px rgba(255,89,0,1);
-  box-shadow: 0px 0px 9px 1px rgba(255,89,0,1);
+  -webkit-box-shadow: 0px 0px 8px 1px rgba(0,0,0,1);
+  -moz-box-shadow: 0px 0px 8px 1px rgba(0,0,0,1);
+  box-shadow: 0px 0px 8px 1px rgba(0,0,0,1);
 }
 .highlight {
   margin-top:5px;
 }
 .highlight input:focus{
-  -webkit-box-shadow: 0px 0px 9px 1px rgba(255,89,0,1);
-  -moz-box-shadow: 0px 0px 9px 1px rgba(255,89,0,1);
-  box-shadow: 0px 0px 9px 1px rgba(255,89,0,1);
+  -webkit-box-shadow: 0px 0px 8px 1px rgba(0,0,0,1);
+  -moz-box-shadow: 0px 0px 8px 1px rgba(0,0,0,1);
+  box-shadow: 0px 0px 8px 1px rgba(0,0,0,1);
 }
 .authors{
   margin-top:5px;
 }
 .authors input:focus{
-  -webkit-box-shadow: 0px 0px 9px 1px rgba(255,89,0,1);
-  -moz-box-shadow: 0px 0px 9px 1px rgba(255,89,0,1);
-  box-shadow: 0px 0px 9px 1px rgba(255,89,0,1);
+  -webkit-box-shadow: 0px 0px 8px 1px rgba(0,0,0,1);
+  -moz-box-shadow: 0px 0px 8px 1px rgba(0,0,0,1);
+  box-shadow: 0px 0px 8px 1px rgba(0,0,0,1);
 }
 .isbn{
   margin-top:5px;
@@ -57,32 +57,32 @@
   margin-top:5px;
 }
 .notes input:focus{
-  -webkit-box-shadow: 0px 0px 9px 1px rgba(255,89,0,1);
-  -moz-box-shadow: 0px 0px 9px 1px rgba(255,89,0,1);
-  box-shadow: 0px 0px 9px 1px rgba(255,89,0,1);
+  -webkit-box-shadow: 0px 0px 8px 1px rgba(0,0,0,1);
+  -moz-box-shadow: 0px 0px 8px 1px rgba(0,0,0,1);
+  box-shadow: 0px 0px 8px 1px rgba(0,0,0,1);
 }
 .isbn input:focus{
   margin-bottom:1px;
-  -webkit-box-shadow: 0px 0px 9px 1px rgba(255,89,0,1);
-  -moz-box-shadow: 0px 0px 9px 1px rgba(255,89,0,1);
-  box-shadow: 0px 0px 9px 1px rgba(255,89,0,1);
+  -webkit-box-shadow: 0px 0px 8px 1px rgba(0,0,0,1);
+  -moz-box-shadow: 0px 0px 8px 1px rgba(0,0,0,1);
+  box-shadow: 0px 0px 8px 1px rgba(0,0,0,1);
 }
 .publish{
   margin-top:5px;
 }
 .publish input:focus{
-  -webkit-box-shadow: 0px 0px 9px 1px rgba(255,89,0,1);
-  -moz-box-shadow: 0px 0px 9px 1px rgba(255,89,0,1);
-  box-shadow: 0px 0px 9px 1px rgba(255,89,0,1);
+  -webkit-box-shadow: 0px 0px 8px 1px rgba(0,0,0,1);
+  -moz-box-shadow: 0px 0px 8px 1px rgba(0,0,0,1);
+  box-shadow: 0px 0px 8px 1px rgba(0,0,0,1);
 }
 .condition{
   margin-top:5px;
 }
 .condition input:focus{
   width: 300px !important;
-  -webkit-box-shadow: 0px 0px 9px 1px rgba(255,89,0,1);
-  -moz-box-shadow: 0px 0px 9px 1px rgba(255,89,0,1);
-  box-shadow: 0px 0px 9px 1px rgba(255,89,0,1);
+  -webkit-box-shadow: 0px 0px 8px 1px rgba(0,0,0,1);
+  -moz-box-shadow: 0px 0px 8px 1px rgba(0,0,0,1);
+  box-shadow: 0px 0px 8px 1px rgba(0,0,0,1);
 }
 
 .money {
@@ -94,24 +94,24 @@
 .pic input:focus{
   margin-bottom:1px;
   width: 250px !important;
-  -webkit-box-shadow: 0px 0px 9px 1px rgba(255,89,0,1);
-  -moz-box-shadow: 0px 0px 9px 1px rgba(255,89,0,1);
-  box-shadow: 0px 0px 9px 1px rgba(255,89,0,1);
+  -webkit-box-shadow: 0px 0px 8px 1px rgba(0,0,0,1);
+  -moz-box-shadow: 0px 0px 8px 1px rgba(0,0,0,1);
+  box-shadow: 0px 0px 8px 1px rgba(0,0,0,1);
 }
 .money input:focus{
   margin-bottom:1px;
-  -webkit-box-shadow: 0px 0px 9px 1px rgba(255,89,0,1);
-  -moz-box-shadow: 0px 0px 9px 1px rgba(255,89,0,1);
-  box-shadow: 0px 0px 9px 1px rgba(255,89,0,1);
+  -webkit-box-shadow: 0px 0px 8px 1px rgba(0,0,0,1);
+  -moz-box-shadow: 0px 0px 8px 1px rgba(0,0,0,1);
+  box-shadow: 0px 0px 8px 1px rgba(0,0,0,1);
 
 }
 .discription{
   margin-top:5px;
 }
 .discription textarea:focus{
-  -webkit-box-shadow: 0px 0px 9px 1px rgba(255,89,0,1);
-  -moz-box-shadow: 0px 0px 9px 1px rgba(255,89,0,1);
-  box-shadow: 0px 0px 9px 1px rgba(255,89,0,1);
+  -webkit-box-shadow: 0px 0px 8px 1px rgba(0,0,0,1);
+  -moz-box-shadow: 0px 0px 8px 1px rgba(0,0,0,1);
+  box-shadow: 0px 0px 8px 1px rgba(0,0,0,1);
 }
 .button button{
   width:200px;
@@ -124,17 +124,17 @@
 }
 
 .missing input{
-  border-color: red;
-  -webkit-box-shadow: 0px 0px 9px 2px rgba(255,0,0,1);
-  -moz-box-shadow: 0px 0px 9px 2px rgba(255,0,0,1);
-  box-shadow: 0px 0px 9px 2px rgba(255,0,0,1);
+  border-color: #ff7575;
+  -webkit-box-shadow: 0px 0px 8px 1px rgba(255,89,0,1);
+  -moz-box-shadow: 0px 0px 8px 1px rgba(255,89,0,1);
+  box-shadow: 0px 0px 8px 1px rgba(255,89,0,1);
 
 }
 
 .missing textarea{
-  border-color: red;
-  -webkit-box-shadow: 0px 0px 9px 3px rgba(255,0,0,1);
-  -moz-box-shadow: 0px 0px 9px 3px rgba(255,0,0,1);
-  box-shadow: 0px 0px 9px 3px rgba(255,0,0,1);
+  border-color: #ff7575;
+  -webkit-box-shadow: 0px 0px 8px 1px rgba(255,89,0,1);
+  -moz-box-shadow: 0px 0px 8px 1px rgba(255,89,0,1);
+  box-shadow: 0px 0px 8px 1px rgba(255,89,0,1);
 
 }
