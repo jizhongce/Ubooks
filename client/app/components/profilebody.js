@@ -2,6 +2,7 @@ import React from 'react';
 import Profileexchangebooklist from './profileexchangebooklist';
 import {getUserdata,getExchangebook,getNeedbook,getMail} from '../server';
 import Profileneedbooklist from './profileneedbooklist';
+import {Link} from 'react-router';
 
 
 export default class Profilebody extends React.Component {
@@ -50,7 +51,7 @@ export default class Profilebody extends React.Component {
                     <h2 clss="account"><br /><b>{this.state.user.fullName}’s<br />UBooks</b></h2>
                   </div>
                   <div className="col-md-8">
-                    <div className="ulstyle ulmargin" border="0">
+                    <div className="ulstyle-profile ulmargin" border="0">
                       <ul>
                         <li> BOOK IN NEED</li>
                         <li><h3><b>{this.state.want.length}</b></h3></li>
@@ -78,6 +79,7 @@ export default class Profilebody extends React.Component {
                     <div className="panel-body">
                       <Profileexchangebooklist data={this.props.user} />
                     </div>
+                    <Link to={"/post"}><button type="button" className="btn btn-success center-block">Add more !</button> </Link>
                   </div>
                 </div>
               </div>
@@ -88,6 +90,7 @@ export default class Profilebody extends React.Component {
                     <div className="panel-body">
                       <Profileneedbooklist data={this.props.user} />
                     </div>
+                    <Link to={"/post"}><button type="button" className="btn btn-success center-block">Add more !</button> </Link>
                   </div>
                 </div>
               </div>

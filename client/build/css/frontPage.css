@@ -75,6 +75,12 @@ body {
   margin: 10px;
 }
 
+.ulstyle-profile ul{
+  float: left;
+    list-style: none;
+    margin: 10px;
+}
+
 .ulstyle li{
   float: left;
   list-style: none;
