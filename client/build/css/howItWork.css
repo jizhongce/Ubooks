@@ -69,13 +69,15 @@ body {
 
 .spbuttonstyle{
   color:white;
-  font-weight: 200;
+  text-shadow: none;
+  font-weight: 400;
   background-color:#46A3FF;
 }
 
 .spbuttonstyle:hover{
   color:white;
-  font-weight: 200;
+  text-shadow: none;
+  font-weight: 600;
   background-color:#0080FF;
 }
 

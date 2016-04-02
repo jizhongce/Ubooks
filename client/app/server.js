@@ -1,24 +1,3 @@
-
-/**
- * Emulates how a REST call is *asynchronous* -- it calls your function back
- * some time in the future with data.
- */
-function emulateServerReturn(data, cb) {
-  setTimeout(() => {
-    cb(data);
-  }, 4);
-}
-
-function getFeedItemSync(feedItemId) {
-  var feedItem = readDocument('booksItems', feedItemId);
-  feedItem.owner_id = readDocument('users',feedItem.owner_id);
-  feedItem.comments.forEach((comment) => {
-    comment.author = readDocument('users', comment.author);
-  });
-  return feedItem;
-}
-
-
 export function getFeedData(userid, cb) {
   sendXHR('GET','/feed',undefined,(xhr)=>{
     cb(JSON.parse(xhr.responseText));
@@ -81,30 +60,6 @@ export function getMail(user, cb) {
   });
 }
 
-
-
-export function checkbook(Refs,book)
-{
-  var bookData = getFeedItemSync(book);
-  if(bookData.subject == Refs){
-    return bookData;
-  }
-}
-
-export function getSelectedBook(bookRefs,userid,cb)
-{
-  var userData = readDocument('users', userid);
-  var feedData = readDocument('feeds', userData.feed);
-  var selectbook= feedData.contents.map(getFeedItemSync);
-  var selectedbook = selectbook.map((book)=> checkbook(bookRefs,book._id) );
-  var newarray = new Array();
-  for (var i = 0; i < selectedbook.length; i++) {
-    if(selectedbook[i])
-      newarray.push(selectedbook[i]);
-    }
-    emulateServerReturn(newarray,cb);
-}
-
 //Tim function goes here
 //get book
 export function getBook(bookid,cb){
@@ -147,10 +102,7 @@ export function postBook(owner_id,pic,bookname,author,edition,isbn_10,isbn_13,pu
     cb();
   });
 }
-
 //Tim function end
-
-
 
 //leo function start
 export function addHistoryBook(bookid,userid,cb){

@@ -195,10 +195,10 @@ body {
   top: 0;
 }
 
-
-
-
-
+.textcursor a font{
+  cursor: pointer;
+  text-decoration: none;
+}
 
 .btn1 {
   color: #272727;
@@ -247,7 +247,7 @@ body {
 .btn-2:hover:before {
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
-  border-color: #7B7B7B;
+  border-color: black;
   -webkit-transition: width 350ms ease-in-out;
           transition: width 350ms ease-in-out;
   width: 70%;
@@ -257,4 +257,12 @@ body {
   bottom: auto;
   top: 0;
   width: 70%;
+}
+
+.opa{
+opacity:0.75;
+transition:opacity 1s;
+}
+.opa:hover{
+opacity:1;
 }
