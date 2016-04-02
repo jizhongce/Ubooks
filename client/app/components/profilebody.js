@@ -78,6 +78,7 @@ export default class Profilebody extends React.Component {
                     <div className="panel-body">
                       <Profileexchangebooklist data={this.props.user} />
                     </div>
+                      <button type="button" className="btn btn-success center-block">Add books</button>
                   </div>
                 </div>
               </div>
@@ -88,6 +89,7 @@ export default class Profilebody extends React.Component {
                     <div className="panel-body">
                       <Profileneedbooklist data={this.props.user} />
                     </div>
+                    <button type="button" className="btn btn-success center-block">Add books</button>
                   </div>
                 </div>
               </div>
