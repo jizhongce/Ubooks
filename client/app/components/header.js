@@ -58,26 +58,15 @@ export default class Header extends React.Component {
         <div className="row zeromargin" >
           <div className="col-md-10 col-md-offset-1 zeropadding" >
             <div className="btn-toolbar" role="toolbar">
-              <div className="btn-group pageheader1_button pull-left" role="group">
-                <Link to={"/profile"}>{<button type="button" className="btn btn-default">
-                  <span className="glyphicon glyphicon-user"></span>
-                  <font>Carter</font></button>}</Link>
-                <Link to={"/home"}>{<button type="button" className="btn btn-default">
-                  <font>Home</font>
-                </button>}</Link>
-                <Link to={"/search"}>{<button type="button" className="btn btn-default">
-                  <font>Find books</font>
-                </button>}</Link>
-                <Link to={"/post"}><button type="button" className="btn btn-default">
-                  <font>Post books</font>
-                </button></Link>
-                <Link to={"/howitwork"}>{<button type="button" className="btn btn-default">
-                  <font>Help&Contact</font>
-                </button>}</Link>
-                <Link to={"/mailbox/4"}><button type="button" className="btn btn-default">
-                  <font>MailBox</font>
-                </button></Link>
-              </div>
+              <ul className="ulstyle zeromargin">
+                <Link to={"/profile"}><li className="btn1 btn-2"><span className="glyphicon glyphicon-user"></span>Carter</li></Link>
+                <Link to={"/home"}><li className="btn1 btn-2">Home</li></Link>
+                <Link to={"/search"}><li className="btn1 btn-2">Store</li></Link>
+                <Link to={"/post"}><li className="btn1 btn-2">Post</li></Link>
+                <Link to={"/howitwork"}><li className="btn1 btn-2">Help</li></Link>
+                <Link to={"/mailbox/4"}><li className="btn1 btn-2">Mailbox</li></Link>
+              </ul>
+
               <form className="navbar-form pull-right zeropadding threemargin" role="search">
                 <div className="input-group headerinput">
                   <span className="input-group-btn search_button">
