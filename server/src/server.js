@@ -30,14 +30,17 @@ function getFeedItemSync(feedItemId) {
   return feedItem;
 }
 
-function getFeedData() {
-  var feedData = readDocument('feeds', 1);
+function getFeedData(userId) {
+  var user = readDocument('users',userId);
+  var feedData = readDocument('feeds', user.feed);
   feedData.contents = feedData.contents.map(getFeedItemSync);
   return feedData;
 }
 
-app.get('/feed',function(req,res){
-    res.send(getFeedData());
+app.get('/feed/:userId',function(req,res){
+  var userId = req.params.feedId;
+  var userIdNum = parseInt(feedId,10);
+    res.send(getFeedData(userIdNum));
 });
 
 app.get('/user/:userid',function(req,res){

@@ -19,12 +19,6 @@ function getFeedItemSync(feedItemId) {
 }
 
 
-export function getFeedData(userid, cb) {
-  sendXHR('GET','/feed',undefined,(xhr)=>{
-    cb(JSON.parse(xhr.responseText));
-  });
-}
-
 function getMailItemSync(mail) {
   var mailItem = readDocument('mailbox', mail);
   mailItem.participants = mailItem.participants.map((participant) => readDocument('users', participant));
@@ -67,6 +61,12 @@ export function getExchangebook(user, cb) {
 sendXHR('GET','/user/'+user+'/exchangebooks',undefined,(xhr)=>{
   cb(JSON.parse(xhr.responseText));
 });
+}
+
+export function getFeedData(userid, cb) {
+  sendXHR('GET','/feed/'+userid,undefined,(xhr)=>{
+    cb(JSON.parse(xhr.responseText));
+  });
 }
 
 export function getNeedbook(user, cb) {
