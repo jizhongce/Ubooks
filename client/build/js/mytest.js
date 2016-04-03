@@ -4,8 +4,10 @@ jQuery(document).ready(function() {
     var scrollpos = jQuery(window).scrollTop();
     if(scrollpos >= navO){
       jQuery("#headerbar").addClass("myfix");
+      jQuery("#headerbar").addClass("opa");
     } else {
       jQuery("#headerbar").removeClass("myfix");
+      jQuery("#headerbar").removeClass("opa");
     }
   });
 });

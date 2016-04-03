@@ -27,7 +27,7 @@ export default class Howitworkbody extends React.Component {
                       <img src="img/book-need.jpg" width="75px" height="75px" />
                     </div>
                     <div className="media-body">
-                      <br /><font size="5px;" color="black">Your books</font>
+                      <br /><b><font size="5px;">Your books</font></b>
                       <br /><Link to={"/search"}><span className="glyphicon button_smaller glyphicon-hand-right"></span> Looking for a book</Link>
                       <br /><Link to={"/post"}><span className="glyphicon button_smaller glyphicon-hand-right"></span> Try to post a book</Link>
                     </div>
@@ -39,7 +39,7 @@ export default class Howitworkbody extends React.Component {
                       <img src="img/howitwork_account_seeting.jpg" width="100px" />
                     </div>
                     <div className="media-body">
-                      <br /><font size="5px;" color="black">Account setting</font>
+                      <br /><b><font size="5px;">Account setting</font></b>
                       <br /><Link to={"/profile"}><span className="glyphicon button_smaller glyphicon-hand-right"></span> Profile setting</Link>
                       <br /><Link to={"/login"}><span className="glyphicon button_smaller glyphicon-hand-right"></span> Login information</Link>
                     </div>
