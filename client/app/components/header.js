@@ -22,7 +22,9 @@ export default class Header extends React.Component {
   }
 
   search() {
-    var trimmedTerm = this.state.searchTerm.trim();
+    var trimmedTerm = "";
+    if(this.state.searchTerm !== null)
+      trimmedTerm = this.state.searchTerm.trim();
     if (trimmedTerm !== "") {
       this.context.router.push({ pathname: "/searchresult", query: { q: trimmedTerm } });
     }

@@ -161,6 +161,18 @@ body {
   margin: 0px;
 }
 
+.headerinput button:hover,
+.headerinput button:focus,
+.headerinput button:active{
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-left:none;
+  border-color: gray;
+  background: #E6E9ED;
+  margin: 0px;
+  outline: none !important;
+}
+
 .header2background{
   margin:0px;
   background-image:url(../img/hearder.jpg);
