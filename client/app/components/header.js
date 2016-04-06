@@ -66,7 +66,7 @@ export default class Header extends React.Component {
                 <Link to={"/search"}><li className="btn1 btn-2">Store</li></Link>
                 <Link to={"/post"}><li className="btn1 btn-2">Post</li></Link>
                 <Link to={"/howitwork"}><li className="btn1 btn-2">Help</li></Link>
-                <Link to={"/mailbox/4"}><li className="btn1 btn-2">Mailbox</li></Link>
+                
               </ul>
 
               <form className="navbar-form pull-right zeropadding threemargin" role="search">
