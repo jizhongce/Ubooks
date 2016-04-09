@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
 /**
  * Emulates how a REST call is *asynchronous* -- it calls your function back
@@ -19,15 +18,6 @@ function getFeedItemSync(feedItemId) {
   return feedItem;
 }
 
-
-=======
-export function getFeedData(userid, cb) {
-  sendXHR('GET','/feed',undefined,(xhr)=>{
-    cb(JSON.parse(xhr.responseText));
-  });
-}
-
->>>>>>> d29680efb2767d474ec0e9f6eecbea44d1e79767
 function getMailItemSync(mail) {
   var mailItem = readDocument('mailbox', mail);
   mailItem.participants = mailItem.participants.map((participant) => readDocument('users', participant));

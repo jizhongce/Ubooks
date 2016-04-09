@@ -46,7 +46,7 @@ export default class Header extends React.Component {
         <div className="row header2background">
           <div id="logo" className="col-md-11 col-md-offset-1">
             <br />
-            <h2><font size="6"><img className="logo logoposition" src="../img/Logo.jpg" /></font><b><font size="13">UBooks</font></b></h2>
+            <h2><font size="6"><img className="logo logoposition" src="../img/logo_new.jpg" width="40px" /></font><b><font size="13">UBooks</font></b></h2>
             <h4>Students exchange textbook with students!</h4>
             <h4>·FAST ·EASY ·BEST</h4>
             <br />
