@@ -11,10 +11,15 @@ var validate = require('express-jsonschema').validate;
 //import the schemas
 var commentSchema = require('./schemas/comment.json');
 var bookitemSchema = require('./schemas/bookitem.json');
+var MongoDB = require('mongodb');
+var MongoClient = MongoDB.MongoClient;
+var ObjectID = MongoDB.ObjectID;
+var url = 'mongodb://localhost:27017/ubooks';
 // Imports the express Node module.
 var express = require('express');
 // Creates an Express server.
 var app = express();
+MongoClient.connect(url, function(err, db) {
 //end
 // Support receiving text in HTTP request bodies
 app.use(bodyParser.text());
@@ -40,22 +45,20 @@ function getFeedData(userId) {
 }
 
 app.get('/feed/:userId',function(req,res){
-  var userId = req.params.feedId;
-  var userIdNum = parseInt(feedId,10);
-    res.send(getFeedData(userIdNum));
+  var userId = req.params.userId;
+    res.send(getFeedData(userId));
 });
 
 app.get('/user/:userid',function(req,res){
   var userid = req.params.userid;
   var fromUser = getUserIdFromToken(req.get('Authorization'));
-  var useridNum = parseInt(userid,10);
 
-  var isUser = (fromUser === useridNum);
+  var isUser = (fromUser === userid);
   var morkupIsUser = true;
 
   if(morkupIsUser||isUser)
   {
-    var userData = readDocument('users',useridNum);
+    var userData = readDocument('users',userid);
     res.send(userData);
   }else{
     res.status(401).end();
@@ -65,14 +68,13 @@ app.get('/user/:userid',function(req,res){
 app.get('/user/:userid/exchangebooks',function(req,res){
   var userid = req.params.userid;
   var fromUser = getUserIdFromToken(req.get('Authorization'));
-  var useridNum = parseInt(userid,10);
 
-  var isUser = (fromUser === useridNum);
+  var isUser = (fromUser === userid);
   var morkupIsUser = true;
 
   if(morkupIsUser||isUser)
   {
-    var user = readDocument('users',useridNum);
+    var user = readDocument('users',userid);
     res.send(user.exchangeLists.map((bookid)=>getFeedItemSync(bookid)));
   }else{
     res.status(401).end()
@@ -82,14 +84,13 @@ app.get('/user/:userid/exchangebooks',function(req,res){
 app.get('/user/:userid/needbooks',function(req,res){
   var userid = req.params.userid;
   var fromUser = getUserIdFromToken(req.get('Authorization'));
-  var useridNum = parseInt(userid,10);
 
-  var isUser = (fromUser === useridNum);
+  var isUser = (fromUser === userid);
   var morkupIsUser = true;
 
   if(morkupIsUser||isUser)
   {
-    var user = readDocument('users',useridNum);
+    var user = readDocument('users',userid);
     res.send(user.wantLists.map((bookid)=>getFeedItemSync(bookid)));
   }else{
     res.status(401).end()
@@ -100,14 +101,13 @@ app.get('/user/:userid/needbooks',function(req,res){
 app.get('/user/:userid/mailbox',function(req,res){
   var userid = req.params.userid;
   var fromUser = getUserIdFromToken(req.get('Authorization'));
-  var useridNum = parseInt(userid,10);
 
-  var isUser = (fromUser === useridNum);
+  var isUser = (fromUser === userid);
   var morkupIsUser = true;
 
   if(morkupIsUser||isUser)
   {
-    var user = readDocument('users',useridNum);
+    var user = readDocument('users',userid);
     res.send(user.mailbox.map((mailNum)=>readDocument('mailbox',mailNum)));
   }else{
     res.status(401).end()
@@ -120,21 +120,21 @@ function getUserIdFromToken(authorizationLine) {
     var regularString = new Buffer(token, 'base64').toString('utf8');
     var tokenObj = JSON.parse(regularString);
     var id = tokenObj['id'];
-    if (typeof id === 'number') {
+    if (typeof id === 'string') {
       return id;
     } else {
       // Not a number. Return -1, an invalid ID.
-      return -1;
+      return "";
     }
   } catch (e) {
     // Return an invalid ID.
-    return -1;
+    return "";
   }
 }
 
 //Tim's function goes from here
 app.get('/book/:bookid',function(req,res){
-  var bookid = parseInt(req.params.bookid, 10);
+  var bookid = req.params.bookid;
   res.send(getFeedItemSync(bookid));
 });
 
@@ -142,7 +142,7 @@ app.get('/book/:bookid',function(req,res){
 app.put('/bookitem/:bookitemid/commentthread/comment',validate({ body: commentSchema }) ,function(req, res) {
   var fromUser = getUserIdFromToken(req.get('Authorization'));
   var body = req.body;
-  var bookitemId = parseInt(req.params.bookitemid, 10);
+  var bookitemId = req.params.bookitemid;
   var bookItem = readDocument('booksItems', bookitemId);
   if(fromUser === body.author){
     bookItem.comments.push({
@@ -217,8 +217,8 @@ function addHistoryBook(bookid,userid){
 //updata watch history
 app.put('/user/:userid/historys/:bookid', function(req, res) {
   var fromUser = getUserIdFromToken(req.get('Authorization'));
-  var userId = parseInt(req.params.userid, 10);
-  var bookId = parseInt(req.params.bookid, 10);
+  var userId = req.params.userid;
+  var bookId = req.params.bookid;
   if (fromUser === userId) {
     addHistoryBook(bookId, userId);
     res.send();
@@ -230,7 +230,7 @@ app.put('/user/:userid/historys/:bookid', function(req, res) {
 //get histroys
 app.get('/user/:userid/historys',function(req,res){
   var fromUser = getUserIdFromToken(req.get('Authorization'));
-  var userId = parseInt(req.params.userid, 10);
+  var userId = req.params.userid;
   var userData = readDocument('users', userId);
   userData.historys = userData.historys.map((history)=> readDocument('booksItems', history) );
   if (fromUser === userId) {
@@ -295,4 +295,5 @@ app.use(function(err, req, res, next) {
 
 app.listen(3000, function() {
    console.log('Example app listening on port 3000!');
+});
 });
