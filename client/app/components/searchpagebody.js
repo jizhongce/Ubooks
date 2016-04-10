@@ -56,7 +56,7 @@ export default class Searchpagebody extends React.Component {
                 <font color="black" size="3">Recommendation</font>
                 <hr className="hrcolor" />
                   {this.state.recommendation.map((feedItem) => {
-                    if(feedItem._id === 2 || feedItem._id === 4)
+                    if(feedItem._id === "000000000000000000000002" || feedItem._id === "000000000000000000000004")
                     return (
                       <Searchpagebookslist user={this.props.user} key={feedItem._id} data={feedItem} />
                     )

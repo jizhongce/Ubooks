@@ -11,7 +11,7 @@ export default class Profileexchangebooklist extends React.Component {
       exchange:[]
     };
   }
-  
+
   refresh() {
     getExchangebook(this.props.data, (book) => {
       this.setState({exchange:book});
@@ -32,7 +32,7 @@ export default class Profileexchangebooklist extends React.Component {
         <hr />
           {this.state.exchange.map((bookData,i) => {
             return (
-              <Profilepagebook key={i} user={4} book={bookData} />
+              <Profilepagebook key={i} user={"000000000000000000000004"} book={bookData} />
             )
           })}
       </div>

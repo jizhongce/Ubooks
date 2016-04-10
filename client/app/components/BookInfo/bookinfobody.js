@@ -17,7 +17,7 @@ export default class Bookinfobody extends React.Component {
 
   handleCommentPost(commentText) {
   // Post a comment as user ID 4, which is our mock user!
-  postComment(this.props.book, 4, commentText, (bookdata) => {
+  postComment(this.props.book, "000000000000000000000004", commentText, (bookdata) => {
     // Update our state to trigger a re-render.
     this.setState({book : bookdata});
   });

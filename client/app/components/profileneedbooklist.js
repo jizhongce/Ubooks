@@ -32,7 +32,7 @@ export default class Profileneedbooklist extends React.Component {
         <hr />
           {this.state.want.map((bookData,i) => {
             return (
-              <Profilepagebook key={i} user={4} book={bookData} />
+              <Profilepagebook key={i} user={"000000000000000000000004"} book={bookData} />
             )
           })}
       </div>

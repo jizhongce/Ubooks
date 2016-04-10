@@ -21,7 +21,7 @@ class SearchPage extends React.Component {
   render() {
     return (
       <div>
-        <Searchpagebody user={4}/>
+        <Searchpagebody user={"000000000000000000000004"}/>
       </div>
     );
   }
@@ -32,7 +32,7 @@ class BookPage extends React.Component {
   render() {
     return (
       <div>
-        <Bookinfobody user={4} book={this.props.params.bookid}/>
+        <Bookinfobody user={"000000000000000000000004"} book={this.props.params.bookid}/>
       </div>
     );
   }
@@ -42,7 +42,7 @@ class PostbookPage extends React.Component {
   render() {
     return (
       <div>
-        <Postbookpagebody user={4}/>
+        <Postbookpagebody user={"000000000000000000000004"}/>
       </div>
     );
   }
@@ -104,13 +104,13 @@ class loginmockup extends React.Component {
 
 class FrontPage extends React.Component {
   render() {
-    return <Frontpagebody user={4}/>;
+    return <Frontpagebody user={"000000000000000000000004"}/>;
   }
 }
 
 class PRofile extends React.Component {
   render(){
-    return <Profilebody user={4}/>;
+    return <Profilebody user={"000000000000000000000004"}/>;
   }
 }
 class otherprofile extends React.Component {
@@ -120,7 +120,7 @@ class otherprofile extends React.Component {
 }
 class HowitWork extends React.Component {
   render() {
-    return <Howitworkbody user={4} />;
+    return <Howitworkbody user={"000000000000000000000004"} />;
   }
 }
 
@@ -137,7 +137,7 @@ class SearchResultsPage extends React.Component {
   render() {
     var searchTerm = this.getSearchTerm();
     return (
-      <SearchResults key={searchTerm} user={4} searchTerm={searchTerm} />
+      <SearchResults key={searchTerm} user={"000000000000000000000004"} searchTerm={searchTerm} />
     );
   }
 }
@@ -196,7 +196,7 @@ class SearchResults extends React.Component {
                 <font color="black" size="3">Recommendation</font>
                 <hr className="hrcolor" />
                   {this.state.books.map((feedItem) => {
-                    if(feedItem._id === 2 || feedItem._id === 4)
+                    if(feedItem._id === "000000000000000000000002" || feedItem._id === "000000000000000000000004")
                     return (
                       <Searchpagebookslist user={this.props.user} key={feedItem._id} data={feedItem} />
                     )

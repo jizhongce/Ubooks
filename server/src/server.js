@@ -3,6 +3,8 @@ var readDocument = database.readDocument;
 var writeDocument = database.writeDocument;
 var addDocument = database.addDocument;
 var getCollection = database.getCollection;
+var mongo_express = require('mongo-express/lib/middleware');
+var mongo_express_config = require('mongo-express/config.default.js');
 //import the body parser
 var bodyParser = require('body-parser');
 var validate = require('express-jsonschema').validate;
@@ -18,8 +20,8 @@ var app = express();
 app.use(bodyParser.text());
 // Support receiving JSON in HTTP request bodies
 app.use(bodyParser.json());
-
 app.use(express.static('../client/build'));
+app.use('/mongo_express',mongo_express(mongo_express_config));
 
 function getFeedItemSync(feedItemId) {
   var feedItem = readDocument('booksItems', feedItemId);

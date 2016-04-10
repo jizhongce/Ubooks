@@ -10,7 +10,7 @@ export default class Postbookforms extends React.Component{
     constructor(props) {
        super(props);
        this.state = {
-         owner_id: 4,
+         owner_id: "000000000000000000000004",
          pic_value: '../img/book1.jpg',
          bookname_value:'',
          bookname_flag: false,
@@ -179,7 +179,7 @@ export default class Postbookforms extends React.Component{
       if(!this.checkvalue(bookname)&&!this.checkvalue(author)&&!this.checkvalue(edition)&&!this.checkvalue(isbn_10)&&!this.checkvalue(isbn_13)&&!this.checkvalue(publisher)&&!this.checkvalue(publish_date)&&!this.checkvalue(list_price)&&!this.checkvalue(condition)&&!this.checkvalue(highlight)&&!this.checkvalue(notes)&&!this.checkvalue(description)){
         postBook(owner_id,pic,bookname,author,edition,isbn_10,isbn_13,publisher,publish_date,list_price,condition,highlight,notes,description,location,()=>{});
         this.setState({
-          owner_id: 4,
+          owner_id: "000000000000000000000004",
           pic_value: '../img/book1.jpg',
           bookname_value:'',
           bookname_flag: false,

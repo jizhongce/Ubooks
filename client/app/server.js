@@ -134,7 +134,7 @@ export function myfilter(searchTerm, cb){
 
 // here is the error handle function
 //Do not change anything here
-var token = 'eyJpZCI6NH0='; // <-- Put your base64'd JSON token here
+var token ='eyJpZCI6IjAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwNCJ9'; // <-- Put your base64'd JSON token here
 /**
  * Properly configure+send an XMLHttpRequest with error handling, authorization token,
  * and other needed properties.
