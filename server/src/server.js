@@ -17,6 +17,7 @@ var ObjectID = MongoDB.ObjectID;
 var url = 'mongodb://localhost:27017/ubooks';
 // Imports the express Node module.
 var express = require('express');
+var ResetDatabase = require('./resetdatabase');
 // Creates an Express server.
 var app = express();
 MongoClient.connect(url, function(err, db) {
@@ -28,20 +29,111 @@ app.use(bodyParser.json());
 app.use(express.static('../client/build'));
 app.use('/mongo_express',mongo_express(mongo_express_config));
 
-function getFeedItemSync(feedItemId) {
-  var feedItem = readDocument('booksItems', feedItemId);
-  feedItem.owner_id = readDocument('users',feedItem.owner_id);
-  feedItem.comments.forEach((comment) => {
-    comment.author = readDocument('users', comment.author);
+
+function resolveUserObjects(userList,callback){
+  if(userList.length===0){
+    callback(null,{});
+  }else{
+    var query = {
+      $or:userList.map((id)=>{return {_id:id}})
+    };
+    db.collection('users').find(query).toArray(function(err,users){
+      if(err){
+        return callback(err);
+      }
+      var userMap = {};
+      users.forEach((user)=>{
+        userMap[user._id]=user;
+      });
+      callback(null,userMap);
+    });
+  }
+}
+// function getFeedItemSync(feedItemId) {
+//   var feedItem = readDocument('booksItems', feedItemId);
+//   feedItem.owner_id = readDocument('users',feedItem.owner_id);
+//   feedItem.comments.forEach((comment) => {
+//     comment.author = readDocument('users', comment.author);
+//   });
+//   return feedItem;
+// }
+
+function getFeedItem(feedItemId,callback){
+  db.collection('bookItems').findOne({
+    _id:feedItemId
+  },function(err,feedItem){
+    if(err){
+      return callback(err);
+    }else if(feedItem === null){
+      return callback(null,null);
+    }
+
+    var userList = [feedItem.owner_id];
+    feedItem.comments.forEach((comment)=>userList.push(comment.author));
+
+    resolveUserObjects(userList,function(err,userMap){
+      if(err){
+        return callback(err);
+      }
+      feedItem.owner_id = userMap[feedItem.owner_id];
+      feedItem.comments.forEach((comment)=>{
+        comment.author=userMap[comment.author];
+      });
+      callback(null,feedItem);
+    });
   });
-  return feedItem;
 }
 
-function getFeedData(userId) {
-  var user = readDocument('users',userId);
-  var feedData = readDocument('feeds', user.feed);
-  feedData.contents = feedData.contents.map(getFeedItemSync);
-  return feedData;
+// function getFeedData(userId) {
+//   var user = readDocument('users',userId);
+//   var feedData = readDocument('feeds', user.feed);
+//   feedData.contents = feedData.contents.map(getFeedItemSync);
+//   return feedData;
+// }
+
+function getFeedData(user,callback){
+  db.collection('users').findOne({
+    _id:user
+  },function(err,userData){
+    if(err){
+      return callback(err);
+    }else if(userData === null){
+      return callback(null,null);
+    }
+
+    db.collection('feeds').findOne({
+      _id:userData.feed
+    },function(err,feedData){
+      if(err){
+        return callback(err);
+      }else if (feedData===null){
+        return callback(null,null);
+      }
+      var resolvedContents = [];
+
+      function processNextFeedItem(i){
+        getFeedItem(feedData.contents[i],function(err,feedItem){
+          if(err){
+            callback(err);
+          }else{
+            resolvedContents.push(feedItem);
+            if(resolvedContents.length===feedData.contents.length){
+              feedData.contents = resolvedContents;
+              callback(null,feedData);
+            }else{
+              processNextFeedItem(i+1);
+            }
+          }
+        });
+      }
+
+      if(feedData.contents.length===0){
+        callback(null,feedData);
+      }else{
+        processNextFeedItem(0);
+      }
+    });
+  });
 }
 
 app.get('/feed/:userId',function(req,res){
@@ -271,8 +363,9 @@ app.get('/bookscollcetion/:searchTerm',function(req,res){
 
 app.post('/resetdb', function(req, res) {
   console.log("Resetting database...");
-  database.resetDatabase();
-  res.send();
+  ResetDatabase(db,function(){
+    res.send();
+  });
 });
 
 
