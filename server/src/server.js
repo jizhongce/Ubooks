@@ -58,6 +58,10 @@ function resolveUserObjects(userList,callback){
 //   return feedItem;
 // }
 
+function sendDatabaseError(res, err) {
+    res.status(500).send("A database error occurred: " + err);
+  }
+
 function getFeedItem(feedItemId,callback){
   db.collection('bookItems').findOne({
     _id:feedItemId
@@ -309,8 +313,8 @@ function addHistoryBook(bookid,userid){
 //updata watch history
 app.put('/user/:userid/historys/:bookid', function(req, res) {
   var fromUser = getUserIdFromToken(req.get('Authorization'));
-  var userId = req.params.userid;
-  var bookId = req.params.bookid;
+  var userId = parseInt(req.params.userid, 10);
+  var bookId = parseInt(req.params.bookid, 10);
   if (fromUser === userId) {
     addHistoryBook(bookId, userId);
     res.send();
@@ -319,42 +323,98 @@ app.put('/user/:userid/historys/:bookid', function(req, res) {
   }
 });
 
+function simplereslovebooksitems(callback){
+  db.collection('booksItems').find({}).toArray(function(err, books) {
+    if (err) {
+      return callback(err);
+    }
+    var bookMap = {};
+    books.forEach((book) => {
+      bookMap[book._id] = book;
+    });
+    callback(null, bookMap);
+  });
+}
+
+function simpleresloveallusers(callback){
+  db.collection('users').find({}).toArray(function(err, users) {
+    if (err) {
+      return callback(err);
+    }
+    var userMap = {};
+    users.forEach((user) => {
+      userMap[user._id] = user;
+    });
+    callback(null, userMap);
+  });
+}
+
 //get histroys
 app.get('/user/:userid/historys',function(req,res){
   var fromUser = getUserIdFromToken(req.get('Authorization'));
   var userId = req.params.userid;
-  var userData = readDocument('users', userId);
-  userData.historys = userData.historys.map((history)=> readDocument('booksItems', history) );
   if (fromUser === userId) {
-    res.send(userData.historys);
+    userId = new ObjectID(userId);
+    db.collection('users').findOne({_id:userId},function(err,userData){
+      if (err) {
+        return sendDatabaseError(res, err);
+      }
+      simplereslovebooksitems(function(err,bookMap){
+        if (err) {
+          return sendDatabaseError(res, err);
+        }
+        res.send(userData.historys.map((historyid)=>bookMap[historyid]));
+      });
+    });
   } else {
     res.status(401).end();
   }
 });
 
-function getbookitemcollection(){
-  var collection = getCollection('booksItems');
-  var bookarray = [];
-  for(var i = 1; collection[i]; i++){
-    bookarray.push(getFeedItemSync(collection[i]._id));
-  }
-  return bookarray;
-}
-
 //get books collection
 app.get('/bookscollcetion',function(req,res){
-  res.send(getbookitemcollection());
+  db.collection('booksItems').find({}).toArray(function(err,bookarray){
+    if (err) {
+      return sendDatabaseError(res, err);
+    }
+    simpleresloveallusers(function(err,userMap){
+      if (err) {
+        return sendDatabaseError(res, err);
+      }
+      for(var i = 0; i < bookarray.length; i++){
+        bookarray[i].owner_id = userMap[bookarray[i].owner_id];
+        bookarray[i].comments.forEach((comment)=>{comment.author = userMap[comment.author]});
+      }
+      res.send(bookarray);
+    });
+  });
 });
 
 //filter
 app.get('/bookscollcetion/:searchTerm',function(req,res){
-  var mysearch = req.params.searchTerm;
-  mysearch = mysearch.toLowerCase();
-  var collection = getbookitemcollection();
-  var result = collection.filter((bookitem)=>{
-    return bookitem.bookname.toLowerCase().indexOf(mysearch) !== -1;
+  var mysearch = req.params.searchTerm.toLowerCase;
+  db.collection('booksItems').find({}).toArray(function(err, collection){
+    if (err) {
+      return sendDatabaseError(res, err);
+    }
+    for(var i = 1; collection[i]; i++){
+      var ownerid = new ObjectID(collection[i].owner_id);
+      collection[i].owner_id = db.collection('users').findOne({_id:ownerid});
+      collection[i].comments.forEach((comment) => {
+        var authorid = new ObjectID(comment.author);
+        comment.author = db.collection('users').findOne({_id:authorid});
+      });
+    }
+    var result = collection.filter((bookitem)=>{
+      return bookitem.bookname.toLowerCase().indexOf(mysearch) !== -1;
+    });
+    res.send(result);
   });
-  res.send(result);
+  // var collection = getbookitemcollection();
+  // var result = collection.filter((bookitem)=>{
+  //   return bookitem.bookname.toLowerCase().indexOf(mysearch) !== -1;
+  // });
+  // res.send(result);
 });
 //Leo's http runction end here
 

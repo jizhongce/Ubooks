@@ -42,7 +42,7 @@ var initialData = {"users": {
       "feed":new ObjectID("000000000000000000000001"),
       "pic":"img/Carter.jpg",
       "mailbox":[new ObjectID("000000000000000000000004")],
-      "historys": []
+      "historys": [new ObjectID("000000000000000000000004")]
     }
   },
   //books
