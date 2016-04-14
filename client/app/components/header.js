@@ -48,7 +48,7 @@ export default class Header extends React.Component {
         <div className="row header2background">
           <div id="logo" className="col-md-11 col-md-offset-1">
             <br />
-            <img  src="../img/logot2.png" width="390px"/>
+            <img  src="./img/logot2.png" width="390px"/>
             <h4>Students exchange textbook with students!</h4>
             <h4>·FAST ·EASY ·BEST</h4>
             <br />
@@ -112,7 +112,12 @@ export default class Header extends React.Component {
         </div>
       </div>
 
-
+      <div className="btn-group-vertical rightbuttonbar" role="group">
+        <Link to={"/home"}><button id="gohome" className="btn rightbuttonbar_button" type="button"><span className="glyphicon glyphicon-home"></span><br/><b>HOME</b></button></Link>
+        <button id="playbmusic" className="btn hidden rightbuttonbar_button" type="button"><span className="glyphicon glyphicon-music"></span><br/><b>OFF</b></button>
+        <button id="pausebmusic" className="btn rightbuttonbar_button" type="button"><span className="glyphicon glyphicon-music"></span><br/><b>ON</b></button>
+        <button id="gotop" className="btn rightbuttonbar_button" type="button"><span className="glyphicon glyphicon-chevron-up"></span><br/><b>TOP</b></button>
+      </div>
     </div>
     )
   }
