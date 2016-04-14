@@ -124,11 +124,6 @@ function getFeedData(user,callback){
   });
 }
 
-function sendDatabaseError(res,err){
-  res.status(500).send("A database error occurred: "+err);
-}
-
-
 app.get('/feed/:userId',function(req,res){
   var userId = req.params.userId;
     res.send(getFeedData(userId));
