@@ -271,6 +271,10 @@ body {
   width: 70%;
 }
 
+.zeroopa{
+  opacity: 0;
+}
+
 .opa{
 opacity:0.75;
 transition:opacity 1s;

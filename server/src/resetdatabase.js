@@ -42,7 +42,7 @@ var initialData = {"users": {
       "feed":new ObjectID("000000000000000000000001"),
       "pic":"img/Carter.jpg",
       "mailbox":[new ObjectID("000000000000000000000004")],
-      "historys": [new ObjectID("000000000000000000000004")]
+      "historys": []
     }
   },
   //books
@@ -229,6 +229,10 @@ var initialData = {"users": {
     }
   }};
 
+  function addIndexes(db, cb) {
+    db.collection('booksItems').createIndex({ "bookname": "text" }, null, cb);
+  }
+
   /**
    * Resets a collection.
    */
@@ -265,7 +269,7 @@ var initialData = {"users": {
         // Use myself as a callback.
         resetCollection(db, collection, processNextCollection);
       } else {
-        cb();
+        addIndexes(db,cb);
       }
     }
 

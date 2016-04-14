@@ -2,7 +2,6 @@ var database = require('./database');
 var readDocument = database.readDocument;
 var writeDocument = database.writeDocument;
 var addDocument = database.addDocument;
-var getCollection = database.getCollection;
 var mongo_express = require('mongo-express/lib/middleware');
 var mongo_express_config = require('mongo-express/config.default.js');
 //import the body parser
@@ -49,14 +48,6 @@ function resolveUserObjects(userList,callback){
     });
   }
 }
-// function getFeedItemSync(feedItemId) {
-//   var feedItem = readDocument('booksItems', feedItemId);
-//   feedItem.owner_id = readDocument('users',feedItem.owner_id);
-//   feedItem.comments.forEach((comment) => {
-//     comment.author = readDocument('users', comment.author);
-//   });
-//   return feedItem;
-// }
 
 function sendDatabaseError(res, err) {
     res.status(500).send("A database error occurred: " + err);
@@ -87,13 +78,6 @@ function getFeedItem(feedItemId,callback){
     });
   });
 }
-
-// function getFeedData(userId) {
-//   var user = readDocument('users',userId);
-//   var feedData = readDocument('feeds', user.feed);
-//   feedData.contents = feedData.contents.map(getFeedItemSync);
-//   return feedData;
-// }
 
 function getFeedData(user,callback){
   db.collection('users').findOne({
@@ -292,37 +276,44 @@ app.post('/bookitem/',validate({ body: bookitemSchema}), function(req, res){
 
 //Tim's function ends here
 
-//Leo's http function start here
-//add watch history
-function addHistoryBook(bookid,userid){
-  var userData = readDocument('users', userid);
-  var add = true;
-  for (var i = 0; i < userData.historys.length; i++) {
-    if(userData.historys[i] === bookid)
-      add = false;
-    }
-  if(add){
-    if(userData.historys.length > 2){
-      userData.historys.splice(0, 1);
-    }
-    userData.historys.push(bookid);
-  }
-  writeDocument('users', userData);
-}
-
+//Leo's http function start here-----------------------------------------------
 //updata watch history
 app.put('/user/:userid/historys/:bookid', function(req, res) {
   var fromUser = getUserIdFromToken(req.get('Authorization'));
-  var userId = parseInt(req.params.userid, 10);
-  var bookId = parseInt(req.params.bookid, 10);
+  var userId = req.params.userid;
+  var bookId = new ObjectID(req.params.bookid);
   if (fromUser === userId) {
-    addHistoryBook(bookId, userId);
-    res.send();
+    userId = new ObjectID(userId);
+    db.collection('users').findOne({_id:userId},function(err,user){
+      if (err) {
+        return sendDatabaseError(res, err);
+      } else if (user === null) {
+        return res.status(400).end();
+      }
+      for(var i=0;i<user.historys.length;i++){
+        if(bookId === user.historys[i])
+          res.send();
+      }
+      db.collection('users').updateOne({_id:userId}, {
+        $push:{
+          historys:{
+            $each:[bookId],
+            $slice:-3
+          }
+        }
+      },function(err){
+        if (err) {
+          return sendDatabaseError(res, err);
+        }
+        res.send();
+      });
+    });
   } else {
     res.status(401).end();
   }
 });
 
+//resolve all booksitems
 function simplereslovebooksitems(callback){
   db.collection('booksItems').find({}).toArray(function(err, books) {
     if (err) {
@@ -336,6 +327,7 @@ function simplereslovebooksitems(callback){
   });
 }
 
+//resolve all user
 function simpleresloveallusers(callback){
   db.collection('users').find({}).toArray(function(err, users) {
     if (err) {
@@ -349,7 +341,7 @@ function simpleresloveallusers(callback){
   });
 }
 
-//get histroys
+//get watch histroys
 app.get('/user/:userid/historys',function(req,res){
   var fromUser = getUserIdFromToken(req.get('Authorization'));
   var userId = req.params.userid;
@@ -358,6 +350,8 @@ app.get('/user/:userid/historys',function(req,res){
     db.collection('users').findOne({_id:userId},function(err,userData){
       if (err) {
         return sendDatabaseError(res, err);
+      } else if (userData === null) {
+        return res.status(400).end();
       }
       simplereslovebooksitems(function(err,bookMap){
         if (err) {
@@ -392,34 +386,22 @@ app.get('/bookscollcetion',function(req,res){
 
 //filter
 app.get('/bookscollcetion/:searchTerm',function(req,res){
-  var mysearch = req.params.searchTerm.toLowerCase;
-  db.collection('booksItems').find({}).toArray(function(err, collection){
-    if (err) {
-      return sendDatabaseError(res, err);
-    }
-    for(var i = 1; collection[i]; i++){
-      var ownerid = new ObjectID(collection[i].owner_id);
-      collection[i].owner_id = db.collection('users').findOne({_id:ownerid});
-      collection[i].comments.forEach((comment) => {
-        var authorid = new ObjectID(comment.author);
-        comment.author = db.collection('users').findOne({_id:authorid});
-      });
-    }
-    var result = collection.filter((bookitem)=>{
-      return bookitem.bookname.toLowerCase().indexOf(mysearch) !== -1;
+  var mysearch = req.params.searchTerm;
+  var reg = new RegExp(mysearch, "i");
+  db.collection('booksItems').find({bookname:{$regex:reg}}).toArray(function(err,bookarray){
+    simpleresloveallusers(function(err,userMap){
+      if (err) {
+        return sendDatabaseError(res, err);
+      }
+      for(var i = 0; i < bookarray.length; i++){
+        bookarray[i].owner_id = userMap[bookarray[i].owner_id];
+        bookarray[i].comments.forEach((comment)=>{comment.author = userMap[comment.author]});
+      }
+      res.send(bookarray);
     });
-    res.send(result);
   });
-  // var collection = getbookitemcollection();
-  // var result = collection.filter((bookitem)=>{
-  //   return bookitem.bookname.toLowerCase().indexOf(mysearch) !== -1;
-  // });
-  // res.send(result);
 });
-//Leo's http runction end here
-
-
-
+//Leo's http runction end here-------------------------------------------------
 
 app.post('/resetdb', function(req, res) {
   console.log("Resetting database...");
@@ -427,8 +409,6 @@ app.post('/resetdb', function(req, res) {
     res.send();
   });
 });
-
-
 
 /**
 ......................Add all function before this line .........................................................
@@ -443,8 +423,6 @@ app.use(function(err, req, res, next) {
     next(err);
   }
 });
-
-
 
 app.listen(3000, function() {
    console.log('Example app listening on port 3000!');
