@@ -124,6 +124,11 @@ function getFeedData(user,callback){
   });
 }
 
+function sendDatabaseError(res,err){
+  res.status(500).send("A database error occurred: "+err);
+}
+
+
 app.get('/feed/:userId',function(req,res){
   var userId = req.params.userId;
     res.send(getFeedData(userId));
@@ -138,8 +143,17 @@ app.get('/user/:userid',function(req,res){
 
   if(morkupIsUser||isUser)
   {
-    var userData = readDocument('users',userid);
-    res.send(userData);
+    // var userData = readDocument('users',userid);
+    // res.send(userData);
+    db.collection('users').findOne({_id:userid},function(err,userObj){
+      if(err){
+        return sendDatabaseError(res,err);
+      }else if(userObj===null){
+        res.status(400).send("Could not find this user "+userid);
+      }else{
+      res.send(userObj);
+    }
+  });
   }else{
     res.status(401).end();
   }
@@ -154,8 +168,23 @@ app.get('/user/:userid/exchangebooks',function(req,res){
 
   if(morkupIsUser||isUser)
   {
-    var user = readDocument('users',userid);
-    res.send(user.exchangeLists.map((bookid)=>getFeedItemSync(bookid)));
+    // var user = readDocument('users',userid);
+    // res.send(user.exchangeLists.map((bookid)=>getFeedItemSync(bookid)));
+db.collection('users').findOne({_id:userid},function(err,userObj){
+  if(err){
+    return sendDatabaseError(res,err);
+  }else if (userObj===null){
+      res.status(400).send("Could not find this user "+userid);
+  }else{
+    res.send(userObj.exchangeLists.map((bookid)=>getFeedItem(bookid,function(err,bookItem){
+      if(err){
+        return sendDatabaseError(res,err);
+      }
+      return bookItem;
+    })
+  ));
+  }
+});
   }else{
     res.status(401).end()
   }
@@ -170,13 +199,40 @@ app.get('/user/:userid/needbooks',function(req,res){
 
   if(morkupIsUser||isUser)
   {
-    var user = readDocument('users',userid);
-    res.send(user.wantLists.map((bookid)=>getFeedItemSync(bookid)));
-  }else{
-    res.status(401).end()
-  }
-});
+    db.collection('users').findOne({_id:userid},function(err,userObj){
+      if(err){
+        return sendDatabaseError(res,err);
+      }else if (userObj===null){
+          res.status(400).send("Could not find this user "+userid);
+      }else{
+        res.send(userObj.wantLists.map((bookid)=>getFeedItem(bookid,function(err,bookItem){
+          if(err){
+            return sendDatabaseError(res,err);
+          }
+          return bookItem;
+        })
+      ));
+      }
+    });
+      }else{
+        res.status(401).end()
+      }
+    });
 
+
+    function getMailItem(mailId,callback){
+      db.collection('mailbox').findOne({
+        _id:mailId
+      },function(err,mailItem){
+        if(err){
+          return callback(err);
+        }else if(mailItem === null){
+          return callback(null,null);
+        }else{
+          return callback(null,mailItem);
+        }
+      });
+    }
 
 app.get('/user/:userid/mailbox',function(req,res){
   var userid = req.params.userid;
@@ -187,8 +243,23 @@ app.get('/user/:userid/mailbox',function(req,res){
 
   if(morkupIsUser||isUser)
   {
-    var user = readDocument('users',userid);
-    res.send(user.mailbox.map((mailNum)=>readDocument('mailbox',mailNum)));
+    // var user = readDocument('users',userid);
+    // res.send(user.mailbox.map((mailNum)=>readDocument('mailbox',mailNum)));
+    db.collection('users').findOne({_id:userid},function(err,userObj){
+      if(err){
+        return sendDatabaseError(res,err);
+      }else if (userObj===null){
+          res.status(400).send("Could not find this user "+userid);
+      }else{
+        res.send(userObj.mailbox.map((mailid)=>getMailItem(mailid,function(err,mailItem){
+          if(err){
+            return sendDatabaseError(res,err);
+          }
+          return mailItem;
+        })
+      ));
+      }
+    });
   }else{
     res.status(401).end()
   }
