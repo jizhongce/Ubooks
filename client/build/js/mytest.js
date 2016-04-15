@@ -1,8 +1,5 @@
 jQuery(document).ready(function() {
   var navO = jQuery("#headerbar").offset().top;
-  jQuery("#hideheaderbar").addClass("hidden");
-  jQuery("#hideheaderbar").addClass("zeroopa");
-
 
   jQuery(window).scroll(function(){
     var scrollpos = jQuery(window).scrollTop();

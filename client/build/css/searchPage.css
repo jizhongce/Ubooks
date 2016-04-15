@@ -317,3 +317,9 @@ opacity:1;
   color: #0080FF;
   text-shadow: none;
 }
+.rightbuttonbar_span{
+  color: black;
+}
+.rightbuttonbar_span:hover{
+  color: #0080FF;
+}

@@ -44,18 +44,6 @@ export default class Header extends React.Component {
   render() {
     return (
     <div>
-      <div className="page-header pageheader2">
-        <div className="row header2background">
-          <div id="logo" className="col-md-11 col-md-offset-1">
-            <br />
-            <img  src="./img/logot2.png" width="390px"/>
-            <h4>Students exchange textbook with students!</h4>
-            <h4>·FAST ·EASY ·BEST</h4>
-            <br />
-          </div>
-        </div>
-      </div>
-
       <div id="headerbar" className="page-header pageheader1">
         <div className="row zeromargin" >
           <div className="col-md-10 col-md-offset-1 zeropadding" >
@@ -66,7 +54,6 @@ export default class Header extends React.Component {
                 <Link to={"/search"}><li className="btn1 btn-2">Store</li></Link>
                 <Link to={"/post"}><li className="btn1 btn-2">Post</li></Link>
                 <Link to={"/howitwork"}><li className="btn1 btn-2">Help</li></Link>
-
               </ul>
 
               <form className="navbar-form pull-right zeropadding threemargin" role="search">
@@ -84,7 +71,7 @@ export default class Header extends React.Component {
         </div>
       </div>
 
-      <div id="hideheaderbar" className="page-header pageheader1">
+      <div id="hideheaderbar" className="page-header pageheader1 hidden zeroopa">
         <div className="row zeromargin" >
           <div className="col-md-10 col-md-offset-1 zeropadding" >
             <div className="btn-toolbar" role="toolbar">
@@ -94,7 +81,6 @@ export default class Header extends React.Component {
                 <Link to={"/search"}><li className="btn1 btn-2">Store</li></Link>
                 <Link to={"/post"}><li className="btn1 btn-2">Post</li></Link>
                 <Link to={"/howitwork"}><li className="btn1 btn-2">Help</li></Link>
-
               </ul>
 
               <form id="hideform" className="navbar-form pull-right zeropadding threemargin" role="search">
@@ -113,10 +99,10 @@ export default class Header extends React.Component {
       </div>
 
       <div className="btn-group-vertical rightbuttonbar" role="group">
-        <Link to={"/home"}><button id="gohome" className="btn rightbuttonbar_button" type="button"><span className="glyphicon glyphicon-home"></span><br/><b>HOME</b></button></Link>
-        <button id="playbmusic" className="btn hidden rightbuttonbar_button" type="button"><span className="glyphicon glyphicon-music"></span><br/><b>OFF</b></button>
-        <button id="pausebmusic" className="btn rightbuttonbar_button" type="button"><span className="glyphicon glyphicon-music"></span><br/><b>ON</b></button>
-        <button id="gotop" className="btn rightbuttonbar_button" type="button"><span className="glyphicon glyphicon-chevron-up"></span><br/><b>TOP</b></button>
+        <button id="gohome" className="btn rightbuttonbar_button" type="button"><Link to={"/home"}><span className="glyphicon glyphicon-home rightbuttonbar_span"><br/><b>HOME</b></span></Link></button>
+        <button id="playbmusic" className="btn hidden rightbuttonbar_button" type="button"><span className="glyphicon glyphicon-music"><br/><b>OFF</b></span></button>
+        <button id="pausebmusic" className="btn rightbuttonbar_button" type="button"><span className="glyphicon glyphicon-music"><br/><b>ON</b></span></button>
+        <button id="gotop" className="btn rightbuttonbar_button" type="button"><span className="glyphicon glyphicon-chevron-up"><br/><b>TOP</b></span></button>
       </div>
     </div>
     )
