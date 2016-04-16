@@ -324,11 +324,28 @@ opacity:1;
   color: #0080FF;
 }
 
+.welcomeh2{
+  display: none;
+  color: white;
+  text-shadow: none;
+
+}
+.mytestdiv{
+  width: 500px;
+  height: 150px;
+  padding: 0px;
+  margin: 0px;
+  position: absolute;
+  top:30%;
+  left:33%;
+  text-align:center;
+}
 .startbutton{
+  display: none;
   position: absolute;
   width: 100px;
-  height: 100px;
-  color: white;
+  height: 150px;
+  color: #2894FF;
   font-size: 30px;
   top:75%;
   left:47%;
@@ -336,21 +353,17 @@ opacity:1;
   padding: 0px;
   background: transparent;
   text-shadow: none;
+  font-weight: 800;
 }
-.startbutton:hover{
+.startbutton:hover,
+.startbutton:active,
+.startbutton:focus,
+.startbutton:visited{
   font-size: 30px;
-  color:#0080FF;
+  color:#0072E3;
   border: none;
   padding: 0px;
   background: transparent;
   text-shadow: none;
-}
-
-.welcomeh2{
-  position: absolute;
-  color: white;
-  top:30%;
-  left:34%;
-  text-shadow: none;
-  text-align:center;
+  outline: none;
 }

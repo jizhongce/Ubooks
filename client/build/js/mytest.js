@@ -1,11 +1,23 @@
 jQuery(document).ready(function() {
   var wheight = jQuery(window).height();
+  var wwidth = jQuery(window).width();
+  var position1 = (wwidth-500)/2*100/wwidth;
+  var position2 = (wwidth-100)/2*100/wwidth;
+
   jQuery("#hellopic").height(wheight);
+  jQuery("#hellomsg").css("left",position1 + "%");
+  jQuery("#startbtn").css("left",position2 + "%");
+  setTimeout(function(){jQuery("#fontin").fadeIn(4000);},1000);
+  setTimeout(function(){jQuery("#startbtn").fadeIn(3000);},2500);
+
   var navO = jQuery("#headerbar").offset().top;
   var navtop = jQuery("#fixheader").offset().top;
 
   jQuery(window).scroll(function(){
     var scrollpos = jQuery(window).scrollTop();
+    if(scrollpos < navtop){
+      jQuery("#bodyid").animate({scrollTop: navtop}, 500);
+    }
     if(scrollpos >= (navO)){
       jQuery("#headerbar").addClass("myfix");
       jQuery("#headerbar").addClass("opa");
@@ -36,5 +48,4 @@ jQuery(document).ready(function() {
     jQuery("#bodyid").animate({scrollTop: navtop}, 200);
     return false;
   });
-
 });
