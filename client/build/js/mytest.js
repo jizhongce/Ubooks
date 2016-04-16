@@ -1,5 +1,8 @@
 jQuery(document).ready(function() {
+  var wheight = jQuery(window).height();
+  jQuery("#hellopic").height(wheight);
   var navO = jQuery("#headerbar").offset().top;
+  var navtop = jQuery("#fixheader").offset().top;
 
   jQuery(window).scroll(function(){
     var scrollpos = jQuery(window).scrollTop();
@@ -26,7 +29,12 @@ jQuery(document).ready(function() {
   });
 
   jQuery("#gotop").click(function(){
-    jQuery("#bodyid").animate({scrollTop: 0}, 300);
+    jQuery("#bodyid").animate({scrollTop: navtop}, 300);
     return false;
   });
+  jQuery("#startbtn").click(function(){
+    jQuery("#bodyid").animate({scrollTop: navtop}, 200);
+    return false;
+  });
+
 });
