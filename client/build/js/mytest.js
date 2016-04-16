@@ -1,14 +1,15 @@
 jQuery(document).ready(function() {
   var wheight = jQuery(window).height();
+  jQuery("#hellopic").height(wheight);
+
   var wwidth = jQuery(window).width();
   var position1 = (wwidth-500)/2*100/wwidth;
   var position2 = (wwidth-100)/2*100/wwidth;
-
-  jQuery("#hellopic").height(wheight);
   jQuery("#hellomsg").css("left",position1 + "%");
   jQuery("#startbtn").css("left",position2 + "%");
-  setTimeout(function(){jQuery("#fontin").fadeIn(4000);},1000);
-  setTimeout(function(){jQuery("#startbtn").fadeIn(3000);},2500);
+
+  setTimeout(function(){jQuery("#fontin").fadeIn(4000);},500);
+  setTimeout(function(){jQuery("#startbtn").fadeIn(3000);},2000);
 
   var navO = jQuery("#headerbar").offset().top;
   var navtop = jQuery("#fixheader").offset().top;

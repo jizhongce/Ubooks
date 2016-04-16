@@ -347,7 +347,7 @@ opacity:1;
   height: 150px;
   color: #2894FF;
   font-size: 30px;
-  top:75%;
+  top:76%;
   left:47%;
   border: none;
   padding: 0px;
@@ -366,4 +366,7 @@ opacity:1;
   background: transparent;
   text-shadow: none;
   outline: none;
+}
+.mytestspan{
+  font-size: 50px;
 }
