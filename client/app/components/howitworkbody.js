@@ -10,7 +10,7 @@ export default class Howitworkbody extends React.Component {
           <div className="panel panel-default">
             <div className="panel-body backgroundpic" >
               <div className="text textlocat"><b><font>How it work?</font></b></div>
-              <hr className="hrcolor"/>
+              <hr className="vin_hr"/>
               <div className="col-md-10 col-md-offset-1">
               <font className="blackfont">It is a free service website for college students called “UBooks”, which may just provide service for UMass students in the beginning for testing. Not only could it help students to deal with the used textbook which they do not need any more, but also give the a solution how to get used textbook from the students who are in the same university. UMass students can sign up an account for UBooks, and then they can post the information about the books which they try to sell or exchange.</font>
               <br /><font className="blackfont" size="4px;">On our UBooks website, we don’t do the transaction, instead we will provide all the contact information for the buyer, so that they can trade in person or by mail or leave message in their UBooks account.</font>
@@ -18,7 +18,7 @@ export default class Howitworkbody extends React.Component {
             </div>
             <div className="panel-footer">
               <div className="text textlocat"><b><font size="5px;">What can help you with?</font></b></div>
-              <hr className="hrcolor" />
+              <hr className="vin_hr" />
               <div className="row">
                 <div className="col-md-5 col-md-offset-2">
                   <div className="media">
@@ -46,7 +46,7 @@ export default class Howitworkbody extends React.Component {
                   </div>
                 </div>
               </div>
-              <hr className="hrcolor"/>
+              <hr className="vin_hr"/>
               <div className="row zeromarginbotton">
                 <div className="col-md-6">
                   <pre className="prestyle"></pre>
