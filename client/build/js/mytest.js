@@ -7,7 +7,7 @@ jQuery(document).ready(function() {
   var position2 = (wwidth-110)/2*100/wwidth;
   var position3 = (wwidth-300)/2*100/wwidth;
   var position4 = (wwidth-40)/2*100/wwidth;
-  var hrposition = (wwidth-650)/2*100/wwidth;
+  var hrposition = (wwidth-610)/2*100/wwidth;
   jQuery("#hellomsg").css("left",position1 + "%");
   jQuery("#startbtn").css("left",position2 + "%");
   jQuery("#fastdiv").css("left",position3 + "%");
@@ -15,7 +15,7 @@ jQuery(document).ready(function() {
   jQuery("#hellohr").css("left",hrposition + "%");
 
   setTimeout(function(){jQuery("#fontin").fadeIn(4000);},500);
-  setTimeout(function(){jQuery("#fast").fadeIn(3000);},2000);
+  setTimeout(function(){jQuery("#fast").fadeIn(3500);},2000);
   setTimeout(function(){jQuery("#startbtn").fadeIn(3000);},3500);
 setTimeout(function(){jQuery("#downspan").fadeIn(3000);},3500);
 
@@ -57,4 +57,9 @@ setTimeout(function(){jQuery("#downspan").fadeIn(3000);},3500);
     jQuery("#bodyid").animate({scrollTop: navtop}, 200);
     return false;
   });
+  jQuery("#downspan").click(function(){
+    jQuery("#bodyid").animate({scrollTop: navtop}, 200);
+    return false;
+  });
+
 });

@@ -328,6 +328,7 @@ opacity:1;
   display: none;
   color: white;
   text-shadow: none;
+  font-weight: 900;
 }
 .mytestdiv{
   width: 500px;
@@ -364,6 +365,7 @@ opacity:1;
   top:78%;
   padding: 0px;
   border-color: white;
+  border-width: 2px;
   background: transparent;
   text-shadow: none;
   font-weight: 800;
@@ -372,7 +374,9 @@ opacity:1;
 .startbutton:active,
 .startbutton:focus,
 .startbutton:visited{
-  color:#0080FF;
+  color:#2894FF;
+  border-color: #2894FF;
+  border-width: 2px;
   background: transparent;
   text-shadow: none;
   outline: none;
@@ -404,8 +408,10 @@ opacity:1;
 
 .hellohr{
   position: absolute;
-  width: 650px;
-  color: white;
+  width: 610px;
   top:45%;
   left:25%;
+  border: none;
+  height: 2px;
+  background-image: linear-gradient(to right,rgba(255, 255, 255, 0.15),rgba(255, 255, 255, 0.9),rgba(255, 255, 255, 0.15));
 }
