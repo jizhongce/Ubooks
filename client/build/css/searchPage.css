@@ -394,7 +394,7 @@ opacity:1;
 .mytestspan:active,
 .mytestspan:focus,
 .mytestspan:visited{
-  color: #0080FF;
+  color: white;
   padding: 2px;
   border: none;
   background: transparent;
