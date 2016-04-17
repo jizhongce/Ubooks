@@ -4,12 +4,20 @@ jQuery(document).ready(function() {
 
   var wwidth = jQuery(window).width();
   var position1 = (wwidth-500)/2*100/wwidth;
-  var position2 = (wwidth-100)/2*100/wwidth;
+  var position2 = (wwidth-110)/2*100/wwidth;
+  var position3 = (wwidth-300)/2*100/wwidth;
+  var position4 = (wwidth-40)/2*100/wwidth;
+  var hrposition = (wwidth-650)/2*100/wwidth;
   jQuery("#hellomsg").css("left",position1 + "%");
   jQuery("#startbtn").css("left",position2 + "%");
+  jQuery("#fastdiv").css("left",position3 + "%");
+  jQuery("#downspan").css("left",position4 + "%");
+  jQuery("#hellohr").css("left",hrposition + "%");
 
   setTimeout(function(){jQuery("#fontin").fadeIn(4000);},500);
-  setTimeout(function(){jQuery("#startbtn").fadeIn(3000);},2000);
+  setTimeout(function(){jQuery("#fast").fadeIn(3000);},2000);
+  setTimeout(function(){jQuery("#startbtn").fadeIn(3000);},3500);
+setTimeout(function(){jQuery("#downspan").fadeIn(3000);},3500);
 
   var navO = jQuery("#headerbar").offset().top;
   var navtop = jQuery("#fixheader").offset().top;
@@ -17,7 +25,7 @@ jQuery(document).ready(function() {
   jQuery(window).scroll(function(){
     var scrollpos = jQuery(window).scrollTop();
     if(scrollpos < navtop){
-      jQuery("#bodyid").animate({scrollTop: navtop}, 500);
+      jQuery("#bodyid").animate({scrollTop: navtop}, 200);
     }
     if(scrollpos >= (navO)){
       jQuery("#headerbar").addClass("myfix");

@@ -98,7 +98,7 @@ export default class Header extends React.Component {
         </div>
       </div>
 
-      <div className="btn-group-vertical rightbuttonbar" role="group">
+      <div id="rightbar" className="btn-group-vertical rightbuttonbar" role="group">
         <button id="gohome" className="btn rightbuttonbar_button" type="button"><Link to={"/home"}><span className="glyphicon glyphicon-home rightbuttonbar_span"><br/><b>HOME</b></span></Link></button>
         <button id="playbmusic" className="btn hidden rightbuttonbar_button" type="button"><span className="glyphicon glyphicon-music"><br/><b>OFF</b></span></button>
         <button id="pausebmusic" className="btn rightbuttonbar_button" type="button"><span className="glyphicon glyphicon-music"><br/><b>ON</b></span></button>
