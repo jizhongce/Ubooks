@@ -207,7 +207,7 @@ class SearchResults extends React.Component {
 
           <div className="col-md-8">
             <div className="panel panel-default">
-              <div className="panel-body keywordinput zeromargin">
+              <div className="panel-body keywordinput zeromargin search_minheight">
                 <div className="col-md-12 bookinstore">
                   <b><font className="pull-left">Search Results for {this.props.searchTerm}: ({this.state.results.length} results)</font></b>
                 </div>

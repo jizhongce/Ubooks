@@ -24,8 +24,10 @@ setTimeout(function(){jQuery("#downspan").fadeIn(3000);},3500);
 
   jQuery(window).scroll(function(){
     var scrollpos = jQuery(window).scrollTop();
-    if(scrollpos < navtop){
-      jQuery("#bodyid").animate({scrollTop: navtop}, 200);
+    if(scrollpos > 350){
+      jQuery("#greeting").addClass("greetingopa");
+    } else {
+      jQuery("#greeting").removeClass("greetingopa");
     }
     if(scrollpos >= (navO)){
       jQuery("#headerbar").addClass("myfix");
