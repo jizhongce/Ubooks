@@ -335,36 +335,50 @@ app.put('/bookitem/:bookitemid/commentthread/comment',validate({ body: commentSc
 
 app.post('/bookitem/',validate({ body: bookitemSchema}), function(req, res){
   var fromUser = getUserIdFromToken(req.get('Authorization'));
-  var body = req.body;
-  if (body.owner_id == fromUser) {
-    var time = new Date().getTime();
-    var newBookItem={
-      "owner_id": body.owner_id,
-      "pic": body.pic,
-      "bookname": body.bookname,
-      "author": body.author,
-      "edition": body.edition,
-      "isbn_10": body.isbn_10,
-      "isbn_13": body.isbn_13,
-      "postDate": time,
-      "Publisher": body.publisher,
-      "publish_date": body.publish_date,
-      "list_price": body.list_price,
-      "condition": body.condition,
-      "highlight": body.highlight,
-      "notes": body.notes,
-      "description": body.description,
-      "location": body.location,
-      "comments": []
-};
-    newBookItem = addDocument('booksItems',newBookItem);
-    var userData = readDocument('users', body.owner_id);
-    var feedData = readDocument('feeds', userData.feed);
-    feedData.contents.push(newBookItem._id);
-    userData.exchangeLists.push(newBookItem._id);
-    writeDocument('feeds',feedData);
-    writeDocument('users',userData);
-    res.send();
+  var newbook = req.body;
+  if (newbook.owner_id == fromUser) {
+    var user = new ObjectID(newbook.owner_id);
+    db.collection('booksItems').insertOne(newbook,function(err,result){
+      if (err) {
+        return sendDatabaseError(res,err);
+      }
+      newbook._id = result.insertedId;
+      db.collection('users').updateOne({_id:user},
+        {
+          $push: {
+              exchangeLists: {
+                $each: [newbook._id],
+                $position: 0
+              }
+            }
+        },
+        function(err){
+        if (err) {
+          return sendDatabaseError(res,err);
+        }
+        db.collection('users').findOne({_id:user},function(err,userdata){
+          if (err) {
+            return sendDatabaseError(res,err);
+          }
+          db.collection('feeds').updateOne({_id:userdata.feed},
+            {
+              $push: {
+                  contents: {
+                    $each: [newbook._id],
+                    $position: 0
+                  }
+                }
+            },
+            function(err){
+              if (err) {
+                return sendDatabaseError(res,err);
+              }
+              res.send();
+            }
+          );
+        });
+      });
+    });
   } else {
     res.status(401).end();
   }
