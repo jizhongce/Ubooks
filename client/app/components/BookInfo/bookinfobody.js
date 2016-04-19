@@ -44,7 +44,7 @@ export default class Bookinfobody extends React.Component {
       return (
       <div>
           <div className="container">
-            <div className="row body">
+            <div className="row bookinfobody">
               <div className="col-md-10 col-md-offset-1">
                 <div className="bookinfo panel panel-default">
                   <div className="panel-body">
