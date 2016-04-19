@@ -37,14 +37,14 @@ export default class Bookinfobody extends React.Component {
     render() {
       if(this.state.book == ""){
         return(
-          <div>Waiting for the loading</div>
+          <div className="search_minheight">Waiting for the loading</div>
         )
       }
       else {
       return (
       <div>
           <div className="container">
-            <div className="row bookinfobody">
+            <div className="row body search_minheight">
               <div className="col-md-10 col-md-offset-1">
                 <div className="bookinfo panel panel-default">
                   <div className="panel-body">

@@ -29,6 +29,9 @@ setTimeout(function(){jQuery("#downspan").fadeIn(3000);},3500);
     } else {
       jQuery("#greeting").removeClass("greetingopa");
     }
+    if(scrollpos >= navtop){
+      jQuery("#startbtn").addClass("hidden");
+    }
     if(scrollpos >= (navO)){
       jQuery("#headerbar").addClass("myfix");
       jQuery("#headerbar").addClass("opa");

@@ -54,7 +54,7 @@ function sendDatabaseError(res, err) {
   }
 
 function getFeedItem(feedItemId,callback){
-  db.collection('bookItems').findOne({
+  db.collection('booksItems').findOne({
     _id:feedItemId
   },function(err,feedItem){
     if(err){
@@ -74,7 +74,7 @@ function getFeedItem(feedItemId,callback){
       feedItem.comments.forEach((comment)=>{
         comment.author=userMap[comment.author];
       });
-      callback(null,feedItem);
+       callback(null,feedItem);
     });
   });
 }
@@ -140,6 +140,7 @@ app.get('/user/:userid',function(req,res){
   {
     // var userData = readDocument('users',userid);
     // res.send(userData);
+    userid = new ObjectID(userid);
     db.collection('users').findOne({_id:userid},function(err,userObj){
       if(err){
         return sendDatabaseError(res,err);
@@ -165,19 +166,24 @@ app.get('/user/:userid/exchangebooks',function(req,res){
   {
     // var user = readDocument('users',userid);
     // res.send(user.exchangeLists.map((bookid)=>getFeedItemSync(bookid)));
+      userid = new ObjectID(userid);
 db.collection('users').findOne({_id:userid},function(err,userObj){
   if(err){
     return sendDatabaseError(res,err);
   }else if (userObj===null){
       res.status(400).send("Could not find this user "+userid);
   }else{
-    res.send(userObj.exchangeLists.map((bookid)=>getFeedItem(bookid,function(err,bookItem){
+    var exchangebooks = [];
+    userObj.exchangeLists.forEach((bookid)=>getFeedItem(bookid,function(err,bookItem){//callback funtion can be very solow !! so prevent it sendback before we get all book !
       if(err){
         return sendDatabaseError(res,err);
       }
-      return bookItem;
+      exchangebooks.push(bookItem);
+      if(exchangebooks.length===userObj.exchangeLists.length){
+          res.send(exchangebooks);
+      }
     })
-  ));
+  );
   }
 });
   }else{
@@ -194,19 +200,24 @@ app.get('/user/:userid/needbooks',function(req,res){
 
   if(morkupIsUser||isUser)
   {
+      userid = new ObjectID(userid);
     db.collection('users').findOne({_id:userid},function(err,userObj){
       if(err){
         return sendDatabaseError(res,err);
       }else if (userObj===null){
           res.status(400).send("Could not find this user "+userid);
       }else{
-        res.send(userObj.wantLists.map((bookid)=>getFeedItem(bookid,function(err,bookItem){
+        var wantbooks =[];
+      userObj.wantLists.forEach((bookid)=>getFeedItem(bookid,function(err,bookItem){
           if(err){
             return sendDatabaseError(res,err);
           }
-          return bookItem;
+          wantbooks.push(bookItem);
+          if(wantbooks.length===userObj.wantLists.length){       //callback funtion can be very solow !! so prevent it sendback before we get all book !
+            res.send(wantbooks);
+          }
         })
-      ));
+      );
       }
     });
       }else{
@@ -240,6 +251,7 @@ app.get('/user/:userid/mailbox',function(req,res){
   {
     // var user = readDocument('users',userid);
     // res.send(user.mailbox.map((mailNum)=>readDocument('mailbox',mailNum)));
+      userid = new ObjectID(userid);
     db.collection('users').findOne({_id:userid},function(err,userObj){
       if(err){
         return sendDatabaseError(res,err);
@@ -390,20 +402,17 @@ app.post('/bookitem/',validate({ body: bookitemSchema}), function(req, res){
 //updata watch history
 app.put('/user/:userid/historys/:bookid', function(req, res) {
   var fromUser = getUserIdFromToken(req.get('Authorization'));
-  console.log(fromUser);
   var userId = req.params.userid;
   var bookId = new ObjectID(req.params.bookid);
   if (fromUser === userId) {
     userId = new ObjectID(userId);
-    db.collection('users').findOne({_id:userId},function(err,user){
+    db.collection('users').updateOne({_id:userId},{
+      $pull: {
+          historys: bookId
+        }
+    },function(err){
       if (err) {
         return sendDatabaseError(res, err);
-      } else if (user === null) {
-        return res.status(400).end();
-      }
-      for(var i=0;i<user.historys.length;i++){
-        if(bookId === user.historys[i])
-          res.send();
       }
       db.collection('users').updateOne({_id:userId}, {
         $push:{
@@ -418,6 +427,7 @@ app.put('/user/:userid/historys/:bookid', function(req, res) {
         }
         res.send();
       });
+
     });
   } else {
     res.status(401).end();
