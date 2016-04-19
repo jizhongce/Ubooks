@@ -9,7 +9,7 @@
     },
     "pic": {
       "id": "pic",
-      "type": "string"
+      "type": ["string", "null"]
     },
     "bookname": {
       "id": "bookname",

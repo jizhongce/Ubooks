@@ -8,7 +8,7 @@ export default class Postbookbody extends React.Component{
 
   render() {
     return (
-    <div>
+    <div className="container">
       <div className="row postbook">
         <div className="col-md-10 col-md-offset-1">
           <div className="panel panel-default">

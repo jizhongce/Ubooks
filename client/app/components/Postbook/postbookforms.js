@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router';
 import {postBook} from '../../server';
-import {Missfield} from '../../util';
+import {Missfield,hideElement} from '../../util';
 
 
 
@@ -11,7 +11,8 @@ export default class Postbookforms extends React.Component{
        super(props);
        this.state = {
          owner_id: "000000000000000000000004",
-         pic_value: '../img/book1.jpg',
+         pic_value: null,
+         pic_flag: false,
          bookname_value:'',
          bookname_flag: false,
          author_value:'',
@@ -142,7 +143,14 @@ export default class Postbookforms extends React.Component{
     //changes for pic_value
     handlePicChange(e) {
       e.preventDefault();
-      //this.setState({pic_value: e.target.value});
+      var reader = new FileReader();
+      var file = e.target.files[0];
+      reader.onload = (upload) => {
+      this.setState({
+        pic_value: upload.target.result
+      });
+    };
+    reader.readAsDataURL(file);
     }
 
     onSearch() {
@@ -151,7 +159,7 @@ export default class Postbookforms extends React.Component{
     }
 
     checkvalue(value){
-      if(value === ''){
+      if(value === '' || value == null){
         return true;
       }
       else return false;
@@ -177,42 +185,81 @@ export default class Postbookforms extends React.Component{
       var location = this.state.location_value;
       //check to change the flag
       if(!this.checkvalue(bookname)&&!this.checkvalue(author)&&!this.checkvalue(edition)&&!this.checkvalue(isbn_10)&&!this.checkvalue(isbn_13)&&!this.checkvalue(publisher)&&!this.checkvalue(publish_date)&&!this.checkvalue(list_price)&&!this.checkvalue(condition)&&!this.checkvalue(highlight)&&!this.checkvalue(notes)&&!this.checkvalue(description)){
-        postBook(owner_id,pic,bookname,author,edition,isbn_10,isbn_13,publisher,publish_date,list_price,condition,highlight,notes,description,location,()=>{});
-        this.setState({
-          owner_id: "000000000000000000000004",
-          pic_value: '../img/book1.jpg',
-          bookname_value:'',
-          bookname_flag: false,
-          author_value:'',
-          author_flag: false,
-          edition_value:'',
-          edition_flag: false,
-          isbn_10_value:'',
-          isbn_10_flag: false,
-          isbn_13_value:'',
-          isbn_13_flag: false,
-          publisher_value:'',
-          publisher_flag: false,
-          publish_date_value:'',
-          publish_date_flag: false,
-          list_price_value:'',
-          list_price_flag: false,
-          condition_value:'',
-          condition_flag: false,
-          hightlight_value:'',
-          hightlight_flag: false,
-          notes_value:'',
-          notes_flag: false,
-          description_value:'',
-          description_flag: false,
-          location_value:'Amherst,MA'
-        });
-        this.onSearch();
+        if(!this.checkvalue(pic)){
+          postBook(owner_id,pic,bookname,author,edition,isbn_10,isbn_13,publisher,publish_date,list_price,condition,highlight,notes,description,location,()=>{});
+          this.setState({
+            owner_id: "000000000000000000000004",
+            pic_value: '../img/book1.jpg',
+            pic_flag: false,
+            bookname_value:'',
+            bookname_flag: false,
+            author_value:'',
+            author_flag: false,
+            edition_value:'',
+            edition_flag: false,
+            isbn_10_value:'',
+            isbn_10_flag: false,
+            isbn_13_value:'',
+            isbn_13_flag: false,
+            publisher_value:'',
+            publisher_flag: false,
+            publish_date_value:'',
+            publish_date_flag: false,
+            list_price_value:'',
+            list_price_flag: false,
+            condition_value:'',
+            condition_flag: false,
+            hightlight_value:'',
+            hightlight_flag: false,
+            notes_value:'',
+            notes_flag: false,
+            description_value:'',
+            description_flag: false,
+            location_value:'Amherst,MA'
+          });
+          this.onSearch();
+        }
+
+        else {
+          alert("The PIC fields are empty! So please upload a Picture of the book!");
+          this.setState({
+            pic_value: pic,
+            pic_flag: this.checkvalue(pic),
+            bookname_value: bookname,
+            bookname_flag: this.checkvalue(bookname),
+            author_value: author,
+            author_flag: this.checkvalue(author),
+            edition_value: edition,
+            edition_flag: this.checkvalue(edition),
+            isbn_10_value: isbn_10,
+            isbn_10_flag: this.checkvalue(isbn_10),
+            isbn_13_value: isbn_13,
+            isbn_13_flag: this.checkvalue(isbn_13),
+            publisher_value: publisher,
+            publisher_flag: this.checkvalue(publisher),
+            publish_date_value: publish_date,
+            publish_date_flag: this.checkvalue(publish_date),
+            list_price_value: list_price,
+            list_price_flag: this.checkvalue(list_price),
+            condition_value: condition,
+            condition_flag: this.checkvalue(condition),
+            hightlight_value: highlight,
+            hightlight_flag: this.checkvalue(highlight),
+            notes_value: notes,
+            notes_flag: this.checkvalue(notes),
+            description_value: description,
+            description_flag: this.checkvalue(description),
+            location_value:'Amherst,MA'
+          });
+
+          }
+
       }
       else {
         alert("The Required fields are empty! So please check and enter the informations!");
         this.setState({
-          pic_value: '../img/book1.jpg',
+          pic_value: pic,
+          pic_flag: this.checkvalue(pic),
           bookname_value: bookname,
           bookname_flag: this.checkvalue(bookname),
           author_value: author,
@@ -363,12 +410,15 @@ export default class Postbookforms extends React.Component{
         </div>
         {/*This is the forms for upload the pic*/}
         <div className="row">
-          <div className="col-md-12 pic " >
+          <div className={"col-md-5 pic "+Missfield(this.state.pic_flag)} >
             <form role="form">
               <div className="form-group">
                 <label htmlFor="pic"><font>Picture:</font></label>
-                  <input type="text" className="form-control pic" id="pic" placeholder="the router of the pic" value ={this.state.pic_value} onChange={(e) => this.handlePicChange(e)} />
+                  <input type="file" name="upload" mutiple="multiple" accept=".jpg,.jpeg,.png,.gif" onChange={(e) => this.handlePicChange(e)} />
+                    <div className="col-md-12">
+                      <img className={hideElement(this.state.imageUri === null)} src={this.state.pic_value} style={{width: "100%"}} />
               </div>
+            </div>
             </form>
           </div>
         </div>
