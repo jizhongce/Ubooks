@@ -50,7 +50,7 @@ export default class Searchpagebody extends React.Component {
     <div>
       <div className="container">
         <div className="row">
-          <div className="col-md-2 zeropadding search_minheight">
+          <div className="col-md-2 zeropadding">
             <div className="panel panel-default">
               <div className="panel-body">
                 <font color="black" size="3">Recommendation</font>
@@ -66,7 +66,7 @@ export default class Searchpagebody extends React.Component {
           </div>
 
           <div className="col-md-8">
-            <div className="panel panel-default">
+            <div className="panel panel-default search_minheight">
               <div className="panel-body keywordinput zeromargin">
                 <div className="col-md-12 bookinstore">
                   <b><font className="pull-left">Books available in store:</font></b>
