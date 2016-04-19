@@ -5,15 +5,20 @@
   "properties": {
     "author": {
       "id": "author",
-      "type": "integer"
+      "type": "string"
     },
     "contents": {
       "id": "contents",
       "type": "string"
+    },
+    "postDate": {
+      "id": "postDate",
+      "type": "integer"
     }
   },
   "required": [
     "author",
-    "contents"
+    "contents",
+    "postDate"
   ]
 }

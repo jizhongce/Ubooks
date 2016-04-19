@@ -73,7 +73,8 @@ export function postComment(bookitemId, author, contents, cb) {
   sendXHR('PUT','/bookitem/'+bookitemId+'/commentthread/comment',
   {
     author: author,
-    contents: contents
+    contents: contents,
+    postDate: new Date().getTime()
   },(xhr) => {
     cb(JSON.parse(xhr.responseText));
   });
@@ -97,7 +98,8 @@ export function postBook(owner_id,pic,bookname,author,edition,isbn_10,isbn_13,pu
     condition : condition,
     descriptions : description,
     location : location,
-    comments: []
+    comments: [],
+    postDate: new Date().getTime()
   },() => {
     cb();
   });
