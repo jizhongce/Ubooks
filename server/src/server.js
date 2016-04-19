@@ -280,24 +280,54 @@ function getUserIdFromToken(authorizationLine) {
 
 //Tim's function goes from here
 app.get('/book/:bookid',function(req,res){
-  var bookid = req.params.bookid;
-  res.send(getFeedItemSync(bookid));
+  var bookid = new ObjectID(req.params.bookid);
+  db.collection('booksItems').findOne({_id:bookid},function(err,bookdata){
+    if (err) {
+      return sendDatabaseError(res,err);
+    }
+    else {
+      simpleresloveallusers(function(err,userMap){
+        if (err) {
+          return sendDatabaseError(res, err);
+        }
+          bookdata.owner_id = userMap[bookdata.owner_id];
+          bookdata.comments.forEach((comment)=>{comment.author = userMap[comment.author]});
+          res.send(bookdata);
+      });
+    }
+  });
 });
 
 //Use PUT for posting comment
 app.put('/bookitem/:bookitemid/commentthread/comment',validate({ body: commentSchema }) ,function(req, res) {
   var fromUser = getUserIdFromToken(req.get('Authorization'));
-  var body = req.body;
-  var bookitemId = req.params.bookitemid;
-  var bookItem = readDocument('booksItems', bookitemId);
-  if(fromUser === body.author){
-    bookItem.comments.push({
-    "author": body.author,
-    "contents": body.contents,
-    "postDate": new Date().getTime()
-  });
-  writeDocument('booksItems', bookItem);
-  res.send(getFeedItemSync(bookitemId));}
+  var comment = req.body;
+  var bookitemId = new ObjectID(req.params.bookitemid);
+  if(fromUser === req.body.author){
+    db.collection('booksItems').updateOne({_id:bookitemId},
+      { $push: {comments: comment}},
+      function(err){
+        if (err) {
+          return sendDatabaseError(res,err);
+        }
+        db.collection('booksItems').findOne({_id:bookitemId},function(err,bookdata){
+            if (err) {
+              return sendDatabaseError(res,err);
+            }
+            else {
+              simpleresloveallusers(function(err,userMap){
+                if (err) {
+                  return sendDatabaseError(res, err);
+                }
+                  bookdata.owner_id = userMap[bookdata.owner_id];
+                  bookdata.comments.forEach((comment)=>{comment.author = userMap[comment.author]});
+                  res.send(bookdata);
+              });
+            }
+        });
+
+      });
+  }
   else{
     res.status(401).end();
   }
@@ -346,6 +376,7 @@ app.post('/bookitem/',validate({ body: bookitemSchema}), function(req, res){
 //updata watch history
 app.put('/user/:userid/historys/:bookid', function(req, res) {
   var fromUser = getUserIdFromToken(req.get('Authorization'));
+  console.log(fromUser);
   var userId = req.params.userid;
   var bookId = new ObjectID(req.params.bookid);
   if (fromUser === userId) {

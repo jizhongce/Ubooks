@@ -5,7 +5,7 @@
   "properties": {
     "owner_id": {
       "id": "owner_id",
-      "type": "integer"
+      "type": "string"
     },
     "pic": {
       "id": "pic",
@@ -67,6 +67,10 @@
       "id": "comments",
       "type": "array",
       "items": []
+    },
+    "postDate": {
+      "id": "postDate",
+      "type": "integer",
     }
   },
   "required": [
@@ -85,6 +89,7 @@
     "condition",
     "descriptions",
     "location",
-    "comments"
+    "comments",
+    "postDate"
   ]
 }

@@ -73,7 +73,8 @@ export function postComment(bookitemId, author, contents, cb) {
   sendXHR('PUT','/bookitem/'+bookitemId+'/commentthread/comment',
   {
     author: author,
-    contents: contents
+    contents: contents,
+    postDate: new Date().getTime()
   },(xhr) => {
     cb(JSON.parse(xhr.responseText));
   });
