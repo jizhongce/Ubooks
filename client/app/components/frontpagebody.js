@@ -21,7 +21,7 @@ export default class Frontpagebody extends React.Component {
               <img className="img-responsive imgsize" src="img/students2.jpg" />
                 <div className="overlay">
                   <h2>UBooks</h2>
-                  <Link to="/mailbox/4"><div className="info">Mail</div></Link>
+                  <Link to="/profile/4"><div className="info">User</div></Link>
                 </div>
             </div>
 

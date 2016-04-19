@@ -4,7 +4,7 @@ import {Link} from 'react-router';
 export default class Howitworkbody extends React.Component {
   render() {
     return (
-    <div>
+    <div className="container">
       <div className="row">
         <div className="col-md-10 col-md-offset-1">
           <div className="panel panel-default">
