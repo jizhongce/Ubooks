@@ -506,7 +506,7 @@ app.get('/books',function(req,res){
 });
 
 //filter
-app.get('/books/:searchTerm',function(req,res){
+app.post('/books/:searchTerm',function(req,res){
   var mysearch = req.params.searchTerm;
   var reg = new RegExp(mysearch, "i");
   db.collection('booksItems').find({bookname:{$regex:reg}}).toArray(function(err,bookarray){

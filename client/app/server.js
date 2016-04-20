@@ -128,9 +128,16 @@ export function getbookcollection(userid,cb)
 }
 
 export function myfilter(searchTerm, cb){
-  sendXHR('GET', '/books/' + searchTerm, undefined, (xhr) => {
+  if(searchTerm !== ""){
+  sendXHR('POST', '/books/' + searchTerm, undefined, (xhr) => {
     cb(JSON.parse(xhr.responseText));
   });
+  }
+  else{
+    sendXHR('GET', '/books', undefined, (xhr) => {
+      cb(JSON.parse(xhr.responseText));
+    });
+  }
 }
 //leo function end
 
