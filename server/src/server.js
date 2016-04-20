@@ -170,6 +170,8 @@ db.collection('users').findOne({_id:userid},function(err,userObj){
       res.status(400).send("Could not find this user "+userid);
   }else{
     var exchangebooks = [];
+    if(userObj.exchangeLists.length===0)
+      res.send(exchangebooks);
     userObj.exchangeLists.forEach((bookid)=>getFeedItem(bookid,function(err,bookItem){//callback funtion can be very solow !! so prevent it sendback before we get all book !
       if(err){
         return sendDatabaseError(res,err);
@@ -204,6 +206,8 @@ app.get('/user/:userid/needbooks',function(req,res){
           res.status(400).send("Could not find this user "+userid);
       }else{
         var wantbooks =[];
+        if(userObj.wantLists.length===0)
+          res.send(wantbooks);
       userObj.wantLists.forEach((bookid)=>getFeedItem(bookid,function(err,bookItem){
           if(err){
             return sendDatabaseError(res,err);
