@@ -70,7 +70,7 @@ export function getBook(bookid,cb){
 }
 //Post comment
 export function postComment(bookitemId, author, contents, cb) {
-  sendXHR('PUT','/bookitem/'+bookitemId+'/commentthread/comment',
+  sendXHR('POST','/book/'+bookitemId+'/commentthread',
   {
     author: author,
     contents: contents,
@@ -81,7 +81,7 @@ export function postComment(bookitemId, author, contents, cb) {
 }
 //Post books
 export function postBook(owner_id,pic,bookname,author,edition,isbn_10,isbn_13,publisher,publish_date,list_price,condition,highlight,notes,description,location,cb){
-  sendXHR('POST','/bookitem/',
+  sendXHR('POST','/book/',
   {
     owner_id : owner_id,
     pic : pic,
@@ -122,13 +122,13 @@ export function gethistory(userid,cb)
 
 export function getbookcollection(userid,cb)
 {
-  sendXHR('GET', '/bookscollcetion', undefined, (xhr) => {
+  sendXHR('GET', '/books', undefined, (xhr) => {
     cb(JSON.parse(xhr.responseText));
   });
 }
 
 export function myfilter(searchTerm, cb){
-  sendXHR('GET', '/bookscollcetion/' + searchTerm, undefined, (xhr) => {
+  sendXHR('GET', '/books/' + searchTerm, undefined, (xhr) => {
     cb(JSON.parse(xhr.responseText));
   });
 }

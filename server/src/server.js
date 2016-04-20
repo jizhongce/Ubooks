@@ -1,7 +1,3 @@
-var database = require('./database');
-var readDocument = database.readDocument;
-var writeDocument = database.writeDocument;
-var addDocument = database.addDocument;
 var mongo_express = require('mongo-express/lib/middleware');
 var mongo_express_config = require('mongo-express/config.default.js');
 //import the body parser
@@ -310,11 +306,11 @@ app.get('/book/:bookid',function(req,res){
   });
 });
 
-//Use PUT for posting comment
-app.put('/bookitem/:bookitemid/commentthread/comment',validate({ body: commentSchema }) ,function(req, res) {
+//Use POST for posting comment
+app.post('/book/:bookid/commentthread',validate({ body: commentSchema }) ,function(req, res) {
   var fromUser = getUserIdFromToken(req.get('Authorization'));
   var comment = req.body;
-  var bookitemId = new ObjectID(req.params.bookitemid);
+  var bookitemId = new ObjectID(req.params.bookid);
   if(fromUser === req.body.author){
     db.collection('booksItems').updateOne({_id:bookitemId},
       { $push: {comments: comment}},
@@ -345,7 +341,7 @@ app.put('/bookitem/:bookitemid/commentthread/comment',validate({ body: commentSc
   }
 });
 
-app.post('/bookitem/',validate({ body: bookitemSchema}), function(req, res){
+app.post('/book/',validate({ body: bookitemSchema}), function(req, res){
   var fromUser = getUserIdFromToken(req.get('Authorization'));
   var newbook = req.body;
   if (newbook.owner_id == fromUser) {
@@ -487,7 +483,7 @@ app.get('/user/:userid/historys',function(req,res){
 });
 
 //get books collection
-app.get('/bookscollcetion',function(req,res){
+app.get('/books',function(req,res){
   db.collection('booksItems').find({}).toArray(function(err,bookarray){
     if (err) {
       return sendDatabaseError(res, err);
@@ -506,7 +502,7 @@ app.get('/bookscollcetion',function(req,res){
 });
 
 //filter
-app.get('/bookscollcetion/:searchTerm',function(req,res){
+app.get('/books/:searchTerm',function(req,res){
   var mysearch = req.params.searchTerm;
   var reg = new RegExp(mysearch, "i");
   db.collection('booksItems').find({bookname:{$regex:reg}}).toArray(function(err,bookarray){
